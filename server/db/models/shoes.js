@@ -34,14 +34,6 @@ const Shoe = db.define('shoe', {
       notEmpty: true
     }
   },
-  brand: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true
-    },
-    default: 'Zapdos original vintage'
-  }
 })
 
 module.exports = Shoe
