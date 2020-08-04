@@ -5,3 +5,10 @@ const oliviaFunction = () => {
 const pull = ''
 
 oliviaFunction()
+
+// Hello!
+const sayHello = (name = 'Lauren') => {
+  return `Hello, ${name}!`
+}
+
+sayHello()
