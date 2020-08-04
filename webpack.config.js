@@ -3,7 +3,7 @@ const isDev = process.env.NODE_ENV === 'development'
 module.exports = {
   mode: isDev ? 'development' : 'production',
   entry: [
-    '@babel/polyfill', // enables async-await
+    'babel-polyfill', // enables async-await
     './client/index.js'
   ],
   output: {
@@ -26,8 +26,7 @@ module.exports = {
       },
       {
         test: /\.css?$/,
-        exclude: /node_modules/,
-        loader: ['style-loader', 'css-loader']
+        use: ['style-loader', 'css-loader']
       }
     ]
   }

@@ -19,3 +19,13 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.form {
+  display: flex;
+  flex-flow: column nowrap;
+  max-width: 30vw;
+}
+.form .btn {
+  align-self: center;
+  max-width: 8vw;
+}
