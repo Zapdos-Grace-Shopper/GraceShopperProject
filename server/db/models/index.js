@@ -11,6 +11,9 @@ Order.belongsTo(User)
 Order.belongsToMany(Shoe, {through: 'purchased'})
 Shoe.belongsToMany(Order, {through: 'purchased'})
 
+Shoe.belongsTo(Brand)
+Brand.hasMany(Shoe)
+
 module.exports = {
   User,
   Shoe,
