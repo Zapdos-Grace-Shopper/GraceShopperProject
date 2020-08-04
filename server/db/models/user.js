@@ -8,12 +8,41 @@ const User = db.define('user', {
     unique: true,
     allowNull: false
   },
+  firstname: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: true
+    }
+  },
+  lastname: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    unique: true,
+    validate: {
+      notEmpty: true
+    }
+  },
   password: {
     type: Sequelize.STRING,
     // Making `.password` act like a func hides it when serializing to JSON.
     // This is a hack to get around Sequelize's lack of a "private" option.
     get() {
       return () => this.getDataValue('password')
+    }
+  },
+  access: {
+    type: Sequelize.ENUM('user', 'admin'),
+    allowNull: false,
+    default: 'user'
+  },
+  shoeSize: {
+    type: Sequelize.INTEGER,
+    allowNull: true,
+    validate: {
+      min: 4,
+      max: 12
     }
   },
   salt: {
@@ -26,6 +55,12 @@ const User = db.define('user', {
   },
   googleId: {
     type: Sequelize.STRING
+  },
+  imageURL: {
+    type: Sequelize.STRING,
+    default:
+      'https://pbs.twimg.com/profile_images/580363037640536064/1GQH5xpY.jpg',
+    allowNull: true
   }
 })
 
