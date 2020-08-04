@@ -15,6 +15,13 @@ const Shoe = db.define('shoe', {
     default: 'https://static2.bigstockphoto.com/5/3/3/large2/335667787.jpg',
     allowNull: true
   },
+  price: {
+    type: Sequelize.DECIMAL(10, 2),
+    validate: {
+      notEmpty: true,
+      min: 0
+    }
+  },
   size: {
     type: Sequelize.INTEGER,
     allowNull: false,
@@ -33,7 +40,7 @@ const Shoe = db.define('shoe', {
     validate: {
       notEmpty: true
     }
-  },
+  }
 })
 
 module.exports = Shoe
