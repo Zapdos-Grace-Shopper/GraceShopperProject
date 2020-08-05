@@ -16,9 +16,9 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
         <Nav.Link href="/home" className="nav-link">
           Home
         </Nav.Link>
-        <a href="#" onClick={handleClick}>
+        <Nav.Link href="/" onClick={handleClick}>
           Logout
-        </a>
+        </Nav.Link>
       </Nav>
     ) : (
       <Nav>
@@ -39,7 +39,7 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.auth.id
   }
 }
 
