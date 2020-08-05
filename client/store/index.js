@@ -13,7 +13,6 @@ const reducer = combineReducers({
   singleShoeReducer,
   orders
 })
-
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 )
