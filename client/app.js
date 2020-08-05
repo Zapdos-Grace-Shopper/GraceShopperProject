@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ZapdosNavbar from './components/navbar'
+import {Navbar} from './components'
 import Routes from './routes'
 import Orders from './components/orders'
 // import AddShoeForm from './components/add-shoe-form'
@@ -9,7 +9,7 @@ import Orders from './components/orders'
 const App = () => {
   return (
     <div>
-      <ZapdosNavbar />
+      <Navbar />
       <Routes />
       <Orders />
       {/* <AddBrandForm /> */}

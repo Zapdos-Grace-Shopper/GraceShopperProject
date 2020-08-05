@@ -12,13 +12,14 @@ const Brand = db.define('brand', {
   },
   imageURL: {
     type: Sequelize.STRING,
-    default: 'https://static2.bigstockphoto.com/5/3/3/large2/335667787.jpg',
+    defaultValue:
+      'https://static2.bigstockphoto.com/5/3/3/large2/335667787.jpg',
     allowNull: true
   },
   description: {
     type: Sequelize.TEXT,
     allowNull: true,
-    default: 'we love this brand, hope you do too!'
+    defaultValue: 'we love this brand, hope you do too!'
   }
 })
 
