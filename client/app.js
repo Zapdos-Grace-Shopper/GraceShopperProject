@@ -1,15 +1,17 @@
 import React from 'react'
 
-import {Navbar} from './components'
+import ZapdosNavbar from './components/navbar'
 import Routes from './routes'
+import Shoes from './components/AllShoes'
 // import AddShoeForm from './components/add-shoe-form'
 // import AddBrandForm from './components/add-brand-form'
 
 const App = () => {
   return (
     <div>
-      <Navbar />
+      <ZapdosNavbar />
       <Routes />
+      <Shoes />
       {/* <AddBrandForm /> */}
       {/* <AddShoeForm /> */}
     </div>
