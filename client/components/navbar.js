@@ -1,31 +1,37 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Navbar, Nav} from 'react-bootstrap'
+// import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const Navbar = ({handleClick, isLoggedIn}) => (
-  <div>
-    <h1>BOILERMAKER</h1>
-    <nav>
-      {isLoggedIn ? (
-        <div>
-          {/* The navbar will show these links after you log in */}
-          <Link to="/home">Home</Link>
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
-      ) : (
-        <div>
-          {/* The navbar will show these links before you log in */}
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
-        </div>
-      )}
-    </nav>
-    <hr />
-  </div>
+const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
+  <Navbar bg="light" className="nav">
+    <Navbar.Brand href="/home" className="zapdos-nav">
+      ZAPDOS
+    </Navbar.Brand>
+    {isLoggedIn ? (
+      <Nav>
+        {/* The navbar will show these links after you log in */}
+        <Nav.Link to="/home" className="nav-link">
+          Home
+        </Nav.Link>
+        <a href="#" onClick={handleClick}>
+          Logout
+        </a>
+      </Nav>
+    ) : (
+      <Nav>
+        {/* The navbar will show these links before you log in */}
+        <Nav.Link to="/login" className="nav-link">
+          Login
+        </Nav.Link>
+        <Nav.Link to="/signup" className="nav-link">
+          Sign Up
+        </Nav.Link>
+      </Nav>
+    )}
+  </Navbar>
 )
 
 /**
@@ -45,12 +51,12 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Navbar)
+export default connect(mapState, mapDispatch)(ZapdosNavbar)
 
 /**
  * PROP TYPES
  */
-Navbar.propTypes = {
+ZapdosNavbar.propTypes = {
   handleClick: PropTypes.func.isRequired,
   isLoggedIn: PropTypes.bool.isRequired
 }
