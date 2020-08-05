@@ -1,5 +1,5 @@
 const db = require('../server/db')
-const {Shoe, Brand, User, Order} = require('../server/db/models')
+const {Shoe, Brand, User, Order, Purchased} = require('../server/db/models')
 
 const seed = async () => {
   try {
@@ -411,7 +411,34 @@ const seed = async () => {
 
     const order1 = await Order.create({
       status: 'complete',
-      userId: 4
+      userId: 2,
+      purchased: [{shoeId: 1}, {shoeId: 2}]
+    })
+    const order2 = await Order.create({
+      status: 'complete'
+    })
+    const order3 = await Order.create({
+      status: 'complete'
+    })
+    const order4 = await Order.create({
+      status: 'complete'
+    })
+
+    const purchase1 = await Purchased.create({
+      orderId: 1,
+      shoeId: 1
+    })
+    const purchase2 = await Purchased.create({
+      orderId: 2,
+      shoeId: 5
+    })
+    const purchase3 = await Purchased.create({
+      orderId: 3,
+      shoeId: 5
+    })
+    const purchase4 = await Purchased.create({
+      orderId: 4,
+      shoeId: 4
     })
   } catch (error) {
     console.log(error)
