@@ -410,7 +410,8 @@ const seed = async () => {
     })
 
     const order1 = await Order.create({
-      status: 'complete'
+      status: 'complete',
+      userId: 4
     })
   } catch (error) {
     console.log(error)
