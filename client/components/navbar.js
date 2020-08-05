@@ -13,7 +13,7 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
     {isLoggedIn ? (
       <Nav>
         {/* The navbar will show these links after you log in */}
-        <Nav.Link to="/home" className="nav-link">
+        <Nav.Link href="/home" className="nav-link">
           Home
         </Nav.Link>
         <a href="#" onClick={handleClick}>
@@ -23,10 +23,10 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
     ) : (
       <Nav>
         {/* The navbar will show these links before you log in */}
-        <Nav.Link to="/login" className="nav-link">
+        <Nav.Link href="/login" className="nav-link">
           Login
         </Nav.Link>
-        <Nav.Link to="/signup" className="nav-link">
+        <Nav.Link href="/signup" className="nav-link">
           Sign Up
         </Nav.Link>
       </Nav>
