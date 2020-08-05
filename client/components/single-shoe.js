@@ -7,11 +7,18 @@ import UpdateShoeForm from './update-shoe-form'
 export const SingleShoe = props => {
   const shoe = props.shoe
 
+  // OK - check out React hooks for state
+  const handleChange = event => {
+    // [event.target.name] = event.target.value
+  }
+
   // OK - perhaps we can add this functionality when we create the cart
   const handleAddCart = () => {}
 
   // OK - update shoe form only accessible to admins - need to conditionally render if have admin access
-  const handleUpdate = () => {}
+  const handleUpdateSubmit = event => {
+    event.preventDefault()
+  }
 
   return (
     <div className="singleShoe" key="shoe.id">
@@ -22,7 +29,7 @@ export const SingleShoe = props => {
       <div>{shoe.size}</div>
       <div>{shoe.description}</div>
       <Button variant="outline-primary" type="submit" className="btn">
-        add to cart
+        Add to Cart
       </Button>
     </div>
   )
