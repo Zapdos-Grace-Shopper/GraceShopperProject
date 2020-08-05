@@ -5,6 +5,7 @@ import Routes from './routes'
 import Shoes from './components/AllShoes'
 // import AddShoeForm from './components/add-shoe-form'
 // import AddBrandForm from './components/add-brand-form'
+import {AdminDashboard} from './components/admin-dashboard'
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Shoes />
       {/* <AddBrandForm /> */}
       {/* <AddShoeForm /> */}
+      <AdminDashboard />
     </div>
   )
 }
