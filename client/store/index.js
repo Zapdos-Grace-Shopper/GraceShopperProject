@@ -6,12 +6,14 @@ import auth from './auth'
 import user from './user'
 import orders from './orders'
 import singleShoeReducer from './singleShoe'
+import shoesReducer from './shoes'
 
 const reducer = combineReducers({
   user,
   auth,
   singleShoeReducer,
-  orders
+  orders,
+  shoesReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

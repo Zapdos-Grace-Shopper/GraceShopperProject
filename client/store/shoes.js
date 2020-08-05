@@ -20,7 +20,7 @@ export const fetchShoes = () => {
 
 const initialState = []
 
-export default (shoesReducer = (state = initialState, action) => {
+const shoesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SHOES: {
       return action.shoes
@@ -29,4 +29,6 @@ export default (shoesReducer = (state = initialState, action) => {
       return state
     }
   }
-})
+}
+
+export default shoesReducer
