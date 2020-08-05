@@ -1,22 +1,31 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
+import {Button} from 'react-bootstrap'
+import UpdateShoeForm from './update-shoe-form'
 
-class SingleShoe extends React.Component {
-  render() {
-    const shoe = this.props.shoe
-    return (
-      <div className="singleShoe" key="shoe.id">
-        <img className="shoeImage" src={shoe.imageURL} />
-        <div>{shoe.name}</div>
-        <div>{shoe.brand}</div>
-        <div>{shoe.price}</div>
-        <div>{shoe.size}</div>
-        <div>{shoe.description}</div>
-      </div>
-    )
-  }
+export const SingleShoe = props => {
+  const shoe = props.shoe
+
+  // OK - perhaps we can add this functionality when we create the cart
+  const handleAddCart = () => {}
+
+  // OK - update shoe form only accessible to admins - need to conditionally render if have admin access
+  const handleUpdate = () => {}
+
+  return (
+    <div className="singleShoe" key="shoe.id">
+      <img className="shoeImage" src={shoe.imageURL} />
+      <div>{shoe.name}</div>
+      <div>{shoe.brand}</div>
+      <div>{shoe.price}</div>
+      <div>{shoe.size}</div>
+      <div>{shoe.description}</div>
+      <Button variant="outline-primary" type="submit" className="btn">
+        add to cart
+      </Button>
+    </div>
+  )
 }
 
 const mapState = state => ({
@@ -29,7 +38,3 @@ const mapDispatch = dispatch => ({
 })
 
 export default connect(mapState, mapDispatch)(SingleShoe)
-
-// pair?
-// add shoe to cart
-// update shoe
