@@ -91,6 +91,216 @@ const seed = async () => {
         'Crafted from soft, white leather, the emblematic Ace sneaker is enhanced with a minimalist logo approach. With an intricate design, the Interlocking G is displayed on the side of the shoe, created using a perforated technique. Soft pink leather details at the back of the shoe add a subtle hint of color to the all-white style.',
       quantity: '9'
     })
+    const shoe6 = await Shoe.create({
+      name: 'Laminated Lambskin & Grosgrain',
+      price: '950',
+      imageUrl:
+        'https://www.chanel.com/images//t_fashion//q_auto,f_jpg,fl_lossy,dpr_2/w_620/pumps-gold-black-laminated-lambskin-grosgrain-laminated-lambskin-grosgrain-packshot-default-g36360y54258k2304-8826161037342.jpg',
+      size: '8',
+      description:
+        'dis parturient montes, nascetur ridiculus mus. Proin vel arcu eu odio tristique pharetra. Quisque ac libero nec ligula consectetuer rhoncus. Nullam velit dui, semper et, lacinia vitae, sodales at, velit. Pellentesque ultricies dignissim lacus. Aliquam rutrum lorem ac risus. Morbi metus. Vivamus euismod urna. Nullam lobortis quam a felis ullamcorper viverra. Maecenas iaculis aliquet diam. Sed diam lorem, auctor quis, tristique ac, eleifend vitae, erat. Vivamus nisi. Mauris nulla. Integer urna. Vivamus molestie dapibus ligula. Aliquam erat volutpat. Nulla dignissim. Maecenas ornare egestas ligula. Nullam feugiat placerat velit. Quisque varius. Nam porttitor scelerisque neque. Nullam nisl. Maecenas malesuada fringilla est. Mauris eu turpis. Nulla aliquet. Proin velit. Sed malesuada augue ut lacus. Nulla tincidunt, neque vitae semper egestas, urna justo faucibus lectus, a sollicitudin orci sem eget massa. Suspendisse eleifend. Cras sed leo. Cras vehicula aliquet libero. Integer in magna. Phasellus dolor elit, pellentesque a, facilisis non, bibendum sed, est.',
+      quantity: '5'
+    })
+    const shoe7 = await Shoe.create({
+      name: 'Myriotrema Lichen',
+      price: 629,
+      size: 10,
+      description:
+        'eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo',
+      quantity: 4
+    })
+    const shoe8 = await Shoe.create({
+      name: 'Pineland Heliotrope',
+      price: 810,
+      size: 10,
+      description:
+        'ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id',
+      quantity: 4
+    })
+    const shoe9 = await Shoe.create({
+      name: 'Scentless Bayberry',
+      price: 606,
+      size: 7,
+      description:
+        'vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna',
+      quantity: 5
+    })
+    const shoe10 = await Shoe.create({
+      name: 'Gundlachia',
+      price: 732,
+      size: 8,
+      description:
+        'cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut',
+      quantity: 3
+    })
+    const shoe11 = await Shoe.create({
+      name: 'Fivespot',
+      price: 546,
+      size: 8,
+      description:
+        'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis',
+      quantity: 5
+    })
+    const shoe12 = await Shoe.create({
+      name: 'Mouse-ear Chickweed',
+      price: 722,
+      size: 10,
+      description:
+        'eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus',
+      quantity: 4
+    })
+    const shoe13 = await Shoe.create({
+      name: 'Astrothelium Lichen',
+      price: 879,
+      size: 8,
+      description:
+        'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat',
+      quantity: 1
+    })
+    const shoe14 = await Shoe.create({
+      name: 'Appalachian Rim Lichen',
+      price: 619,
+      size: 7,
+      description:
+        'lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi',
+      quantity: 4
+    })
+    const shoe15 = await Shoe.create({
+      name: 'Broadsepal Saxifrage',
+      price: 843,
+      size: 10,
+      description:
+        'sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis',
+      quantity: 4
+    })
+    const shoe16 = await Shoe.create({
+      name: 'Slender Woodland Sedge',
+      price: 841,
+      size: 7,
+      description:
+        'lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet',
+      quantity: 4
+    })
+    const shoe17 = await Shoe.create({
+      name: 'Puerto Rico Palo De Gallina',
+      price: 879,
+      size: 10,
+      description:
+        'volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia',
+      quantity: 1
+    })
+    const shoe18 = await Shoe.create({
+      name: 'Grimmia Dry Rock Moss',
+      price: 749,
+      size: 8,
+      description:
+        'lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio',
+      quantity: 1
+    })
+    const shoe19 = await Shoe.create({
+      name: 'Woolly Paperflower',
+      price: 686,
+      size: 6,
+      description:
+        'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti',
+      quantity: 4
+    })
+    const shoe20 = await Shoe.create({
+      name: 'Slender Spikerush',
+      price: 556,
+      size: 6,
+      description:
+        'id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices',
+      quantity: 5
+    })
+    const shoe21 = await Shoe.create({
+      name: 'Hairy Butterwort',
+      price: 599,
+      size: 9,
+      description:
+        'sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus',
+      quantity: 2
+    })
+    const shoe22 = await Shoe.create({
+      name: 'Heavy Sedge',
+      price: 728,
+      size: 9,
+      description:
+        'lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus',
+      quantity: 4
+    })
+    const shoe23 = await Shoe.create({
+      name: "Springfield's Beardgrass",
+      price: 512,
+      size: 8,
+      description:
+        'donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus',
+      quantity: 4
+    })
+    const shoe24 = await Shoe.create({
+      name: 'Alyssumleaf Phlox',
+      price: 866,
+      size: 9,
+      description:
+        'amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium',
+      quantity: 5
+    })
+    const shoe25 = await Shoe.create({
+      name: 'American Tarwort',
+      price: 854,
+      size: 10,
+      description:
+        'ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer',
+      quantity: 2
+    })
+    const shoe26 = await Shoe.create({
+      name: 'Soapberry',
+      price: 547,
+      size: 8,
+      description:
+        'maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse',
+      quantity: 5
+    })
+    const shoe27 = await Shoe.create({
+      name: 'Asian White Birch',
+      price: 681,
+      size: 7,
+      description:
+        'nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis',
+      quantity: 1
+    })
+    const shoe28 = await Shoe.create({
+      name: 'Manilkara',
+      price: 844,
+      size: 8,
+      description:
+        'convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit',
+      quantity: 5
+    })
+    const shoe29 = await Shoe.create({
+      name: 'Polytrichum Moss',
+      price: 876,
+      size: 7,
+      description:
+        'potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis',
+      quantity: 3
+    })
+    const shoe30 = await Shoe.create({
+      name: 'Eggplant',
+      price: 525,
+      size: 9,
+      description:
+        'ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus',
+      quantity: 2
+    })
+    const shoe31 = await Shoe.create({
+      name: 'Navelwort',
+      price: 598,
+      size: 9,
+      description:
+        'amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat',
+      quantity: 4
+    })
 
     const user1 = await User.create({
       firstname: 'Danny',
