@@ -4,6 +4,9 @@ import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
 import UpdateShoeForm from './update-shoe-form'
 
+// add react hooks to render props
+// check that get price function works
+
 export const SingleShoe = props => {
   const shoe = props.shoe
 
@@ -25,7 +28,10 @@ export const SingleShoe = props => {
       <img className="shoeImage" src={shoe.imageURL} />
       <div>{shoe.name}</div>
       <div>{shoe.brand}</div>
+
+      {/* render shoe price function instead */}
       <div>{shoe.price}</div>
+
       <div>{shoe.size}</div>
       <div>{shoe.description}</div>
       <Button variant="outline-primary" type="submit" className="btn">

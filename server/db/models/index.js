@@ -2,14 +2,15 @@ const User = require('./user')
 const Shoe = require('./shoes')
 // const Brand = require('./brands')
 const Order = require('./orders')
+const Purchased = require('./purchased')
 //  Associations
-const db = require('../db')
+// const db = require('../db')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-Order.belongsToMany(Shoe, {through: 'purchased'})
-Shoe.belongsToMany(Order, {through: 'purchased'})
-const Purchased = db.model('purchased')
+Order.belongsToMany(Shoe, {through: Purchased})
+Shoe.belongsToMany(Order, {through: Purchased})
+
 // Shoe.belongsTo(Brand)
 // Brand.hasMany(Shoe)
 

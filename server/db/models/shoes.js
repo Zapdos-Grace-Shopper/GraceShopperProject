@@ -22,7 +22,7 @@ const Shoe = db.define('shoe', {
     allowNull: true
   },
   price: {
-    type: Sequelize.DECIMAL(10, 2),
+    type: Sequelize.INTEGER,
     validate: {
       notEmpty: true,
       min: 0
@@ -48,5 +48,9 @@ const Shoe = db.define('shoe', {
     }
   }
 })
+
+// Shoe.getPrice = function () {
+//   this.displayPrice = `USD ${this.price / 100}`
+// }
 
 module.exports = Shoe
