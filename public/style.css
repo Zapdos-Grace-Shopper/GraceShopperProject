@@ -1,7 +1,3 @@
-* {
-  box-sizing: border-box;
-}
-
 body {
   font-family: sans-serif;
 }
@@ -14,24 +10,9 @@ label {
   display: block;
 }
 
-.nav {
-  display: flex;
-  justify-content: space-between;
+nav a {
+  display: inline-block;
   margin: 1em;
-}
-
-.zapdos-nav {
-  color: black;
-  font-weight: bolder;
-}
-
-.nav-link {
-  color: black;
-  margin: 1em;
-}
-
-.nav-link:hover {
-  color: gray;
 }
 
 form div {

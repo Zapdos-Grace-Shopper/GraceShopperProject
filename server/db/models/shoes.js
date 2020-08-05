@@ -10,9 +10,15 @@ const Shoe = db.define('shoe', {
       notEmpty: true
     }
   },
+  brand: {
+    type: Sequelize.STRING,
+    defaultValue: 'Zapdos Vintage',
+    allowNull: false
+  },
   imageURL: {
     type: Sequelize.STRING,
-    default: 'https://static2.bigstockphoto.com/5/3/3/large2/335667787.jpg',
+    defaultValue:
+      'https://static2.bigstockphoto.com/5/3/3/large2/335667787.jpg',
     allowNull: true
   },
   price: {
@@ -33,7 +39,7 @@ const Shoe = db.define('shoe', {
   description: {
     type: Sequelize.TEXT,
     allowNull: true,
-    default: 'beautiful shoes'
+    defaultValue: 'beautiful shoes'
   },
   quantity: {
     type: Sequelize.INTEGER,
