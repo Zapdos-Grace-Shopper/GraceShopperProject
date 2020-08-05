@@ -410,7 +410,9 @@ const seed = async () => {
     })
 
     const order1 = await Order.create({
-      status: 'complete'
+      status: 'complete',
+      userId: 2,
+      purchased: [{shoeId: 1}, {shoeId: 2}]
     })
     const order2 = await Order.create({
       status: 'complete'
