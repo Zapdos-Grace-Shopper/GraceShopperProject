@@ -24,7 +24,6 @@ const initialState = {
 //THUNKS
 export const fetchAllUsers = () => {
   return async dispatch => {
-    console.log('I hit the fetch all users thunk')
     try {
       const res = await axios.get('/api/users')
       const action = getAllUsers(res.data)
