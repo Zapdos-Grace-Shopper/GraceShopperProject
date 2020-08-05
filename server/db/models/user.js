@@ -35,7 +35,7 @@ const User = db.define('user', {
   access: {
     type: Sequelize.ENUM('user', 'admin'),
     allowNull: false,
-    default: 'user'
+    defaultValue: 'user'
   },
   shoeSize: {
     type: Sequelize.INTEGER,
@@ -58,7 +58,7 @@ const User = db.define('user', {
   },
   imageURL: {
     type: Sequelize.STRING,
-    default:
+    defaultValue:
       'https://pbs.twimg.com/profile_images/580363037640536064/1GQH5xpY.jpg',
     allowNull: true
   }
