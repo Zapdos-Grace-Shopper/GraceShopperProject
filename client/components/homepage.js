@@ -10,7 +10,7 @@ export class Homepage extends React.Component {
     this.props.getAllShoes()
   }
   render() {
-    console.log(this.props.shoes.shoes)
+    // console.log(this.props.shoes.shoes)
     return (
       <div>
         <h1>Luxury Shoes</h1>
