@@ -43,7 +43,7 @@ class SingleShoe extends React.Component {
         <div>
           <img src={shoe.imageURL} />
           <div>name: {shoe.name}</div>
-          <div>price: ${shoe.price}/</div>
+          <div>price: ${(shoe.price / 100).toFixed(2)}</div>
           <div>quantity: {shoe.quantity}</div>
           <div>size: {shoe.size}</div>
         </div>
