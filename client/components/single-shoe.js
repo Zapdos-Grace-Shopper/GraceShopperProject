@@ -4,12 +4,7 @@ import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
 import UpdateShoeForm from './update-shoe-form'
 
-// add react hooks to render props
-// check that get price function works
-
 class SingleShoe extends React.Component {
-  // const shoe = props.shoe
-
   // constructor() {
   //   super()
   //   // this.state = defaultState
@@ -36,28 +31,24 @@ class SingleShoe extends React.Component {
   // }
 
   render() {
-    // const shoe = this.props.shoe
-    // console.log(this.props.match.params.shoeId)
-    console.log('my props', this.props)
-    // const shoe = props.shoe
+    const {shoe} = this.props
+    console.log(shoe)
     return (
-      <div>single shoe</div>
+      <div>
+        <div>
+          <img src={shoe.imageURL} />
+          <div>name: {shoe.name}</div>
+          <div>price: ${(shoe.price / 100).toFixed(2)}</div>
+          <div>quantity: {shoe.quantity}</div>
+          <div>size: {shoe.size}</div>
+        </div>
 
-      // <div className="singleShoe" key="shoe.id">
-      // {
-      /* <img className="shoeImage" src={shoe.imageURL} />
-        <div>{shoe.name}</div>
-        <div>{shoe.brand}</div>
-
-        {/* render shoe price function instead */
-      // }
-      // <div>{shoe.price}</div>
-      // <div>{shoe.size}</div>
-      // <div>{shoe.description}</div> */}
-      // <Button variant="outline-primary" type="submit" className="btn">
-      //   Add to Cart
-      // </Button>
-      // </div>
+        <div>
+          <Button variant="outline-primary" type="submit" className="btn">
+            Add to Cart
+          </Button>
+        </div>
+      </div>
     )
   }
 }

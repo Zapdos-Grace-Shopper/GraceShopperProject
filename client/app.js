@@ -6,7 +6,7 @@ import Routes from './routes'
 // import AddBrandForm from './components/add-brand-form'
 // import {AdminDashboard} from './components/admin-dashboard'
 // import SingleShoe from './components/single-shoe'
-import Orders from './components/orders'
+// import Orders from './components/orders'
 import {Footer} from './components/footer'
 
 const App = () => {
