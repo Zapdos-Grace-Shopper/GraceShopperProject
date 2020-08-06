@@ -1,7 +1,7 @@
-import React from 'react'
-import {connect} from 'react-redux'
-import {fetchShoes} from '../store/shoes'
-import SingleShoe from './single-shoe'
+// import React from 'react'
+// import {connect} from 'react-redux'
+// import {fetchShoes} from '../store/shoes'
+// import SingleShoe from './single-shoe'
 
 export class AllShoes extends React.Component {
   componentDidMount() {
@@ -26,16 +26,16 @@ export class AllShoes extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    shoes: state.shoes
-  }
-}
+// const mapStateToProps = state => {
+//   return {
+//     shoes: state.shoes
+//   }
+// }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getAllShoes: () => dispatch(fetchShoes())
-  }
-}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     getAllShoes: () => dispatch(fetchShoes())
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AllShoes)
+// export default connect(mapStateToProps, mapDispatchToProps)(AllShoes)
