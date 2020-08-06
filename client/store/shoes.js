@@ -1,33 +1,32 @@
 import axios from 'axios'
 
-const GET_SHOES = 'GET_SHOES'
+const initialState = []
 
-export const getShoes = shoes => ({
-  type: GET_SHOES,
+const GET_ALL_SHOES = 'GET_ALL_SHOES'
+
+const getAllShoes = shoes => ({
+  type: GET_ALL_SHOES,
   shoes
 })
 
 export const fetchShoes = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('/api/shoes')
-      dispatch(getShoes(data))
+      const {data} = await axios.get('api/shoes')
+      dispatch(getAllShoes(data))
     } catch (error) {
-      console.log("Can't get shoes!", error)
+      console.log("Can't get these shoes!", error)
     }
   }
 }
 
-const initialState = []
-
 const shoesReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_SHOES: {
+    case GET_ALL_SHOES: {
       return action.shoes
     }
-    default: {
+    default:
       return state
-    }
   }
 }
 
