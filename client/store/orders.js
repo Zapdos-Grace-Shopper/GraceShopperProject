@@ -14,7 +14,7 @@ export const getOrders = orders => {
 export const getOrdersThunk = () => {
   return async dispatch => {
     try {
-      const {data} = await axios.get('/api/orders')
+      const {data} = await axios.get('api/orders')
       dispatch(getOrders(data))
     } catch (error) {
       console.log(error)
