@@ -2,6 +2,10 @@
 // // import {connect} from 'react-redux'
 // // import {fetchShoes} from '../store/shoes'
 // // import SingleShoe from './single-shoe'
+import React, {Fragment} from 'react'
+import {connect} from 'react-redux'
+import {fetchShoes} from '../store/shoes'
+// import SingleShoe from './single-shoe'
 
 // export class AllShoes extends React.Component {
 //   componentDidMount() {
@@ -39,3 +43,10 @@
 // // }
 
 // // export default connect(mapStateToProps, mapDispatchToProps)(AllShoes)
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllShoes: () => dispatch(fetchShoes())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AllShoes)
