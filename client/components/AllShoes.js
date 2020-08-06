@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
-import {Link} from 'react-redux-dom'
 import {fetchShoes} from '../store/shoes'
 // import SingleShoe from './single-shoe'
 
