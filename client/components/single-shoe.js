@@ -24,20 +24,21 @@ export const SingleShoe = props => {
   }
 
   return (
-    <div className="singleShoe" key="shoe.id">
-      <img className="shoeImage" src={shoe.imageURL} />
-      <div>{shoe.name}</div>
-      <div>{shoe.brand}</div>
+    <h1>single shoe</h1>
+    // <div className="singleShoe" key="shoe.id">
+    //   <img className="shoeImage" src={shoe.imageURL} />
+    //   <div>{shoe.name}</div>
+    //   <div>{shoe.brand}</div>
 
-      {/* render shoe price function instead */}
-      <div>{shoe.price}</div>
+    //   {/* render shoe price function instead */}
+    //   <div>{shoe.price}</div>
 
-      <div>{shoe.size}</div>
-      <div>{shoe.description}</div>
-      <Button variant="outline-primary" type="submit" className="btn">
-        Add to Cart
-      </Button>
-    </div>
+    //   <div>{shoe.size}</div>
+    //   <div>{shoe.description}</div>
+    //   <Button variant="outline-primary" type="submit" className="btn">
+    //     Add to Cart
+    //   </Button>
+    // </div>
   )
 }
 
