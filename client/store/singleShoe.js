@@ -5,15 +5,19 @@ const initialState = {}
 const GET_SINGLE_SHOE = 'GET_SINGLE_SHOE'
 const UPDATE_SHOE = 'UPDATE_SINGLE_SHOE'
 
-const getSingleShoe = shoe => ({
-  type: GET_SINGLE_SHOE,
-  shoe
-})
+export const getSingleShoe = shoe => {
+  return {
+    type: GET_SINGLE_SHOE,
+    shoe
+  }
+}
 
-const updateShoe = shoe => ({
-  tye: UPDATE_SHOE,
-  shoe
-})
+export const updateShoe = shoe => {
+  return {
+    tye: UPDATE_SHOE,
+    shoe
+  }
+}
 
 export const fetchSingleShoe = id => {
   return async dispatch => {

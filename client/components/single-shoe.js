@@ -7,38 +7,55 @@ import UpdateShoeForm from './update-shoe-form'
 // add react hooks to render props
 // check that get price function works
 
-export const SingleShoe = props => {
-  const shoe = props.shoe
+class SingleShoe extends React.Component {
+  // const shoe = props.shoe
 
-  // OK - check out React hooks for state
-  const handleChange = event => {
+  constructor() {
+    super()
+    // this.state = defaultState
+    this.handleChange = this.handleChange.bind(this)
+    this.handleAddCart = this.handleAddCart.bind(this)
+    this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    const id = this.props.match.params.shoeId
+    this.props.getSingleShoe(id)
+  }
+
+  handleChange(event) {
     // [event.target.name] = event.target.value
   }
 
   // OK - perhaps we can add this functionality when we create the cart
-  const handleAddCart = () => {}
+  handleAddCart() {}
 
   // OK - update shoe form only accessible to admins - need to conditionally render if have admin access
-  const handleUpdateSubmit = event => {
+  handleUpdateSubmit(event) {
     event.preventDefault()
   }
 
-  return (
-    <div className="singleShoe" key="shoe.id">
-      <img className="shoeImage" src={shoe.imageURL} />
-      <div>{shoe.name}</div>
-      <div>{shoe.brand}</div>
+  render() {
+    // const shoe = this.props.shoe
+    // console.log(this.props.match.params.shoeId)
+    console.log(this.props)
+    return (
+      <div className="singleShoe" key="shoe.id">
+        <img className="shoeImage" src={shoe.imageURL} />
+        <div>{shoe.name}</div>
+        <div>{shoe.brand}</div>
 
-      {/* render shoe price function instead */}
-      <div>{shoe.price}</div>
+        {/* render shoe price function instead */}
+        <div>{shoe.price}</div>
 
-      <div>{shoe.size}</div>
-      <div>{shoe.description}</div>
-      <Button variant="outline-primary" type="submit" className="btn">
-        Add to Cart
-      </Button>
-    </div>
-  )
+        <div>{shoe.size}</div>
+        <div>{shoe.description}</div>
+        <Button variant="outline-primary" type="submit" className="btn">
+          Add to Cart
+        </Button>
+      </div>
+    )
+  }
 }
 
 const mapState = state => ({

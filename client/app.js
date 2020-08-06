@@ -6,7 +6,8 @@ import Routes from './routes'
 // import AddShoeForm from './components/add-shoe-form'
 // import AddBrandForm from './components/add-brand-form'
 // import {AdminDashboard} from './components/admin-dashboard'
-// import SingleShoe from './components/single-shoe'
+import SingleShoe from './components/single-shoe'
+// import UpdateShoeForm from './components/update-shoe-form'
 
 const App = () => {
   return (
@@ -17,7 +18,8 @@ const App = () => {
       {/* <AddBrandForm /> */}
       {/* <AddShoeForm /> */}
       {/* <AdminDashboard /> */}
-      {/* <SingleShoe /> */}
+      <SingleShoe />
+      {/* <UpdateShoeForm /> */}
     </div>
   )
 }
