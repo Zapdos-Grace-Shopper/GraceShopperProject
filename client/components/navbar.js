@@ -7,7 +7,7 @@ import {logout} from '../store'
 
 const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
   <Navbar bg="light" className="nav">
-    <Navbar.Brand href="/home" className="zapdos-nav">
+    <Navbar.Brand href="/" className="zapdos-nav">
       ZAPDOS
     </Navbar.Brand>
     {isLoggedIn ? (
@@ -16,9 +16,12 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
         <Nav.Link href="/home" className="nav-link">
           Home
         </Nav.Link>
-        <a href="#" onClick={handleClick}>
+        <Nav.Link href="/orders" className="nav-link">
+          Orders
+        </Nav.Link>
+        <Nav.Link href="/" onClick={handleClick}>
           Logout
-        </a>
+        </Nav.Link>
       </Nav>
     ) : (
       <Nav>
@@ -39,7 +42,7 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.user.id
+    isLoggedIn: !!state.auth.id
   }
 }
 
