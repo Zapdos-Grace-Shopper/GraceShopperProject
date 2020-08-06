@@ -24,8 +24,7 @@ export class Homepage extends React.Component {
 }
 const mapStateToProps = state => {
   return {
-    // when ready change to shoes
-    shoes: state.shoesReducer
+    shoes: state.shoes
   }
 }
 
