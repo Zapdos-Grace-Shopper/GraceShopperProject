@@ -21,7 +21,7 @@ set -e
 # Whether the deploy succeeds or fails, we'll clean up the deploy branch.
 
 function cleanup_at_exit {
-  # return to your main branch
+  # return to your master branch
   git checkout main
 
   # remove the deploy branch
