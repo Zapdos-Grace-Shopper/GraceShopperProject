@@ -7,12 +7,13 @@ import Routes from './routes'
 // import AddBrandForm from './components/add-brand-form'
 // import {AdminDashboard} from './components/admin-dashboard'
 // import SingleShoe from './components/single-shoe'
-
+import Orders from './components/orders'
 const App = () => {
   return (
     <div>
       <ZapdosNavbar />
       <Routes />
+      {/* <Orders /> */}
       {/* <Shoes /> */}
       {/* <AddBrandForm /> */}
       {/* <AddShoeForm /> */}
