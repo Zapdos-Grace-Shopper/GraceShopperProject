@@ -1,3 +1,4 @@
+
 import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import {fetchShoes} from '../store/shoes'
@@ -51,3 +52,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllShoes)
+

@@ -41,7 +41,7 @@ export const fetchUpdateShoe = (id, updateInfo) => {
   }
 }
 
-const singleShoeReducer = (state = initialState, action) => {
+export default function(state = initialState, action) {
   switch (action.type) {
     case GET_SINGLE_SHOE:
       return action.shoe
@@ -51,5 +51,3 @@ const singleShoeReducer = (state = initialState, action) => {
       return state
   }
 }
-
-export default singleShoeReducer
