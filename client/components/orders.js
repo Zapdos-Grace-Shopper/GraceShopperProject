@@ -21,13 +21,12 @@ class Orders extends React.Component {
             return (
               <div key={order.id}>
                 <h4>Order status is {order.status}</h4>
-
                 <div>
                   {order.shoes.map(shoe => {
                     return (
                       <div key={shoe.id}>
-                        <h4>Shoes are {shoe.name}</h4>
-                        <h4>shoe price {shoe.price}</h4>
+                        <h5>You purchased {shoe.name}</h5>
+                        <h4>Total: {shoe.price}</h4>
                       </div>
                     )
                   })}
