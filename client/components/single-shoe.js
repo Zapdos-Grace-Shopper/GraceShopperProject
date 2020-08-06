@@ -32,7 +32,6 @@ class SingleShoe extends React.Component {
 
   render() {
     const {shoe} = this.props
-    console.log(shoe)
     return (
       <div>
         <div>
