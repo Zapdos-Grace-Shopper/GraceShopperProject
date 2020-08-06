@@ -7,7 +7,7 @@ import {logout} from '../store'
 
 const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
   <Navbar bg="light" className="nav">
-    <Navbar.Brand href="/home" className="zapdos-nav">
+    <Navbar.Brand href="/" className="zapdos-nav">
       ZAPDOS
     </Navbar.Brand>
     {isLoggedIn ? (
@@ -15,6 +15,9 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
         {/* The navbar will show these links after you log in */}
         <Nav.Link href="/home" className="nav-link">
           Home
+        </Nav.Link>
+        <Nav.Link href="/orders" className="nav-link">
+          Orders
         </Nav.Link>
         <Nav.Link href="/" onClick={handleClick}>
           Logout
