@@ -4,12 +4,7 @@ import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
 import UpdateShoeForm from './update-shoe-form'
 
-// add react hooks to render props
-// check that get price function works
-
 class SingleShoe extends React.Component {
-  // const shoe = props.shoe
-
   // constructor() {
   //   super()
   //   // this.state = defaultState
