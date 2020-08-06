@@ -12,3 +12,21 @@ router.get('/', async (req, res, next) => {
     next(err)
   }
 })
+
+// posting to orders database, but not connecting to shoes in cart
+router.post('/', async (req, res, next) => {
+  try {
+    const {userId, status, shoeId} = req.body
+    const [order, wasCreated] = await Order.findOrCreate({
+      where: {
+        userId,
+        status
+      }
+    })
+    order.shoeId = shoeId
+    await order.save()
+    res.json(order)
+  } catch (e) {
+    next(e)
+  }
+})
