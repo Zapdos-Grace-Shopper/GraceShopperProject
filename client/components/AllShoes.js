@@ -2,6 +2,7 @@ import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import {fetchShoes} from '../store/shoes'
 // import SingleShoe from './single-shoe'
+//hi! i'm trying to fix it
 
 export class AllShoes extends React.Component {
   constructor(props) {
