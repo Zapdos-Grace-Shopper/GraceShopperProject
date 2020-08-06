@@ -5,20 +5,24 @@ const initialState = {}
 const GET_SINGLE_SHOE = 'GET_SINGLE_SHOE'
 const UPDATE_SHOE = 'UPDATE_SINGLE_SHOE'
 
-const getSingleShoe = shoe => ({
-  type: GET_SINGLE_SHOE,
-  shoe
-})
+export const getSingleShoe = shoe => {
+  return {
+    type: GET_SINGLE_SHOE,
+    shoe
+  }
+}
 
-const updateShoe = shoe => ({
-  tye: UPDATE_SHOE,
-  shoe
-})
+export const updateShoe = shoe => {
+  return {
+    tye: UPDATE_SHOE,
+    shoe
+  }
+}
 
 export const fetchSingleShoe = id => {
   return async dispatch => {
     try {
-      const singleShoe = await axios.get(`api/shoes/${id}`)
+      const singleShoe = await axios.get(`/api/shoes/${id}`)
       dispatch(getSingleShoe(singleShoe.data))
     } catch (err) {
       console.error(err)
@@ -29,7 +33,7 @@ export const fetchSingleShoe = id => {
 export const fetchUpdateShoe = (id, updateInfo) => {
   return async dispatch => {
     try {
-      const singleUpdateShoe = await axios.put(`api/shoes/${id}`, updateInfo)
+      const singleUpdateShoe = await axios.put(`/api/shoes/${id}`, updateInfo)
       dispatch(updateShoe(singleUpdateShoe.data))
     } catch (err) {
       console.error(err)
