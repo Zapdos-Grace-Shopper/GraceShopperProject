@@ -21,7 +21,7 @@ const App = () => {
       {/* <AddBrandForm /> */}
       {/* <AddShoeForm /> */}
       {/* <AdminDashboard /> */}
-      <SingleShoe />
+      {/* <SingleShoe /> */}
       {/* <UpdateShoeForm /> */}
     </div>
   )
