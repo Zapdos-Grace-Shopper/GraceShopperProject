@@ -8,6 +8,8 @@ import orders from './orders'
 
 import singleShoeReducer from './singleShoe'
 import shoes from './shoes'
+import shoe from './singleShoe'
+// import shoesReducer from './shoes'
 
 import shoe from './singleShoe'
 // import shoesReducer from './shoes'
@@ -16,14 +18,11 @@ import shoe from './singleShoe'
 const reducer = combineReducers({
   user,
   auth,
-
   singleShoeReducer,
   orders,
   shoes,
-  shoe,
-  orders
+  shoe
   // shoesReducer
-
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
