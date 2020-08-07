@@ -17,7 +17,7 @@ class SingleShoe extends React.Component {
       size: ''
     }
     this.handleChange = this.handleChange.bind(this)
-    // this.handleAddCart = this.handleAddCart.bind(this)
+    this.handleAddCart = this.handleAddCart.bind(this)
     this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
   }
 
@@ -27,15 +27,19 @@ class SingleShoe extends React.Component {
   }
 
   handleChange(event) {
-    // console.log('event', event.target)
     this.setState({
       [event.target.name]: event.target.value
     })
-    // console.log(this.state)
   }
 
-  // OK - perhaps we can add this functionality when we create the cart
-  handleAddCart() {}
+  // if user logged in - check if order status "cart" exists with user id
+  // if yes, associate this shoe id with that order id
+  // if no, create new order with status "cart", associated with user id and shoe id
+
+  // if no user login - create Local cart in browser
+  handleAddCart() {
+    const shoeId = this.props.match.params.id
+  }
 
   // OK - update shoe form only accessible to admins - need to conditionally render if have admin access
   handleUpdateSubmit(event) {
@@ -57,7 +61,7 @@ class SingleShoe extends React.Component {
   }
 
   render() {
-    console.log(this.props)
+    // console.log('shoe props', this.props)
     const {shoe} = this.props
     return (
       <div>
@@ -70,7 +74,12 @@ class SingleShoe extends React.Component {
         </div>
 
         <div>
-          <Button variant="outline-primary" type="submit" className="btn">
+          <Button
+            variant="outline-primary"
+            type="submit"
+            className="btn"
+            onClick={this.handleAddCart}
+          >
             Add to Cart
           </Button>
         </div>
