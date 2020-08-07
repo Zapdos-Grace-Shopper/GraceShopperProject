@@ -1,12 +1,18 @@
 import React from 'react'
 import {Form, Button} from 'react-bootstrap'
 
-const UpdateShoeForm = () => {
+const UpdateShoeForm = props => {
   return (
-    <Form className="form">
+    <Form noValidate className="form" onSubmit={props.handleSubmit}>
       <Form.Group>
         <Form.Label>Shoe Name: </Form.Label>
-        <Form.Control type="text" placeholder="Enter Shoe Name Update" />
+        <Form.Control
+          type="text"
+          name="name"
+          placeholder="Enter Shoe Name Update"
+          onChange={props.handleChange}
+          value={props.student.name}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label>Shoe Brand: </Form.Label>
