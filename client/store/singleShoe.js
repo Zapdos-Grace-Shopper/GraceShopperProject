@@ -3,7 +3,7 @@ import axios from 'axios'
 const initialState = {}
 
 const GET_SINGLE_SHOE = 'GET_SINGLE_SHOE'
-const UPDATE_SHOE = 'UPDATE_SINGLE_SHOE'
+const UPDATE_SHOE = 'UPDATE_SHOE'
 
 export const getSingleShoe = shoe => {
   return {
@@ -14,7 +14,7 @@ export const getSingleShoe = shoe => {
 
 export const updateShoe = shoe => {
   return {
-    tye: UPDATE_SHOE,
+    type: UPDATE_SHOE,
     shoe
   }
 }

@@ -5,13 +5,14 @@ import PropTypes from 'prop-types'
 // import {Login, Signup, UserHome} from './components'
 import Orders from './components/orders'
 import {me} from './store'
-import {AllShoes} from './components/AllShoes'
+import AllShoes from './components/AllShoes'
 import Homepage from './components/homepage'
-import {UserHome} from './components/user-home'
+import UserHome from './components/user-home'
 import {Login, Signup} from './components/auth-form'
 import SingleShoe from './components/single-shoe'
-import {Checkout} from './components/checkout'
-
+import AllUsers from './components/all-users'
+import SingleUser from './components/single-user'
+import {Cart} from './components/cart'
 /**
  * COMPONENT
  */
@@ -21,7 +22,7 @@ class Routes extends Component {
   }
 
   render() {
-    const {isLoggedIn} = this.props
+    const {isLoggedIn, isAdmin} = this.props
 
     return (
       <Switch>
@@ -31,12 +32,15 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/shoes" component={AllShoes} />
         <Route path="/shoes/:id" component={SingleShoe} />
-        <Route path="/checkout" component={Checkout} />
+        {/* <Route path="/checkout" component={Checkout} /> */}
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/home" component={UserHome} />
+            <Route path="/me" component={UserHome} />
             <Route path="/orders" component={Orders} />
+            <Route path="/cart" component={Cart} />
+            {isAdmin && <Route exact path="/users" component={AllUsers} />}
+            {isAdmin && <Route path="/users/:id" component={SingleUser} />}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
@@ -53,7 +57,8 @@ const mapState = state => {
   return {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    isAdmin: state.auth.access === 'admin'
   }
 }
 

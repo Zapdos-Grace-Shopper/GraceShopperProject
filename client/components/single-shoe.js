@@ -5,34 +5,64 @@ import {Button} from 'react-bootstrap'
 import UpdateShoeForm from './update-shoe-form'
 
 class SingleShoe extends React.Component {
-  // constructor() {
-  //   super()
-  //   // this.state = defaultState
-  //   this.handleChange = this.handleChange.bind(this)
-  //   this.handleAddCart = this.handleAddCart.bind(this)
-  //   this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
-  // }
+  constructor() {
+    super()
+    this.state = {
+      name: '',
+      brand: '',
+      imageURL: '',
+      price: '',
+      description: '',
+      quantity: '',
+      size: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    this.handleAddCart = this.handleAddCart.bind(this)
+    this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
+  }
 
   componentDidMount() {
     const id = this.props.match.params.id
     this.props.getSingleShoe(id)
   }
 
-  // handleChange(event) {
-  //   // [event.target.name] = event.target.value
-  // }
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
 
-  // OK - perhaps we can add this functionality when we create the cart
-  // handleAddCart() {}
+  // if user logged in - check if order status "cart" exists with user id
+  // if yes, associate this shoe id with that order id
+  // if no, create new order with status "cart", associated with user id and shoe id
+
+  // if no user login - create Local cart in browser
+  handleAddCart() {
+    const shoeId = this.props.match.params.id
+  }
 
   // OK - update shoe form only accessible to admins - need to conditionally render if have admin access
-  // handleUpdateSubmit(event) {
-  //   event.preventDefault()
-  // }
+  handleUpdateSubmit(event) {
+    event.preventDefault()
+    console.log('in submit')
+    const id = this.props.match.params.id
+    const updateInfo = this.state
+    console.log('updateInfo', updateInfo)
+    this.props.updateShoe(id, updateInfo)
+    this.setState({
+      name: '',
+      brand: '',
+      imageURL: '',
+      price: '',
+      description: '',
+      quantity: '',
+      size: ''
+    })
+  }
 
   render() {
+    // console.log('shoe props', this.props)
     const {shoe} = this.props
-    console.log(shoe)
     return (
       <div>
         <div>
@@ -44,9 +74,22 @@ class SingleShoe extends React.Component {
         </div>
 
         <div>
-          <Button variant="outline-primary" type="submit" className="btn">
+          <Button
+            variant="outline-primary"
+            type="submit"
+            className="btn"
+            onClick={this.handleAddCart}
+          >
             Add to Cart
           </Button>
+        </div>
+
+        <div>
+          <UpdateShoeForm
+            handleChange={this.handleChange}
+            onSubmit={this.handleUpdateSubmit}
+            student={this.state}
+          />
         </div>
       </div>
     )
@@ -54,12 +97,12 @@ class SingleShoe extends React.Component {
 }
 
 const mapState = state => ({
-  shoe: state.shoe
+  shoe: state.singleShoeReducer
 })
 
 const mapDispatch = dispatch => ({
-  getSingleShoe: id => dispatch(fetchSingleShoe(id))
-  // updateShoe: (id, updateInfo) => dispatch(fetchUpdateShoe(id, updateInfo)),
+  getSingleShoe: id => dispatch(fetchSingleShoe(id)),
+  updateShoe: (id, updateInfo) => dispatch(fetchUpdateShoe(id, updateInfo))
 })
 
 export default connect(mapState, mapDispatch)(SingleShoe)

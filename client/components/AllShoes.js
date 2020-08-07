@@ -1,36 +1,32 @@
-import React, {Fragment} from 'react'
+import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchShoes} from '../store/shoes'
 
-export class AllShoes extends React.Component {
-  constructor(props) {
-    super(props)
-    console.log(this.props)
-  }
-
+class AllShoes extends React.Component {
   componentDidMount() {
     this.props.getAllShoes()
   }
 
   render() {
-    const {shoes} = this.props
     return (
-      <Fragment>
+      <div>
         <h1>Shoes</h1>
         <div id="all-shoes-container">
           <ul>
-            {shoes &&
-              shoes.map(shoe => {
-                return (
-                  <li key={shoe.id}>
-                    <Link to={`/shoes/${shoe.id}`}>{shoe.name}</Link>
-                  </li>
-                )
-              })}
+            {this.props.shoes &&
+              this.props.shoes.map(shoe => (
+                <div key={shoe.id}>
+                  <img src={`${shoe.imageURL}`} />
+                  <Link to={`/shoes/${shoe.id}`}>
+                    <p>{shoe.name}</p>
+                  </Link>
+                  <p>${(shoe.price / 100).toFixed(2)}</p>
+                </div>
+              ))}
           </ul>
         </div>
-      </Fragment>
+      </div>
     )
   }
 }
