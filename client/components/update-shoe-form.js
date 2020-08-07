@@ -3,40 +3,76 @@ import {Form, Button} from 'react-bootstrap'
 
 const UpdateShoeForm = props => {
   return (
-    <Form noValidate className="form" onSubmit={props.handleSubmit}>
+    <Form className="form" onSubmit={props.onSubmit}>
       <Form.Group>
         <Form.Label>Shoe Name: </Form.Label>
         <Form.Control
           type="text"
           name="name"
-          placeholder="Enter Shoe Name Update"
+          // placeholder="Enter Shoe Name Update"
           onChange={props.handleChange}
-          value={props.student.name}
+          value={props.shoe.name}
         />
       </Form.Group>
       <Form.Group>
         <Form.Label>Shoe Brand: </Form.Label>
-        <Form.Control type="text" placeholder="Enter Shoe Brand Update" />
+        <Form.Control
+          type="text"
+          name="brand"
+          // placeholder="Enter Shoe Brand Update"
+          onChange={props.handleChange}
+          value={props.shoe.brand}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label>Shoe Image: </Form.Label>
-        <Form.Control type="text" placeholder="Enter Shoe Image URL Update" />
+        <Form.Control
+          type="text"
+          name="imageURL"
+          placeholder="Enter Shoe Image URL Update"
+          onChange={props.handleChange}
+          value={props.shoe.imageURL}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label>Shoe Price: </Form.Label>
-        <Form.Control type="text" placeholder="Enter Shoe Price Update" />
+        <Form.Control
+          type="text"
+          name="price"
+          placeholder="Enter Shoe Price Update"
+          onChange={props.handleChange}
+          value={props.shoe.price}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label>Shoe Size: </Form.Label>
-        <Form.Control type="text" placeholder="Enter Shoe Size Update" />
+        <Form.Control
+          type="text"
+          name="size"
+          placeholder="Enter Shoe Size Update"
+          onChange={props.handleChange}
+          value={props.shoe.size}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label>Shoe Description: </Form.Label>
-        <Form.Control type="text" placeholder="Enter Shoe Description Update" />
+        <Form.Control
+          type="text"
+          name="description"
+          placeholder="Enter Shoe Description Update"
+          onChange={props.handleChange}
+          value={props.shoe.description}
+        />
       </Form.Group>
       <Form.Group>
         <Form.Label>Shoe Quantity: </Form.Label>
-        <Form.Control type="text" placeholder="Enter Shoe Quantity Update" />
+        <Form.Control
+          type="text"
+          name="quantity"
+          placeholder="Enter Shoe Quantity Update"
+          onChange={props.handleChange}
+          value={props.shoe.quantity}
+        />
       </Form.Group>
       <Button variant="outline-primary" type="submit" className="btn">
         Submit
