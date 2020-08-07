@@ -30,3 +30,21 @@ router.put('/:id', async (req, res, next) => {
     next(err)
   }
 })
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await Shoe.destroy({where: {id: req.params.id}})
+    res.json(req.param.id)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.post('/', async (req, res, next) => {
+  try {
+    const newShoe = await Shoe.create(req.body)
+    res.json(newShoe)
+  } catch (err) {
+    next(err)
+  }
+})

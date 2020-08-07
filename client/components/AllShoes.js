@@ -17,11 +17,11 @@ class AllShoes extends React.Component {
             {this.props.shoes &&
               this.props.shoes.map(shoe => (
                 <div key={shoe.id}>
-                  <img src={`${shoe.imageUrl}`} />
+                  <img src={`${shoe.imageURL}`} />
                   <Link to={`/shoes/${shoe.id}`}>
                     <p>{shoe.name}</p>
                   </Link>
-                  <p>{shoe.price}</p>
+                  <p>${(shoe.price / 100).toFixed(2)}</p>
                 </div>
               ))}
           </ul>

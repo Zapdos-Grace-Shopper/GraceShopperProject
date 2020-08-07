@@ -6,21 +6,21 @@ const seed = async () => {
     await db.sync({force: true})
     const gucci = await Brand.create({
       name: 'Gucci',
-      imageUrl:
+      imageURL:
         'https://neimanmarcus.scene7.com/is/image/NeimanMarcus/NMX56J8_01_m?&wid=790&height=981',
       description:
         'Gucci is an Italian fashion label founded in 1921 by Guccio Gucci, making it one of the oldest Italian fashion brands in operation today. Like many historic fashion houses, the brand started out as a luggage manufacturer, producing luxury travel goods for Italy’s wealthy upper-classes, as well as equestrian equipment'
     })
     const chanel = await Brand.create({
       name: 'Chanel',
-      imageUrl:
+      imageURL:
         'https://realstyle.therealreal.com/wp-content/uploads/2017/04/RealStyle_582x360-96.jpg',
       description:
         'Chanel is French fashion house that focuses on womens high fashion and ready-to-wear clothes, luxury goods and accessories. The company is owned by Alain Wertheimer and Gérard Wertheimer, grandsons of Pierre Wertheimer, who was an early business partner of the couturière Coco Chanel.'
     })
     const manoloBlahnik = await Brand.create({
       name: 'Manolo Blahnik',
-      imageUrl:
+      imageURL:
         'https://neimanmarcus.scene7.com/is/image/NeimanMarcus/NMX445R_40_m?&wid=456&height=570',
       description:
         'Manolo Blahnik International Limited was established in 1970 when the first boutique was acquired in Chelsea, London. Now a globally recognised brand, its headquarters remain in London with offices and partners around the world.'
