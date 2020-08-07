@@ -7,7 +7,11 @@ router.get('/', async (req, res, next) => {
     const users = await User.findAll({
       attributes: ['id', 'firstname', 'lastname', 'email', 'shoeSize']
     })
-    res.json(users)
+    if (req.user && req.user.access === 'admin') {
+      res.json(users)
+    } else {
+      res.sendStatus(401)
+    }
   } catch (err) {
     next(err)
   }
@@ -15,13 +19,18 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:id', async (req, res, next) => {
   try {
+    console.log(req.user.id)
     const user = await User.findOne({
       where: {
         id: req.params.id
       },
       attributes: ['id', 'firstname', 'lastname', 'email', 'shoeSize']
     })
-    res.json(user)
+    if (req.user && req.user.access === 'admin') {
+      res.json(user)
+    } else {
+      res.sendStatus(401)
+    }
   } catch (e) {
     next(e)
   }

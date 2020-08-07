@@ -33,9 +33,9 @@ export const me = () => async dispatch => {
 export const auth = (user, method) => async dispatch => {
   let res
   try {
-    const {email, password, firstname, lastname} = user
     let post
     if (method === 'signup') {
+      const {email, password, firstname, lastname} = user
       post = {
         email,
         password,
@@ -44,6 +44,7 @@ export const auth = (user, method) => async dispatch => {
       }
     }
     if (method === 'login') {
+      const {email, password} = user
       post = {
         email,
         password
@@ -56,7 +57,7 @@ export const auth = (user, method) => async dispatch => {
 
   try {
     dispatch(getUser(res.data))
-    history.push('/home')
+    history.push('/me')
   } catch (dispatchOrHistoryErr) {
     console.error(dispatchOrHistoryErr)
   }
