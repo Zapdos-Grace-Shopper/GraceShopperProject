@@ -38,3 +38,20 @@ form div {
   margin: 1em;
   display: inline-block;
 }
+
+.promo {
+  text-align: center;
+  background-color: lightgray;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.card img {
+  width: 300px;
+}
+.mainPic {
+  width: 100%;
+}

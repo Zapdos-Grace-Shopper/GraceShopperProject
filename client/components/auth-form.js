@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
@@ -12,6 +12,22 @@ const AuthForm = props => {
   return (
     <div>
       <form onSubmit={handleSubmit} name={name}>
+        {displayName === 'Sign Up' && (
+          <Fragment>
+            <div>
+              <label htmlFor="firstname">
+                <small>First Name</small>
+              </label>
+              <input name="firstname" type="text" />
+            </div>
+            <div>
+              <label htmlFor="lastname">
+                <small>Last Name</small>
+              </label>
+              <input name="lastname" type="text" />
+            </div>
+          </Fragment>
+        )}
         <div>
           <label htmlFor="email">
             <small>Email</small>
@@ -23,18 +39,6 @@ const AuthForm = props => {
             <small>Password</small>
           </label>
           <input name="password" type="password" />
-        </div>
-        <div>
-          <label htmlFor="firstname">
-            <small>First Name</small>
-          </label>
-          <input name="firstname" type="text" />
-        </div>
-        <div>
-          <label htmlFor="lastname">
-            <small>Last Name</small>
-          </label>
-          <input name="lastname" type="text" />
         </div>
         <div>
           <button type="submit">{displayName}</button>
@@ -76,9 +80,11 @@ const mapDispatch = dispatch => {
       const formName = evt.target.name
       const user = {
         email: event.target.email.value,
-        password: event.target.password.value,
-        firstname: event.target.firstname.value,
-        lastname: event.target.lastname.value
+        password: event.target.password.value
+      }
+      if (formName === 'signup') {
+        user.firstname = event.target.firstname.value
+        user.lastname = event.target.lastname.value
       }
       dispatch(auth(user, formName))
     }
