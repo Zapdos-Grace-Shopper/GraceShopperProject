@@ -13,6 +13,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//this gets a specific user's order
 router.get('/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
