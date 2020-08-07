@@ -1,7 +1,7 @@
 import React from 'react'
 import {Form, Button} from 'react-bootstrap'
 
-const AddShoeForm = () => {
+export default function AddShoeForm() {
   return (
     <Form className="form">
       <Form.Group>
@@ -42,5 +42,3 @@ const AddShoeForm = () => {
     </Form>
   )
 }
-
-export default AddShoeForm

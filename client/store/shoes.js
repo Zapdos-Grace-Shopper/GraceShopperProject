@@ -12,6 +12,7 @@ const getAllShoes = shoes => ({
 export const fetchShoes = () => {
   return async dispatch => {
     try {
+      console.log('In the shoes thunk')
       const {data} = await axios.get('api/shoes')
       dispatch(getAllShoes(data))
     } catch (error) {
@@ -20,7 +21,7 @@ export const fetchShoes = () => {
   }
 }
 
-const shoesReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_SHOES: {
       return action.shoes
@@ -29,5 +30,3 @@ const shoesReducer = (state = initialState, action) => {
       return state
   }
 }
-
-export default shoesReducer

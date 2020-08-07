@@ -2,25 +2,25 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
-import UpdateShoeForm from './update-shoe-form'
+// import UpdateShoeForm from './update-shoe-form'
 
 class SingleShoe extends React.Component {
-  // constructor() {
-  //   super()
-  //   // this.state = defaultState
-  //   this.handleChange = this.handleChange.bind(this)
-  //   this.handleAddCart = this.handleAddCart.bind(this)
-  //   this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
-  // }
+  constructor() {
+    super()
+    // this.state = defaultState
+    this.handleChange = this.handleChange.bind(this)
+    // this.handleAddCart = this.handleAddCart.bind(this)
+    // this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
+  }
 
   componentDidMount() {
     const id = this.props.match.params.id
     this.props.getSingleShoe(id)
   }
 
-  // handleChange(event) {
-  //   // [event.target.name] = event.target.value
-  // }
+  handleChange(event) {
+    ;[event.target.name] = event.target.value
+  }
 
   // OK - perhaps we can add this functionality when we create the cart
   // handleAddCart() {}
@@ -53,7 +53,7 @@ class SingleShoe extends React.Component {
 }
 
 const mapState = state => ({
-  shoe: state.shoe
+  shoe: state.singleShoeReducer
 })
 
 const mapDispatch = dispatch => ({
