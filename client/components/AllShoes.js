@@ -1,9 +1,7 @@
-
 import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import {fetchShoes} from '../store/shoes'
-// import SingleShoe from './single-shoe'
-//hi! i'm trying to fix it
 
 export class AllShoes extends React.Component {
   constructor(props) {
@@ -17,7 +15,6 @@ export class AllShoes extends React.Component {
 
   render() {
     const {shoes} = this.props
-    console.log('props', this.props)
     return (
       <Fragment>
         <h1>Shoes</h1>
@@ -27,8 +24,7 @@ export class AllShoes extends React.Component {
               shoes.map(shoe => {
                 return (
                   <li key={shoe.id}>
-                    <p>{shoe.name}</p>
-                    {/* <SingleShoe shoe={shoe} /> */}
+                    <Link to={`/shoes/${shoe.id}`}>{shoe.name}</Link>
                   </li>
                 )
               })}
@@ -52,4 +48,3 @@ const mapDispatchToProps = dispatch => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllShoes)
-

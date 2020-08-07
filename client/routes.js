@@ -10,6 +10,8 @@ import Homepage from './components/homepage'
 import {UserHome} from './components/user-home'
 import {Login, Signup} from './components/auth-form'
 import SingleShoe from './components/single-shoe'
+import {Checkout} from './components/checkout'
+
 /**
  * COMPONENT
  */
@@ -29,6 +31,7 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/shoes" component={AllShoes} />
         <Route path="/shoes/:id" component={SingleShoe} />
+        <Route path="/checkout" component={Checkout} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
