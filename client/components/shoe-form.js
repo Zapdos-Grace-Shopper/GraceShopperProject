@@ -1,7 +1,7 @@
 import React from 'react'
 import {Form, Button} from 'react-bootstrap'
 
-const UpdateShoeForm = props => {
+const ShoeForm = props => {
   return (
     <Form className="form" onSubmit={props.onSubmit}>
       <Form.Group>
@@ -81,4 +81,4 @@ const UpdateShoeForm = props => {
   )
 }
 
-export default UpdateShoeForm
+export default ShoeForm

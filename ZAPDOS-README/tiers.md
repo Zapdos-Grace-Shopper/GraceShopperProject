@@ -15,7 +15,7 @@
 * [ ] "checkout" the items in my cart so I can purchase my desired goods.
   * [ ] _Think of a typical user experience on popular websites from a guest user and logged-in user perspective._
   * [ ] _You can just start with by simulating the experience of checking out with a simple confirmation page._
-* [ ] create an account so I can have a logged-in experience.
+* [x] create an account so I can have a logged-in experience.
 
 ### As a logged-in customer, I want to be able to:
 
@@ -25,8 +25,8 @@
 
 ### As an administrator, I want to be able to:
 
-* [ ] have validated data to ensure reliability.
-  * [ ] _i.e. each customer that creates an account should only be able to do so once with a single email address._
+* [x] have validated data to ensure reliability.
+  * [x] _i.e. each customer that creates an account should only be able to do so once with a single email address._
 * [ ] have full rights to make baceknd requests to add, edit, and remove products.
   * [ ] _No one else should have access._
 * [ ] view user information.
@@ -58,7 +58,7 @@
 
 ### As a logged-in customer, I want to be able to:
 
-* [ ] see my order history so I can remember my previously purchased items and their prices at the time of purchase.
+* [x] see my order history so I can remember my previously purchased items and their prices at the time of purchase.
 * [ ] view and edit my user profile so I can update my information when necessary.
 * [ ] log in through third-party authentication so I can avoid creating an account specific to the website.
   * [ ] _For example, Google OAuth._

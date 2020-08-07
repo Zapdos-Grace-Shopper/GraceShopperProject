@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
-import UpdateShoeForm from './update-shoe-form'
+import ShoeForm from './shoe-form'
 
 class SingleShoe extends React.Component {
   constructor(props) {
@@ -107,11 +107,13 @@ class SingleShoe extends React.Component {
         </div>
 
         <div>
-          <UpdateShoeForm
-            handleChange={this.handleChange}
-            onSubmit={this.handleUpdateSubmit}
-            shoe={this.state}
-          />
+          {this.props.isAdmin && (
+            <ShoeForm
+              handleChange={this.handleChange}
+              onSubmit={this.handleUpdateSubmit}
+              shoe={this.state}
+            />
+          )}
         </div>
       </div>
     )
@@ -119,7 +121,8 @@ class SingleShoe extends React.Component {
 }
 
 const mapState = state => ({
-  shoe: state.singleShoeReducer
+  shoe: state.singleShoeReducer,
+  isAdmin: state.auth.access === 'admin'
 })
 
 const mapDispatch = dispatch => ({
