@@ -22,7 +22,6 @@ router.get('/:id', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    console.log(req.session)
     const targetShoe = await Shoe.findByPk(req.params.id)
     await targetShoe.update(req.body)
     res.json(targetShoe)

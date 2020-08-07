@@ -33,6 +33,7 @@ export const fetchSingleShoe = id => {
 export const fetchUpdateShoe = (id, updateInfo) => {
   return async dispatch => {
     try {
+      console.log('in thunk', id, updateInfo)
       const singleUpdateShoe = await axios.put(`/api/shoes/${id}`, updateInfo)
       dispatch(updateShoe(singleUpdateShoe.data))
     } catch (err) {
