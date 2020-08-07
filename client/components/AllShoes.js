@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchShoes} from '../store/shoes'
 import {Link} from 'react-router-dom'
+import {fetchShoes} from '../store/shoes'
 
 class AllShoes extends React.Component {
   componentDidMount() {

@@ -32,6 +32,19 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+//this gets a specific user's order
+router.get('/:orderId', async (req, res, next) => {
+  try {
+    const orderId = req.params.orderId
+    const orderById = await Order.findByPk(orderId, {
+      include: [{model: Shoe, attributes: ['name', 'price']}]
+    })
+    res.json(orderById)
+  } catch (err) {
+    next(err)
+  }
+})
+
 // posting to orders database, but not connecting to shoes in cart
 router.post('/', async (req, res, next) => {
   try {
