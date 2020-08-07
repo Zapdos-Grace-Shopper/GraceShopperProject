@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {store} from './index'
+import store from './index'
 
 const ADD_TO_CART = 'ADD_TO_CART'
 const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
