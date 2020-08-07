@@ -15,7 +15,7 @@ export const addToCart = shoes => {
 export const addToCartThunk = shoes => {
   return async dispatch => {
     try {
-      const {data} = axios.post(`api/orders`, shoes)
+      const {data} = await axios.post(`api/orders`, shoes)
       dispatch(addToCart(data))
     } catch (error) {
       console.log(error)
@@ -27,5 +27,7 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_TO_CART:
       return {}
+    default:
+      return state
   }
 }
