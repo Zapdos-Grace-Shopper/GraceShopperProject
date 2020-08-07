@@ -7,7 +7,7 @@ import Orders from './components/orders'
 import {me} from './store'
 import AllShoes from './components/AllShoes'
 import Homepage from './components/homepage'
-import {UserHome} from './components/user-home'
+import UserHome from './components/user-home'
 import {Login, Signup} from './components/auth-form'
 import SingleShoe from './components/single-shoe'
 /**
