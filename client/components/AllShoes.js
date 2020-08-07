@@ -21,7 +21,7 @@ class AllShoes extends React.Component {
                   <Link to={`/shoes/${shoe.id}`}>
                     <p>{shoe.name}</p>
                   </Link>
-                  <p>{shoe.price}</p>
+                  <p>${(shoe.price / 100).toFixed(2)}</p>
                 </div>
               ))}
           </ul>

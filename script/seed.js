@@ -7,35 +7,35 @@ const seed = async () => {
 
     // const gucci = await Brand.create({
     //   name: 'Gucci',
-    //   imageUrl:
+    //   imageURL:
     //     'https://neimanmarcus.scene7.com/is/image/NeimanMarcus/NMX56J8_01_m?&wid=790&height=981',
     //   description:
     //     'Gucci is an Italian fashion label founded in 1921 by Guccio Gucci, making it one of the oldest Italian fashion brands in operation today. Like many historic fashion houses, the brand started out as a luggage manufacturer, producing luxury travel goods for Italy’s wealthy upper-classes, as well as equestrian equipment'
     // })
     // const chanel = await Brand.create({
     //   name: 'Chanel',
-    //   imageUrl:
+    //   imageURL:
     //     'https://realstyle.therealreal.com/wp-content/uploads/2017/04/RealStyle_582x360-96.jpg',
     //   description:
     //     'Chanel is French fashion house that focuses on womens high fashion and ready-to-wear clothes, luxury goods and accessories. The company is owned by Alain Wertheimer and Gérard Wertheimer, grandsons of Pierre Wertheimer, who was an early business partner of the couturière Coco Chanel.'
     // })
     // const manoloBlahnik = await Brand.create({
     //   name: 'Manolo Blahnik',
-    //   imageUrl:
+    //   imageURL:
     //     'https://neimanmarcus.scene7.com/is/image/NeimanMarcus/NMX445R_40_m?&wid=456&height=570',
     //   description:
     //     'Manolo Blahnik International Limited was established in 1970 when the first boutique was acquired in Chelsea, London. Now a globally recognised brand, its headquarters remain in London with offices and partners around the world.'
     // })
     // const christianLouboutin = await Brand.create({
     //   name: 'Christian Louboutin',
-    //   imageUrl:
+    //   imageURL:
     //     'https://images.us.christianlouboutin.com/media/catalog/product/cache/1/thumbnail/1200x/602f0fa2c1f0d1ba5e241f914e856ff9/3/1/3/0/christianlouboutin-sokate-3130694_BK01_3_1200x1200_1577470566.jpg',
     //   description:
     //     'Christian Louboutin is one of the worlds most well-known shoe designers; the red soles of his ... Louboutin now sells over one million pairs of shoes a year.'
     // })
     // const jimmyChoo = await Brand.create({
     //   name: 'Jimmy Choo',
-    //   imageUrl:
+    //   imageURL:
     //     'https://www.modaoperandi.com/assets/images/products/717253/325316/large_jimmy-choo-black-aveline-bow-embellished-sandals.jpg?_t=1595701889',
     //   description:
     //     'Datuk Jimmy Choo Yeang Keat is a Malaysian fashion designer of Chinese descent based in the United Kingdom. He co-founded Jimmy Choo Ltd, which became known for its handmade womens shoes.'
@@ -44,7 +44,7 @@ const seed = async () => {
     const shoe1 = await Shoe.create({
       name: 'Espadrille sandal with Double G',
       price: '720',
-      imageUrl:
+      imageURL:
         'https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1584558003/624314_A3N00_6433_001_100_0000_Light-Womens-espadrille-sandal-with-Double-G.jpg',
       size: '7',
       description:
@@ -54,7 +54,7 @@ const seed = async () => {
     const shoe2 = await Shoe.create({
       name: 'Leather platform espadrille',
       price: '750',
-      imageUrl:
+      imageURL:
         'https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1546878603/573023_BTMO0_9014_001_100_0000_Light-Leather-platform-espadrille.jpg',
       size: '8',
       description:
@@ -64,7 +64,7 @@ const seed = async () => {
     const shoe3 = await Shoe.create({
       name: 'Mid-heel sandal with Double G',
       price: '770',
-      imageUrl:
+      imageURL:
         'https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1585826104/628012_A3N00_3926_001_100_0000_Light-Womens-mid-heel-sandal-with-Double-G.jpg',
       size: '8',
       description:
@@ -74,7 +74,7 @@ const seed = async () => {
     const shoe4 = await Shoe.create({
       name: 'Mid-heel slide',
       price: '700',
-      imageUrl:
+      imageURL:
         'https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1583866803/458051_DKT00_5702_001_082_0000_Light-Womens-mid-heel-slide.jpg',
       size: '10',
       description:
@@ -84,7 +84,7 @@ const seed = async () => {
     const shoe5 = await Shoe.create({
       name: 'Ace sneaker with Interlocking G',
       price: '630',
-      imageUrl:
+      imageURL:
         'https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1586195103/598527_AYO70_9076_001_098_0000_Light-Womens-Ace-sneaker-with-Interlocking-G.jpg',
       size: '9',
       description:
@@ -94,7 +94,7 @@ const seed = async () => {
     const shoe6 = await Shoe.create({
       name: 'Laminated Lambskin & Grosgrain',
       price: '950',
-      imageUrl:
+      imageURL:
         'https://www.chanel.com/images//t_fashion//q_auto,f_jpg,fl_lossy,dpr_2/w_620/pumps-gold-black-laminated-lambskin-grosgrain-laminated-lambskin-grosgrain-packshot-default-g36360y54258k2304-8826161037342.jpg',
       size: '8',
       description:
@@ -309,7 +309,7 @@ const seed = async () => {
       password: '1234',
       access: 'user',
       shoeSize: 8,
-      imageUrl:
+      imageURL:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/8/88/Danny_DeVito_cropped_and_edited_for_brightness.jpg/440px-Danny_DeVito_cropped_and_edited_for_brightness.jpg'
     })
     const user2 = await User.create({
@@ -319,7 +319,7 @@ const seed = async () => {
       password: '1234',
       access: 'user',
       shoeSize: 7,
-      imageUrl:
+      imageURL:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a4/Jerry_Seinfeld_2016_-_2.jpg/440px-Jerry_Seinfeld_2016_-_2.jpg'
     })
     const user3 = await User.create({
@@ -329,7 +329,7 @@ const seed = async () => {
       password: '1234',
       access: 'user',
       shoeSize: 10,
-      imageUrl:
+      imageURL:
         'https://upload.wikimedia.org/wikipedia/en/c/c2/Tony_Soprano.jpg'
     })
     const user4 = await User.create({
@@ -339,7 +339,7 @@ const seed = async () => {
       password: '1234',
       access: 'user',
       shoeSize: 4,
-      imageUrl:
+      imageURL:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e2/Megan_Thee_Stallion_2019_2.jpg/440px-Megan_Thee_Stallion_2019_2.jpg'
     })
     const user5 = await User.create({
@@ -349,7 +349,7 @@ const seed = async () => {
       password: '1234',
       access: 'user',
       shoeSize: 11,
-      imageUrl:
+      imageURL:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Lana_Del_Rey_%40_Grammy_Museum_10_13_2019_%2849311023203%29.jpg/440px-Lana_Del_Rey_%40_Grammy_Museum_10_13_2019_%2849311023203%29.jpg'
     })
     const user6 = await User.create({
@@ -359,7 +359,7 @@ const seed = async () => {
       password: '1234',
       access: 'admin',
       shoeSize: 5,
-      imageUrl: 'https://i.imgur.com/YKSYtRzb.jpg'
+      imageURL: 'https://i.imgur.com/YKSYtRzb.jpg'
     })
     const user7 = await User.create({
       firstname: 'Sally',
@@ -368,7 +368,7 @@ const seed = async () => {
       password: '1234',
       access: 'user',
       shoeSize: 9,
-      imageUrl: 'https://i.imgur.com/lqs0Y7cb.jpg'
+      imageURL: 'https://i.imgur.com/lqs0Y7cb.jpg'
     })
     const user8 = await User.create({
       firstname: 'Tim',
@@ -377,7 +377,7 @@ const seed = async () => {
       password: '1234',
       access: 'user',
       shoeSize: 8,
-      imageUrl: 'https://i.imgur.com/K8EElgzb.png'
+      imageURL: 'https://i.imgur.com/K8EElgzb.png'
     })
     const user9 = await User.create({
       firstname: 'Bernie',
@@ -386,7 +386,7 @@ const seed = async () => {
       password: '1234',
       access: 'admin',
       shoeSize: 10,
-      imageUrl:
+      imageURL:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Bernie_Sanders_in_March_2020.jpg/440px-Bernie_Sanders_in_March_2020.jpg'
     })
     const user10 = await User.create({
@@ -396,7 +396,7 @@ const seed = async () => {
       password: '1234',
       access: 'admin',
       shoeSize: 5,
-      imageUrl: 'https://i.imgur.com/TuH8FICb.jpg'
+      imageURL: 'https://i.imgur.com/TuH8FICb.jpg'
     })
     const user11 = await User.create({
       firstname: 'Berni',
@@ -405,7 +405,7 @@ const seed = async () => {
       password: '1234',
       access: 'user',
       shoeSize: 11,
-      imageUrl:
+      imageURL:
         'https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/BernieMacSoulMenMarch08.jpg/440px-BernieMacSoulMenMarch08.jpg'
     })
 
