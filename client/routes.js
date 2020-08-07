@@ -12,7 +12,7 @@ import {Login, Signup} from './components/auth-form'
 import SingleShoe from './components/single-shoe'
 import AllUsers from './components/all-users'
 import SingleUser from './components/single-user'
-
+import {Cart} from './components/cart'
 /**
  * COMPONENT
  */
@@ -37,6 +37,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/me" component={UserHome} />
             <Route path="/orders" component={Orders} />
+            <Route path="/cart" component={Cart} />
             {isAdmin && <Route exact path="/users" component={AllUsers} />}
             {isAdmin && <Route path="/users/:id" component={SingleUser} />}
           </Switch>
