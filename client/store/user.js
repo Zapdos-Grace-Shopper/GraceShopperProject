@@ -37,6 +37,7 @@ export const fetchAllUsers = () => {
 export const fetchSingleUser = id => {
   return async dispatch => {
     try {
+      console.log('made it to the thunk')
       const res = await axios.get(`/api/users/${id}`)
       const action = getSingleUser(res.data)
       dispatch(action)
