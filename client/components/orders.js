@@ -20,6 +20,7 @@ class Orders extends React.Component {
           orders.map(order => {
             return (
               <div key={order.id}>
+                <h3>Ordered by: {order.user ? order.user.firstname : ''}</h3>
                 <h4>Order status is {order.status}</h4>
                 <div>
                   {order.shoes.map(shoe => {

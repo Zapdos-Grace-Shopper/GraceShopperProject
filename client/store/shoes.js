@@ -33,6 +33,7 @@ export const fetchShoes = () => {
 }
 
 export const fetchAddShoe = newShoe => {
+  console.log('I hit the thunk')
   return async dispatch => {
     try {
       const addNewShoe = await axios.post(`/api/shoes`, newShoe)

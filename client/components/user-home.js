@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Orders from './orders'
-import {AdminDashboard} from './admin-dashboard'
+import AdminDashboard from './admin-dashboard'
 /**
  * COMPONENT
  */
