@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchGetCart} from '../store/orders'
+import {fetchGetCart, fetchDeleteShoeCart} from '../store/orders'
+import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 
 class Cart extends React.Component {
   componentDidMount() {
@@ -8,20 +10,43 @@ class Cart extends React.Component {
   }
 
   render() {
-    const shoesArr = this.props.cart.shoes
     const cart = this.props.cart
-    console.log('cart', cart)
+    const shoesArr = cart.shoes
 
     return (
       <div>
         <h1>cart</h1>
-        {cart ? (
+        {cart && (
           <div>
-            {shoesArr && shoesArr.map(shoe => <p key={shoe.id}>{shoe.name}</p>)}
+            {shoesArr &&
+              shoesArr.map(shoe => (
+                <div key={shoe.id}>
+                  <img className="cartImage" src={`${shoe.imageURL}`} />
+                  <Link to={`/shoes/${shoe.id}`}>
+                    <p>{shoe.name}</p>
+                  </Link>
+                  <div key={shoe.size}>size: {shoe.size}</div>
+                  <div key={shoe.price}>
+                    price: ${(shoe.price / 100).toFixed(2)}
+                  </div>
+                  <div key={shoe.quantity}>
+                    quantity: {shoe.quantity} increase {shoe.quantity + 1}
+                  </div>
+                  <Button
+                    variant="outline-primary"
+                    type="submit"
+                    className="btn"
+                    onClick={() =>
+                      this.props.deleteShoeCart(this.props.userId, shoe.id)
+                    }
+                  >
+                    Remove from Cart
+                  </Button>
+                </div>
+              ))}
           </div>
-        ) : (
-          <p>empty cart</p>
         )}
+        {!cart.id && <div>your cart is currently empty</div>}
       </div>
     )
   }
@@ -33,7 +58,9 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  getCart: userId => dispatch(fetchGetCart(userId))
+  getCart: userId => dispatch(fetchGetCart(userId)),
+  deleteShoeCart: (userId, shoeId) =>
+    dispatch(fetchDeleteShoeCart(userId, shoeId))
 })
 
 export default connect(mapState, mapDispatch)(Cart)
