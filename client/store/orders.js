@@ -4,6 +4,7 @@ const initialState = {orders: [], cart: {}}
 
 const GET_ORDERS = 'GET_ORDERS'
 const ADD_TO_CART = 'ADD_TO_CART'
+const GET_CART = 'GET_CART'
 // const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
 
 //action creators
@@ -17,6 +18,13 @@ export const getOrders = orders => {
 export const addToCart = cart => {
   return {
     type: ADD_TO_CART,
+    cart
+  }
+}
+
+export const getCart = cart => {
+  return {
+    type: GET_CART,
     cart
   }
 }
@@ -56,11 +64,24 @@ export const postUserCart = (shoeId, userId) => {
   }
 }
 
+export const fetchGetCart = userId => {
+  return async dispatch => {
+    try {
+      const cart = await axios.get(`/api/users/${userId}/cart`)
+      dispatch(getCart(cart.data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ORDERS:
       return {...state, orders: action.orders}
     case ADD_TO_CART:
+      return {...state, cart: action.cart}
+    case GET_CART:
       return {...state, cart: action.cart}
 
     // case UPDATE_QUANTITY: {

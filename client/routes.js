@@ -12,7 +12,7 @@ import {Login, Signup} from './components/auth-form'
 import SingleShoe from './components/single-shoe'
 import AllUsers from './components/all-users'
 import SingleUser from './components/single-user'
-import {Cart} from './components/cart'
+import Cart from './components/cart'
 import Brands from './components/brands'
 import singleBrand from './components/single-brand'
 /**
