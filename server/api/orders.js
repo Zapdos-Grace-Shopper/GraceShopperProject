@@ -75,3 +75,25 @@ router.post('/', async (req, res, next) => {
     next(e)
   }
 })
+
+router.delete('/:orderId', async (req, res, next) => {
+  try {
+    const {shoeId} = req.body
+    const order = await Order.findByPk(req.params.orderId)
+    console.log('order', order)
+    const shoe = await Shoe.findByPk(shoeId)
+    console.log('shoe', shoe)
+
+    await order.removeShoe(shoe)
+
+    const updatedOrder = await Order.findByPk(req.params.orderId, {
+      include: {
+        model: Shoe,
+        attributes: ['name', 'price']
+      }
+    })
+    res.json(updatedOrder)
+  } catch (e) {
+    next(e)
+  }
+})
