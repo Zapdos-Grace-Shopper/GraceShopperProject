@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const initialState = []
+const initialState = {orders: [], cart: {}}
 
 const GET_ORDERS = 'GET_ORDERS'
 const ADD_TO_CART = 'ADD_TO_CART'
@@ -14,10 +14,10 @@ export const getOrders = orders => {
   }
 }
 
-export const addToCart = shoe => {
+export const addToCart = cart => {
   return {
     type: ADD_TO_CART,
-    shoe
+    cart
   }
 }
 
@@ -41,16 +41,10 @@ export const getOrdersThunk = () => {
   }
 }
 
-// 1. see if a user is logged in
-// 2. if yes, see if there's an open order (cart) with the user id
 export const postUserCart = (shoeId, userId) => {
   return async dispatch => {
     try {
-      // 3. if yes, add to the quantity
-      // if no, create a new order
-      // const isLoggedIn = Object.values(store.getState().auth).length
-      // if (isLoggedIn) await axios.post('api/orders', shoes)
-      const cart = await axios.post('/api/orders', {
+      const cart = await axios.post('/api/orders/', {
         shoeId,
         userId,
         status: 'cart'
@@ -65,20 +59,10 @@ export const postUserCart = (shoeId, userId) => {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ORDERS:
-      return action.orders
+      return {...state, orders: action.orders}
     case ADD_TO_CART:
-      return action.cart
-    // {
-    // const cartToAdd = [...state]
-    // const selectedShoe = cartToAdd.find(shoe => shoe.id === action.shoes.id)
-    //       if (selectedShoe) {
-    //         selectedShoe.quantity += action.shoes.quantity
-    //       } else {
-    //         cartToAdd.push(action.shoes)
-    //       }
-    //       postUserCart(cartToAdd)
-    //       return cartToAdd
-    //     }
+      return {...state, cart: action.cart}
+
     // case UPDATE_QUANTITY: {
     //   if (action.payloadType === 'increment') {
     //     const cart = [

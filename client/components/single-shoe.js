@@ -18,7 +18,7 @@ class SingleShoe extends React.Component {
       size: ''
     }
     this.handleChange = this.handleChange.bind(this)
-    // this.handleAddCart = this.handleAddCart.bind(this)
+    this.handleAddCart = this.handleAddCart.bind(this)
     this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
   }
 
@@ -39,11 +39,10 @@ class SingleShoe extends React.Component {
   // if yes, associate this shoe id with that order id
   // if no, create new order with status "cart", associated with user id and shoe id
 
-  // if no user login - create Local cart in browser
-  // async handleAddCart() {
-  //   const shoeId = this.props.match.params.id
-  //   await addToCart(this.props.shoe)
-  // }
+  handleAddCart() {
+    const shoeId = this.props.match.params.id
+    this.props.addToCart(shoeId, this.props.userId)
+  }
 
   // OK - update shoe form only accessible to admins - need to conditionally render if have admin access
   handleUpdateSubmit(event) {
@@ -84,7 +83,6 @@ class SingleShoe extends React.Component {
 
   render() {
     const {shoe} = this.props
-    // console.log(this.props.shoe.brand.name)
     return (
       <div>
         <div>
@@ -102,10 +100,7 @@ class SingleShoe extends React.Component {
             variant="outline-primary"
             type="submit"
             className="btn"
-            // onClick={this.handleAddCart}
-            onClick={() => {
-              this.props.addToCart(this.props.shoe)
-            }}
+            onClick={this.handleAddCart}
           >
             Add to Cart
           </Button>
@@ -127,13 +122,14 @@ class SingleShoe extends React.Component {
 
 const mapState = state => ({
   shoe: state.singleShoeReducer,
-  isAdmin: state.auth.access === 'admin'
+  isAdmin: state.auth.access === 'admin',
+  userId: state.auth.id
 })
 
 const mapDispatch = dispatch => ({
   getSingleShoe: id => dispatch(fetchSingleShoe(id)),
   updateShoe: (id, updateInfo) => dispatch(fetchUpdateShoe(id, updateInfo)),
-  addToCart: shoes => dispatch(addToCartThunk(shoes))
+  addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
 })
 
 export default connect(mapState, mapDispatch)(SingleShoe)

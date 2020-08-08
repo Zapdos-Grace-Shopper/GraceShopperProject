@@ -42,7 +42,7 @@ class Orders extends React.Component {
 
 const mapState = state => {
   return {
-    orders: state.orders
+    orders: state.orders.orders
   }
 }
 const mapDispatch = dispatch => {
