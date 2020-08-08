@@ -5,7 +5,7 @@ const initialState = {orders: [], cart: {}}
 const GET_ORDERS = 'GET_ORDERS'
 const ADD_TO_CART = 'ADD_TO_CART'
 const GET_CART = 'GET_CART'
-// const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const DELETE_SHOE_CART = 'DELETE_SHOE_CART'
 
 //action creators
@@ -26,6 +26,13 @@ export const addToCart = cart => {
 export const getCart = cart => {
   return {
     type: GET_CART,
+    cart
+  }
+}
+
+export const removeFromCart = cart => {
+  return {
+    type: REMOVE_FROM_CART,
     cart
   }
 }
@@ -111,6 +118,10 @@ export default function(state = initialState, action) {
       return {...state, cart: action.cart}
     case DELETE_SHOE_CART:
       return {...state, cart: action.cart}
+    // case UPDATE_QUANTITY:
+    //   if (action.clickType === 'increment') {
+
+    //   }
     // case UPDATE_QUANTITY: {
     //   if (action.payloadType === 'increment') {
     //     const cart = [

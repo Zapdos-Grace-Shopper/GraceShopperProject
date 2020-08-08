@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchGetCart, fetchDeleteShoeCart} from '../store/orders'
 import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
+import {QuantityButton} from './cart-quantity-button'
 
 class Cart extends React.Component {
   componentDidMount() {
@@ -29,8 +30,10 @@ class Cart extends React.Component {
                   <div key={shoe.price}>
                     price: ${(shoe.price / 100).toFixed(2)}
                   </div>
+                  {/* //keep in local state until submit hits? */}
                   <div key={shoe.quantity}>
-                    quantity: {shoe.quantity} increase {shoe.quantity + 1}
+                    {/* quantity: {shoe.quantity} increase {shoe.quantity + 1} */}
+                    <QuantityButton />
                   </div>
                   <Button
                     variant="outline-primary"
