@@ -15,7 +15,7 @@ class Cart extends React.Component {
 
     return (
       <div>
-        <h1>cart</h1>
+        <h1>Your cart is empty</h1>
         {cart && (
           <div>
             {shoesArr &&

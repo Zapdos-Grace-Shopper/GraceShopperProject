@@ -90,7 +90,7 @@ export const fetchDeleteShoeCart = (userId, shoeId) => {
   return async dispatch => {
     try {
       await axios.delete(`/api/users/${userId}/cart`, {
-        shoeId: shoeId
+        data: {shoeId}
       })
       const updatedCart = await axios.get(`/api/users/${userId}/cart`)
       console.log('in thunk', updatedCart)
