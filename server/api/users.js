@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User} = require('../db/models')
+const {User, Order, Shoe} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -35,3 +35,31 @@ router.get('/:id', async (req, res, next) => {
     next(e)
   }
 })
+
+router.get('/:id/cart', async (req, res, next) => {
+  try {
+    const userId = req.params.id
+    console.log(userId)
+    const order = await Order.findOne({
+      where: {userId: userId, status: 'cart'},
+      include: {model: Shoe}
+    })
+    console.log('express', order)
+    if (
+      req.user &&
+      (Number(req.user.id) === Number(userId) || req.user.access === 'admin')
+    ) {
+      if (order) {
+        res.json(order)
+      } else {
+        res.sendStatus(404)
+      }
+    } else {
+      res.sendStatus(401)
+    }
+  } catch (err) {
+    next(err)
+  }
+})
+
+//
