@@ -68,7 +68,10 @@ export const fetchGetCart = userId => {
   return async dispatch => {
     try {
       const cart = await axios.get(`/api/users/${userId}/cart`)
-      dispatch(getCart(cart.data))
+      console.log('cart in thunk', cart)
+      if (cart.data) {
+        dispatch(getCart(cart.data))
+      }
     } catch (err) {
       console.error(err)
     }

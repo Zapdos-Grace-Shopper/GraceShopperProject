@@ -18,22 +18,24 @@ class Orders extends React.Component {
       <div>
         {orders &&
           orders.map(order => {
-            return (
-              <div key={order.id}>
-                <h3>Ordered by: {order.user ? order.user.firstname : ''}</h3>
-                <h4>Order status is {order.status}</h4>
+            if (order.status === 'complete') {
+              return (
                 <div>
-                  {order.shoes.map(shoe => {
-                    return (
-                      <div key={shoe.id}>
-                        <h5>You purchased {shoe.name}</h5>
-                        <h4>Total: {shoe.price}</h4>
-                      </div>
-                    )
-                  })}
+                  <h3>Ordered by: {order.user ? order.user.firstname : ''}</h3>
+                  <h4>Order status is {order.status}</h4>
+                  <div>
+                    {order.shoes.map(shoe => {
+                      return (
+                        <div key={shoe.id}>
+                          <h5>You purchased {shoe.name}</h5>
+                          <h4>Total: {shoe.price}</h4>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
-              </div>
-            )
+              )
+            }
           })}
       </div>
     )

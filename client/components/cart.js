@@ -9,13 +9,19 @@ class Cart extends React.Component {
 
   render() {
     const shoesArr = this.props.cart.shoes
-    console.log(this.props.cart.shoes)
+    const cart = this.props.cart
+    console.log('cart', cart)
+
     return (
       <div>
         <h1>cart</h1>
-        <div>
-          {shoesArr && shoesArr.map(shoe => <p key={shoe.id}>{shoe.name}</p>)}
-        </div>
+        {cart ? (
+          <div>
+            {shoesArr && shoesArr.map(shoe => <p key={shoe.id}>{shoe.name}</p>)}
+          </div>
+        ) : (
+          <p>empty cart</p>
+        )}
       </div>
     )
   }

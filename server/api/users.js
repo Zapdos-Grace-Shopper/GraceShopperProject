@@ -44,12 +44,16 @@ router.get('/:id/cart', async (req, res, next) => {
       where: {userId: userId, status: 'cart'},
       include: {model: Shoe}
     })
-    console.log(req.user.id, userId)
+    console.log('express', order)
     if (
       req.user &&
       (Number(req.user.id) === Number(userId) || req.user.access === 'admin')
     ) {
-      res.json(order)
+      if (order) {
+        res.json(order)
+      } else {
+        res.sendStatus(404)
+      }
     } else {
       res.sendStatus(401)
     }
