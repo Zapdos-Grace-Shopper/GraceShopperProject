@@ -16,6 +16,9 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
         <Nav.Link href="/shoes" className="nav-link">
           Our Shoes
         </Nav.Link>
+        <Nav.Link href="/brands" className="nav-link">
+          Our Brands
+        </Nav.Link>
         <Nav.Link href="/me" className="nav-link">
           Profile
         </Nav.Link>
@@ -31,7 +34,7 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
           Our Shoes
         </Nav.Link>
         <Nav.Link href="/brands" className="nav-link">
-          All Brands
+          Our Brands
         </Nav.Link>
         <Nav.Link href="/login" className="nav-link">
           Login

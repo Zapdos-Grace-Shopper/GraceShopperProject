@@ -49,15 +49,28 @@ router.get('/:orderId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const {userId, status, shoeId} = req.body
+    const shoe = await Shoe.findByPk(shoeId)
+
     const [order, wasCreated] = await Order.findOrCreate({
       where: {
         userId,
         status
       }
     })
-    order.shoeId = shoeId
-    await order.save()
-    res.json(order)
+
+    const addedShoe = await order.addShoe(shoe)
+
+    let [updatedOrder, updateWasCreated] = await Order.findOrCreate({
+      where: {
+        userId,
+        status
+      },
+      include: {
+        model: Shoe,
+        attributes: ['name', 'price']
+      }
+    })
+    res.json(updatedOrder)
   } catch (e) {
     next(e)
   }

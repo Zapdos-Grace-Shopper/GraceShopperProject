@@ -10,6 +10,7 @@ class singleBrand extends React.Component {
   }
   render() {
     const {brand} = this.props
+    console.log(this.props)
     const shoes = this.props.brand.shoes
     return (
       <div>
