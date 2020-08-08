@@ -49,15 +49,50 @@ router.get('/:orderId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const {userId, status, shoeId} = req.body
+    const shoe = await Shoe.findByPk(shoeId)
+
     const [order, wasCreated] = await Order.findOrCreate({
       where: {
         userId,
         status
       }
     })
-    order.shoeId = shoeId
-    await order.save()
-    res.json(order)
+
+    const addedShoe = await order.addShoe(shoe)
+
+    let [updatedOrder, updateWasCreated] = await Order.findOrCreate({
+      where: {
+        userId,
+        status
+      },
+      include: {
+        model: Shoe,
+        attributes: ['name', 'price']
+      }
+    })
+    res.json(updatedOrder)
+  } catch (e) {
+    next(e)
+  }
+})
+
+router.delete('/:orderId', async (req, res, next) => {
+  try {
+    const {shoeId} = req.body
+    const order = await Order.findByPk(req.params.orderId)
+    console.log('order', order)
+    const shoe = await Shoe.findByPk(shoeId)
+    console.log('shoe', shoe)
+
+    await order.removeShoe(shoe)
+
+    const updatedOrder = await Order.findByPk(req.params.orderId, {
+      include: {
+        model: Shoe,
+        attributes: ['name', 'price']
+      }
+    })
+    res.json(updatedOrder)
   } catch (e) {
     next(e)
   }

@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
 import ShoeForm from './shoe-form'
-import {addToCartThunk} from '../store/cart'
+import {postUserCart} from '../store/orders'
 
 class SingleShoe extends React.Component {
   constructor(props) {
