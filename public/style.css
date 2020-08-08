@@ -55,3 +55,9 @@ form div {
 .mainPic {
   width: 100%;
 }
+.brand {
+  width: 500px;
+}
+.brand img {
+  width: 33%;
+}

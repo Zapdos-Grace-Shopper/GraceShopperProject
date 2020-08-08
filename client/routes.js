@@ -13,6 +13,8 @@ import SingleShoe from './components/single-shoe'
 import AllUsers from './components/all-users'
 import SingleUser from './components/single-user'
 import {Cart} from './components/cart'
+import Brands from './components/brands'
+import singleBrand from './components/single-brand'
 /**
  * COMPONENT
  */
@@ -32,6 +34,8 @@ class Routes extends Component {
         <Route path="/signup" component={Signup} />
         <Route exact path="/shoes" component={AllShoes} />
         <Route path="/shoes/:id" component={SingleShoe} />
+        <Route exact path="/brands" component={Brands} />
+        <Route path="/brands/:id" component={singleBrand} />
         {/* <Route path="/checkout" component={Checkout} /> */}
         {isLoggedIn && (
           <Switch>

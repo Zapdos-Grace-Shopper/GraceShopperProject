@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
 import ShoeForm from './shoe-form'
+import {addToCartThunk} from '../store/cart'
 
 class SingleShoe extends React.Component {
   constructor(props) {
@@ -17,7 +18,7 @@ class SingleShoe extends React.Component {
       size: ''
     }
     this.handleChange = this.handleChange.bind(this)
-    this.handleAddCart = this.handleAddCart.bind(this)
+    // this.handleAddCart = this.handleAddCart.bind(this)
     this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
   }
 
@@ -39,9 +40,10 @@ class SingleShoe extends React.Component {
   // if no, create new order with status "cart", associated with user id and shoe id
 
   // if no user login - create Local cart in browser
-  handleAddCart() {
-    const shoeId = this.props.match.params.id
-  }
+  // async handleAddCart() {
+  //   const shoeId = this.props.match.params.id
+  //   await addToCart(this.props.shoe)
+  // }
 
   // OK - update shoe form only accessible to admins - need to conditionally render if have admin access
   handleUpdateSubmit(event) {
@@ -82,7 +84,7 @@ class SingleShoe extends React.Component {
 
   render() {
     const {shoe} = this.props
-    console.log(shoe)
+    // console.log(this.props.shoe.brand.name)
     return (
       <div>
         <div>
@@ -92,7 +94,7 @@ class SingleShoe extends React.Component {
           <div>quantity: {shoe.quantity}</div>
           <div>size: {shoe.size}</div>
           <div>description: {shoe.description}</div>
-          <div>brand: {shoe.brand}</div>
+          {/* <div>brand: {this.props.shoe.brand.name}</div> */}
         </div>
 
         <div>
@@ -100,7 +102,10 @@ class SingleShoe extends React.Component {
             variant="outline-primary"
             type="submit"
             className="btn"
-            onClick={this.handleAddCart}
+            // onClick={this.handleAddCart}
+            onClick={() => {
+              this.props.addToCart(this.props.shoe)
+            }}
           >
             Add to Cart
           </Button>
@@ -127,7 +132,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getSingleShoe: id => dispatch(fetchSingleShoe(id)),
-  updateShoe: (id, updateInfo) => dispatch(fetchUpdateShoe(id, updateInfo))
+  updateShoe: (id, updateInfo) => dispatch(fetchUpdateShoe(id, updateInfo)),
+  addToCart: shoes => dispatch(addToCartThunk(shoes))
 })
 
 export default connect(mapState, mapDispatch)(SingleShoe)
