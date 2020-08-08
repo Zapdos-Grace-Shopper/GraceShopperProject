@@ -6,6 +6,7 @@ const GET_ORDERS = 'GET_ORDERS'
 const ADD_TO_CART = 'ADD_TO_CART'
 const GET_CART = 'GET_CART'
 // const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
+const DELETE_SHOE_CART = 'DELETE_SHOE_CART'
 
 //action creators
 export const getOrders = orders => {
@@ -25,6 +26,13 @@ export const addToCart = cart => {
 export const getCart = cart => {
   return {
     type: GET_CART,
+    cart
+  }
+}
+
+export const deleteShoeCart = cart => {
+  return {
+    type: DELETE_SHOE_CART,
     cart
   }
 }
@@ -68,10 +76,25 @@ export const fetchGetCart = userId => {
   return async dispatch => {
     try {
       const cart = await axios.get(`/api/users/${userId}/cart`)
-      console.log('cart in thunk', cart)
       if (cart.data) {
         dispatch(getCart(cart.data))
       }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
+// the corresponding express route works, but the axios call is not updating the cart
+export const fetchDeleteShoeCart = (userId, shoeId) => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/users/${userId}/cart`, {
+        shoeId: shoeId
+      })
+      const updatedCart = await axios.get(`/api/users/${userId}/cart`)
+      console.log('in thunk', updatedCart)
+      dispatch(deleteShoeCart(updatedCart.data))
     } catch (err) {
       console.error(err)
     }
@@ -86,7 +109,8 @@ export default function(state = initialState, action) {
       return {...state, cart: action.cart}
     case GET_CART:
       return {...state, cart: action.cart}
-
+    case DELETE_SHOE_CART:
+      return {...state, cart: action.cart}
     // case UPDATE_QUANTITY: {
     //   if (action.payloadType === 'increment') {
     //     const cart = [

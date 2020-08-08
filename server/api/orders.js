@@ -76,24 +76,22 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.delete('/:orderId', async (req, res, next) => {
-  try {
-    const {shoeId} = req.body
-    const order = await Order.findByPk(req.params.orderId)
-    console.log('order', order)
-    const shoe = await Shoe.findByPk(shoeId)
-    console.log('shoe', shoe)
+// router.delete('/:orderId', async (req, res, next) => {
+//   try {
+//     const {shoeId} = req.body
+//     const order = await Order.findByPk(req.params.orderId)
+//     const shoe = await Shoe.findByPk(shoeId)
 
-    await order.removeShoe(shoe)
+//     await order.removeShoe(shoe)
 
-    const updatedOrder = await Order.findByPk(req.params.orderId, {
-      include: {
-        model: Shoe,
-        attributes: ['name', 'price']
-      }
-    })
-    res.json(updatedOrder)
-  } catch (e) {
-    next(e)
-  }
-})
+//     const updatedOrder = await Order.findByPk(req.params.orderId, {
+//       include: {
+//         model: Shoe,
+//         attributes: ['name', 'price'],
+//       },
+//     })
+//     res.json(updatedOrder)
+//   } catch (e) {
+//     next(e)
+//   }
+// })

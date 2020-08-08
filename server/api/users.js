@@ -39,12 +39,10 @@ router.get('/:id', async (req, res, next) => {
 router.get('/:id/cart', async (req, res, next) => {
   try {
     const userId = req.params.id
-    console.log(userId)
     const order = await Order.findOne({
       where: {userId: userId, status: 'cart'},
       include: {model: Shoe}
     })
-    console.log('express', order)
     if (
       req.user &&
       (Number(req.user.id) === Number(userId) || req.user.access === 'admin')
@@ -52,7 +50,7 @@ router.get('/:id/cart', async (req, res, next) => {
       if (order) {
         res.json(order)
       } else {
-        res.sendStatus(404)
+        res.json('the cart is currently empty')
       }
     } else {
       res.sendStatus(401)
@@ -62,4 +60,30 @@ router.get('/:id/cart', async (req, res, next) => {
   }
 })
 
-//
+router.delete('/:id/cart', async (req, res, next) => {
+  try {
+    const userId = req.params.id
+    const {shoeId} = req.body
+    const order = await Order.findOne({
+      where: {userId: userId, status: 'cart'}
+    })
+    const shoe = await Shoe.findByPk(shoeId)
+    await order.removeShoe(shoe)
+    const updatedOrder = await Order.findOne({
+      where: {userId: userId, status: 'cart'},
+      include: {model: Shoe}
+    })
+    res.json(updatedOrder)
+  } catch (err) {
+    next(err)
+  }
+})
+
+// for checkout page
+
+// router.get('/:id/cart/checkout')
+// load the order
+
+// router.put('/:id/cart/checkout')
+// change order status to complete
+// update shoe quantity

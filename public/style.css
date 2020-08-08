@@ -61,3 +61,15 @@ form div {
 .brand img {
   width: 33%;
 }
+
+.cartImage {
+  width: 100px;
+}
+
+.singleShoeImg {
+  width: 40%;
+}
+
+.allShoesImage {
+  width: 250px;
+}

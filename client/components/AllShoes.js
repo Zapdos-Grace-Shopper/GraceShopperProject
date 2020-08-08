@@ -17,7 +17,7 @@ class AllShoes extends React.Component {
             {this.props.shoes &&
               this.props.shoes.map(shoe => (
                 <div key={shoe.id}>
-                  <img src={`${shoe.imageURL}`} />
+                  <img src={`${shoe.imageURL}`} className="allShoesImage" />
                   <Link to={`/shoes/${shoe.id}`}>
                     <p>{shoe.name}</p>
                   </Link>

@@ -86,7 +86,7 @@ class SingleShoe extends React.Component {
     return (
       <div>
         <div>
-          <img src={shoe.imageURL} />
+          <img src={shoe.imageURL} className="singleShoeImg" />
           <div>name: {shoe.name}</div>
           <div>price: ${(shoe.price / 100).toFixed(2)}</div>
           <div>quantity: {shoe.quantity}</div>
