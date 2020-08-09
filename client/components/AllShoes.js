@@ -28,8 +28,11 @@ class AllShoes extends React.Component {
           {this.props.shoes &&
             this.props.shoes.map(shoe => (
               <div key={shoe.id} className="shoe-box">
-                <img src={`${shoe.imageURL}`} className="allShoesImage" />
                 <Link to={`/shoes/${shoe.id}`}>
+                  <img src={`${shoe.imageURL}`} className="allShoesImage" />
+                </Link>
+                <h5 fontWeight="900">{shoe.brand.name}</h5>
+                <Link to={`/shoes/${shoe.id}`} className="links">
                   <p>{shoe.name}</p>
                 </Link>
                 <p>${(shoe.price / 100).toFixed(2)}</p>

@@ -9,7 +9,7 @@ class UpdateShoe extends Component {
     this.state = {
       id: props.shoe.id,
       name: props.shoe.name,
-      brand: props.shoe.brand,
+      brand: props.brand,
       imageURL: props.shoe.imageURL,
       price: props.shoe.price,
       description: props.shoe.description,

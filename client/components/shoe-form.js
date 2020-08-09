@@ -1,5 +1,6 @@
 import React from 'react'
 import {Form, Button} from 'react-bootstrap'
+import {connect} from 'react-redux'
 
 const ShoeForm = props => {
   return (
@@ -80,5 +81,7 @@ const ShoeForm = props => {
     </Form>
   )
 }
+
+const mapState = state => {}
 
 export default ShoeForm

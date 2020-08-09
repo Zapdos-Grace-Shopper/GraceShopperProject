@@ -27,7 +27,7 @@ class Orders extends React.Component {
                       return (
                         <div key={shoe.id}>
                           <h5>You purchased {shoe.name}</h5>
-                          <h4>Total: {shoe.price}</h4>
+                          <h4>Total: ${(shoe.price / 100).toFixed(2)}</h4>
                         </div>
                       )
                     })}
