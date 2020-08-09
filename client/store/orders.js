@@ -45,6 +45,13 @@ export const deleteShoeCart = cart => {
   }
 }
 
+export const completeCheckout = cart => {
+  return {
+    type: COMPLETE_CHECKOUT,
+    cart
+  }
+}
+
 //thunks
 export const getOrdersThunk = () => {
   return async dispatch => {
@@ -85,7 +92,6 @@ export const fetchGetCart = userId => {
   }
 }
 
-// the corresponding express route works, but the axios call is not updating the cart
 export const fetchDeleteShoeCart = (userId, shoeId) => {
   return async dispatch => {
     try {
@@ -102,22 +108,18 @@ export const fetchDeleteShoeCart = (userId, shoeId) => {
   }
 }
 
-export const completeCheckoutThunk = (shoeId, userId) => {
+export const completeCheckoutThunk = userId => {
   return async dispatch => {
     try {
-      const cart = await axios.put('/api/orders/', {
-        shoeId,
-        userId,
-        status: 'complete'
-      })
-      dispatch(addToCart(cart.data))
+      const cart = await axios.put(
+        `/api/users/${userId}/cart/checkout/complete`
+      )
+      dispatch(completeCheckout(cart.data))
     } catch (error) {
       console.log(error)
     }
   }
 }
-
-//create
 
 export default function(state = initialState, action) {
   switch (action.type) {

@@ -83,6 +83,21 @@ router.delete('/:id/cart', async (req, res, next) => {
 // router.get('/:id/cart/checkout')
 // load the order
 
-// router.put('/:id/cart/checkout')
 // change order status to complete
 // update shoe quantity
+router.put('/:id/cart/checkout/complete', async (req, res, next) => {
+  try {
+    const userId = req.params.id
+    const order = await Order.findOne({
+      where: {userId: userId, status: 'cart'}
+    })
+    await order.update({status: 'complete'})
+    const updatedOrder = await Order.findOne({
+      where: {userId: userId, status: 'complete'},
+      include: {model: Shoe}
+    })
+    res.json(updatedOrder)
+  } catch (err) {
+    next(err)
+  }
+})

@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 //import { useFormik } from 'formik'
-import {Redirect, withRouter} from 'react-router-dom'
-import {completeCheckoutThunk} from '../store'
+import {Redirect, withRouter, Link} from 'react-router-dom'
+import {completeCheckoutThunk} from '../store/orders'
+import {Button} from 'react-bootstrap'
 
 const BillingForm = props => {
   //is the person checking out a user or no?
@@ -110,7 +111,9 @@ const BillingForm = props => {
           />
         </fieldset>
 
-        <button type="submit">Submit</button>
+        {/* <Button>
+          <Link to="/checkout/complete">Submit</Link>
+        </Button> */}
       </form>
     </div>
   )
