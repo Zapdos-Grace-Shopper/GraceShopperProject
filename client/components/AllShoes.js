@@ -24,30 +24,27 @@ class AllShoes extends React.Component {
     return (
       <div>
         <h1>Shoes</h1>
-        <div id="all-shoes-container">
-          <ul>
-            {this.props.shoes &&
-              this.props.shoes.map(shoe => (
-                <div key={shoe.id}>
-                  <img src={`${shoe.imageURL}`} className="allShoesImage" />
-                  <Link to={`/shoes/${shoe.id}`}>
-                    <p>{shoe.name}</p>
-                  </Link>
-                  <p>${(shoe.price / 100).toFixed(2)}</p>
-                  <div>
-                    <Button
-                      variant="outline-primary"
-                      type="submit"
-                      className="btn"
-                      onClick={() => this.handleAddCart(shoe.id)}
-                    >
-                      Add to Cart
-                      {/* <Link to="/cart">Add to Cart</Link> */}
-                    </Button>
-                  </div>
+        <div className="all-shoes-container">
+          {this.props.shoes &&
+            this.props.shoes.map(shoe => (
+              <div key={shoe.id} className="shoe-box">
+                <img src={`${shoe.imageURL}`} className="allShoesImage" />
+                <Link to={`/shoes/${shoe.id}`}>
+                  <p>{shoe.name}</p>
+                </Link>
+                <p>${(shoe.price / 100).toFixed(2)}</p>
+                <div>
+                  <Button
+                    variant="outline-primary"
+                    type="submit"
+                    className="btn"
+                    onClick={() => this.handleAddCart(shoe.id)}
+                  >
+                    Add to Cart
+                  </Button>
                 </div>
-              ))}
-          </ul>
+              </div>
+            ))}
         </div>
       </div>
     )
