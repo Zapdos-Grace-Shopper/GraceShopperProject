@@ -2,10 +2,19 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {fetchShoes} from '../store/shoes'
+import {postUserCart} from '../store/orders'
+import {Button} from 'react-bootstrap'
 
 class AllShoes extends React.Component {
+  constructor() {
+    super()
+    this.handleAddCart = this.handleAddCart.bind(this)
+  }
   componentDidMount() {
     this.props.getAllShoes()
+  }
+  handleAddCart(shoeId) {
+    this.props.addToCart(shoeId, this.props.userId)
   }
 
   render() {
@@ -22,6 +31,16 @@ class AllShoes extends React.Component {
                     <p>{shoe.name}</p>
                   </Link>
                   <p>${(shoe.price / 100).toFixed(2)}</p>
+                  <div>
+                    <Button
+                      variant="outline-primary"
+                      type="submit"
+                      className="btn"
+                      onClick={() => this.handleAddCart(shoe.id)}
+                    >
+                      Add to Cart
+                    </Button>
+                  </div>
                 </div>
               ))}
           </ul>
@@ -33,13 +52,15 @@ class AllShoes extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    shoes: state.shoes
+    shoes: state.shoes,
+    userId: state.auth.id
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllShoes: () => dispatch(fetchShoes())
+    getAllShoes: () => dispatch(fetchShoes()),
+    addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
   }
 }
 
