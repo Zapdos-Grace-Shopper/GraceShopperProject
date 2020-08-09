@@ -8,14 +8,25 @@ import AdminDashboard from './admin-dashboard'
  */
 const UserHome = props => {
   return (
-    <div>
-      <h3>
-        {props.authUser.firstname} {props.authUser.lastname}
-      </h3>
-      <p>{props.authUser.email}</p>
-      <p>{props.authUser.access === 'user' ? 'Shoe Lover' : 'Administrator'}</p>
-      <Orders id={props.authUser.id} access={props.authUser.access} />
-      {props.authUser.access === 'admin' && <AdminDashboard />}
+    <div className="profile-container">
+      <div className="profile-container-top">
+        <div className="profile-left">
+          <h1>
+            {props.authUser.firstname} {props.authUser.lastname}
+          </h1>
+          <p>{props.authUser.email}</p>
+          <p>
+            {props.authUser.access === 'user' ? 'Shoe Lover' : 'Administrator'}
+          </p>
+          <img src={props.authUser.imageURL} />
+        </div>
+        <div className="profile-right">
+          <Orders id={props.authUser.id} access={props.authUser.access} />
+        </div>
+      </div>
+      <div className="profile-container-bottom">
+        {props.authUser.access === 'admin' && <AdminDashboard />}
+      </div>
     </div>
   )
 }

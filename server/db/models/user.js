@@ -11,7 +11,6 @@ const User = db.define('user', {
   firstname: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
     validate: {
       notEmpty: true
     }
@@ -19,7 +18,6 @@ const User = db.define('user', {
   lastname: {
     type: Sequelize.STRING,
     allowNull: false,
-    unique: true,
     validate: {
       notEmpty: true
     }

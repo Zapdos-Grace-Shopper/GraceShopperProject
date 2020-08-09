@@ -1,25 +1,27 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
+import {fetchSingleShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
-import ShoeForm from './shoe-form'
+import UpdateShoe from './update-shoe'
 import {postUserCart} from '../store/orders'
-import {Link} from 'react-router-dom'
 
 class SingleShoe extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      brand: '',
-      imageURL: '',
-      price: '',
-      description: '',
-      quantity: '',
-      size: ''
+      id: props.shoe.id,
+      name: props.shoe.name,
+      brand: props.shoe.brand,
+      imageURL: props.shoe.imageURL,
+      price: props.shoe.price,
+      description: props.shoe.description,
+      quantity: props.shoe.quantity,
+      size: props.shoe.size,
+      viewUpdate: false
     }
-    this.handleChange = this.handleChange.bind(this)
+    this.toggle = this.toggle.bind(this)
     this.handleAddCart = this.handleAddCart.bind(this)
+    this.handleChange = this.handleChange.bind(this)
     this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
   }
 
@@ -28,13 +30,12 @@ class SingleShoe extends React.Component {
     this.props.getSingleShoe(id)
   }
 
-  handleChange(event) {
-    console.log(event.target, 'handle event')
+  toggle() {
+    let view = this.state.viewUpdate
     this.setState({
-      [event.target.name]: event.target.value
+      viewUpdate: !view
     })
   }
-
   handleAddCart() {
     const shoeId = this.props.match.params.id
     this.props.addToCart(shoeId, this.props.userId)
@@ -43,38 +44,15 @@ class SingleShoe extends React.Component {
     }, 500)
   }
 
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    })
+  }
+
   handleUpdateSubmit(event) {
     event.preventDefault()
-    const id = this.props.match.params.id
-    const updateInfo = {
-      name: this.state.name === '' ? this.props.shoe.name : this.state.name,
-      brand: this.state.brand === '' ? this.props.shoe.brand : this.state.brand,
-      imageURL:
-        this.state.imageURL === ''
-          ? this.props.shoe.imageURL
-          : this.state.imageURL,
-      price: this.state.price === '' ? this.props.shoe.price : this.state.price,
-      description:
-        this.state.description === ''
-          ? this.props.shoe.description
-          : this.state.description,
-      quantity:
-        this.state.quantity === ''
-          ? this.props.shoe.quantity
-          : this.state.quantity,
-      size: this.state.size === '' ? this.props.shoe.size : this.state.size
-    }
-
-    this.props.updateShoe(id, updateInfo)
-    this.setState({
-      name: '',
-      brand: '',
-      imageURL: '',
-      price: '',
-      description: '',
-      quantity: '',
-      size: ''
-    })
+    this.props.updateShoe(this.state)
   }
 
   render() {
@@ -101,15 +79,20 @@ class SingleShoe extends React.Component {
             Add to Cart
           </Button>
         </div>
-
         <div>
           {this.props.isAdmin && (
-            <ShoeForm
-              handleChange={this.handleChange}
-              onSubmit={this.handleUpdateSubmit}
-              shoe={this.state}
-            />
+            <Button type="submit" onClick={() => this.toggle()}>
+              Update Shoe
+            </Button>
           )}
+          {this.props.isAdmin &&
+            this.state.viewUpdate && (
+              <UpdateShoe
+                shoe={shoe}
+                handleChange={this.handleChange}
+                handleSubmit={this.handleUpdateSubmit}
+              />
+            )}
         </div>
       </div>
     )
@@ -124,7 +107,6 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getSingleShoe: id => dispatch(fetchSingleShoe(id)),
-  updateShoe: (id, updateInfo) => dispatch(fetchUpdateShoe(id, updateInfo)),
   addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
 })
 
