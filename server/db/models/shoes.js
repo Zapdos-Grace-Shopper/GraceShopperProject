@@ -41,11 +41,15 @@ const Shoe = db.define('shoe', {
     allowNull: true,
     defaultValue: 'beautiful shoes'
   },
-  quantity: {
+  inventory: {
     type: Sequelize.INTEGER,
     validate: {
       notEmpty: true
     }
+  },
+  quantity: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0
   }
 })
 
