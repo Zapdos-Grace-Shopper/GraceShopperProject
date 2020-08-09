@@ -9,7 +9,6 @@ import orders from './orders'
 import singleShoeReducer from './singleShoe'
 import shoes from './shoes'
 import brands from './brands'
-import brand from './singleBrand'
 import singleBrand from './singleBrand'
 
 const reducer = combineReducers({

@@ -5,8 +5,10 @@ const initialState = {orders: [], cart: {}, quantity: 0}
 const GET_ORDERS = 'GET_ORDERS'
 const ADD_TO_CART = 'ADD_TO_CART'
 const GET_CART = 'GET_CART'
+const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 // const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
 const DELETE_SHOE_CART = 'DELETE_SHOE_CART'
+const COMPLETE_CHECKOUT = 'COMPLETE_CHECKOUT'
 
 //action creators
 export const getOrders = orders => {
@@ -18,7 +20,7 @@ export const getOrders = orders => {
 
 export const addToCart = cart => {
   return {
-    type: ADD_TO_CART,
+    type: ADD_TO_CART || COMPLETE_CHECKOUT,
     cart
   }
 }
@@ -26,6 +28,13 @@ export const addToCart = cart => {
 export const getCart = cart => {
   return {
     type: GET_CART,
+    cart
+  }
+}
+
+export const removeFromCart = cart => {
+  return {
+    type: REMOVE_FROM_CART,
     cart
   }
 }
@@ -98,6 +107,23 @@ export const fetchDeleteShoeCart = (userId, shoeId) => {
   }
 }
 
+export const completeCheckoutThunk = (shoeId, userId) => {
+  return async dispatch => {
+    try {
+      const cart = await axios.put('/api/orders/', {
+        shoeId,
+        userId,
+        status: 'complete'
+      })
+      dispatch(addToCart(cart.data))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+//create
+
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ORDERS:
@@ -108,6 +134,12 @@ export default function(state = initialState, action) {
       return {...state, cart: action.cart, quantity: 1}
     case DELETE_SHOE_CART:
       return {...state, cart: action.cart}
+    case COMPLETE_CHECKOUT:
+      return {...state, cart: action.cart}
+    // case UPDATE_QUANTITY:
+    //   if (action.clickType === 'increment') {
+
+    //   }
     // case INCREASE_QUANTITY:
     //   return {...state, quantity: quantity + 1}
 
