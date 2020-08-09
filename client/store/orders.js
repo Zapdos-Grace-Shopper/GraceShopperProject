@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const initialState = {orders: [], cart: {}}
+const initialState = {orders: [], cart: {}, quantity: 0}
 
 const GET_ORDERS = 'GET_ORDERS'
 const ADD_TO_CART = 'ADD_TO_CART'
 const GET_CART = 'GET_CART'
-// const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
+// const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
 const DELETE_SHOE_CART = 'DELETE_SHOE_CART'
 
 //action creators
@@ -37,11 +37,9 @@ export const deleteShoeCart = cart => {
   }
 }
 
-// export const updateQuantity = (shoes, payloadType) => {
+// export const increaseQuantity = () => {
 //   return {
-//     type: UPDATE_QUANTITY,
-//     shoes,
-//     payloadType
+//     type: INCREASE_QUANTITY,
 //   }
 // }
 
@@ -93,7 +91,6 @@ export const fetchDeleteShoeCart = (userId, shoeId) => {
         data: {shoeId}
       })
       const updatedCart = await axios.get(`/api/users/${userId}/cart`)
-      console.log('in thunk', updatedCart)
       dispatch(deleteShoeCart(updatedCart.data))
     } catch (err) {
       console.error(err)
@@ -108,9 +105,12 @@ export default function(state = initialState, action) {
     case ADD_TO_CART:
       return {...state, cart: action.cart}
     case GET_CART:
-      return {...state, cart: action.cart}
+      return {...state, cart: action.cart, quantity: 1}
     case DELETE_SHOE_CART:
       return {...state, cart: action.cart}
+    // case INCREASE_QUANTITY:
+    //   return {...state, quantity: quantity + 1}
+
     // case UPDATE_QUANTITY: {
     //   if (action.payloadType === 'increment') {
     //     const cart = [
