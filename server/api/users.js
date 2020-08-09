@@ -78,6 +78,23 @@ router.delete('/:id/cart', async (req, res, next) => {
   }
 })
 
+// change quantity of shoes
+router.put('/:id/cart', async (req, res, next) => {
+  try {
+    const userId = req.params.id
+    const {shoeId} = req.body
+    const shoe = await Shoe.findByPk(shoeId)
+    await shoe.update(req.body.quantity)
+    const updatedOrder = await Order.findOne({
+      where: {userId: userId, status: 'cart'},
+      include: {model: Shoe}
+    })
+    res.json(updatedOrder)
+  } catch (error) {
+    next(error)
+  }
+})
+
 // for checkout page
 
 // router.get('/:id/cart/checkout')

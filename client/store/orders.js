@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const initialState = {orders: [], cart: {}, quantity: 0}
+const initialState = {orders: [], cart: {}}
 
 const GET_ORDERS = 'GET_ORDERS'
 const ADD_TO_CART = 'ADD_TO_CART'
 const GET_CART = 'GET_CART'
-// const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
+const INCREASE_QUANTITY = 'INCREASE_QUANTITY'
 const DELETE_SHOE_CART = 'DELETE_SHOE_CART'
 
 //action creators
@@ -37,11 +37,12 @@ export const deleteShoeCart = cart => {
   }
 }
 
-// export const increaseQuantity = () => {
-//   return {
-//     type: INCREASE_QUANTITY,
-//   }
-// }
+export const increaseQuantity = cart => {
+  return {
+    type: INCREASE_QUANTITY,
+    cart
+  }
+}
 
 //thunks
 export const getOrdersThunk = () => {
@@ -90,10 +91,25 @@ export const fetchDeleteShoeCart = (userId, shoeId) => {
       await axios.delete(`/api/users/${userId}/cart`, {
         data: {shoeId}
       })
-      const updatedCart = await axios.get(`/api/users/${userId}/cart`)
+      const updatedCart = await axios.get(`/api/users/${userId}/cart`, {
+        data: {shoeId}
+      })
       dispatch(deleteShoeCart(updatedCart.data))
     } catch (err) {
       console.error(err)
+    }
+  }
+}
+//not working
+export const changeQuantityCart = (userId, shoeId, {quantity}) => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.put(`/api/users/${userId}/cart`, shoeId, {
+        quantity
+      })
+      dispatch(increaseQuantity(data))
+    } catch (err) {
+      console.log(err)
     }
   }
 }
@@ -105,34 +121,11 @@ export default function(state = initialState, action) {
     case ADD_TO_CART:
       return {...state, cart: action.cart}
     case GET_CART:
-      return {...state, cart: action.cart, quantity: 1}
+      return {...state, cart: action.cart}
     case DELETE_SHOE_CART:
       return {...state, cart: action.cart}
-    // case INCREASE_QUANTITY:
-    //   return {...state, quantity: quantity + 1}
-
-    // case UPDATE_QUANTITY: {
-    //   if (action.payloadType === 'increment') {
-    //     const cart = [
-    //       ...state.map(shoe => {
-    //         if (shoe.id === action.shoes.id) shoe.quantity++
-    //         return shoe
-    //       })
-    //     ]
-    //     postUserCart(cart)
-    //     return cart
-    //   }
-    //   if (action.payloadType === 'decrement') {
-    //     const cart = [
-    //       ...state.map(shoe => {
-    //         if (shoe.id === action.shoes.id) shoe.quantity--
-    //         return shoe
-    //       })
-    //     ]
-    //     postUserCart(cart)
-    //     return cart
-    //   }
-    // }
+    case INCREASE_QUANTITY:
+      return {...state, cart: action.cart}
     default:
       return state
   }
