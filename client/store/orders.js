@@ -115,7 +115,7 @@ export const completeCheckoutThunk = userId => {
       const cart = await axios.put(
         `/api/users/${userId}/cart/checkout/complete`
       )
-      dispatch(completeCheckout(cart.data))
+      await dispatch(completeCheckout(cart.data))
       dispatch(clearCart())
     } catch (error) {
       console.log(error)

@@ -109,12 +109,20 @@ router.delete('/:id/cart', async (req, res, next) => {
 router.put('/:id/cart/checkout/complete', async (req, res, next) => {
   try {
     const userId = req.params.id
-    const order = await Order.findOne({
-      where: {userId: userId, status: 'cart'}
-    })
+    const order = await Order.findOne(
+      {
+        where: {userId: userId, status: 'cart'}
+      },
+      {
+        include: {
+          model: Shoe,
+          attributes: ['id', 'quantity']
+        }
+      }
+    )
     await order.update({status: 'complete'})
     // await shoe.update(shoe.updateInventory(), )
-
+    await order.shoes.map(shoe => shoe.updateInventory())
     const updatedOrder = await Order.findOne({
       where: {userId: userId, status: 'complete'},
       include: {model: Shoe}

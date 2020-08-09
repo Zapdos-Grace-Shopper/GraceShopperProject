@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Order, Shoe, User} = require('../db/models')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -15,7 +16,7 @@ router.get('/', async (req, res, next) => {
     } else {
       orders = await Order.findAll({
         include: [
-          {model: Shoe, attributes: ['name', 'price', 'inventory']},
+          {model: Shoe, attributes: ['name', 'price']},
           {
             model: User,
             where: {
@@ -36,7 +37,7 @@ router.get('/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
     const orderById = await Order.findByPk(orderId, {
-      include: [{model: Shoe, attributes: ['name', 'price', 'inventory']}]
+      include: [{model: Shoe, attributes: ['name', 'price']}]
     })
     res.json(orderById)
   } catch (err) {
@@ -64,11 +65,11 @@ router.post('/', async (req, res, next) => {
       },
       include: {
         model: Shoe,
-        attributes: ['name', 'price', 'inventory']
+        attributes: ['name', 'price']
       }
     })
     res.json(updatedOrder)
-  } catch (e) {
-    next(e)
+  } catch (err) {
+    next(err)
   }
 })

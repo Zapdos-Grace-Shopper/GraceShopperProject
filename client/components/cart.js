@@ -18,6 +18,7 @@ class Cart extends React.Component {
   render() {
     const cart = this.props.cart
     const shoesArr = cart.shoes
+    console.log('this is cart:', cart)
     console.log(shoesArr)
     return (
       <div>
@@ -53,7 +54,7 @@ class Cart extends React.Component {
                 </div>
               ))}
             {cart.id && (
-              <Button>
+              <Button variant="outline-secondary">
                 <Link to="/checkout">Checkout</Link>
               </Button>
             )}
