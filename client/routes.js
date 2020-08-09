@@ -16,6 +16,7 @@ import Cart from './components/cart'
 import Brands from './components/brands'
 import singleBrand from './components/single-brand'
 import Checkout from './components/checkout'
+import CheckoutComplete from './components/checkout-complete'
 /**
  * COMPONENT
  */
@@ -37,13 +38,18 @@ class Routes extends Component {
         <Route path="/shoes/:id" component={SingleShoe} />
         <Route exact path="/brands" component={Brands} />
         <Route path="/brands/:id" component={singleBrand} />
-        <Route path="/checkout" component={Checkout} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/me" component={UserHome} />
             <Route path="/orders" component={Orders} />
             <Route path="/cart" component={Cart} />
+            <Route exact path="/checkout" component={Checkout} />
+            <Route
+              exact
+              path="/checkout/complete"
+              component={CheckoutComplete}
+            />
             {isAdmin && <Route exact path="/users" component={AllUsers} />}
             {isAdmin && <Route path="/users/:id" component={SingleUser} />}
           </Switch>

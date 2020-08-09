@@ -1,26 +1,32 @@
 import React, {Fragment} from 'react'
 import BillingForm from './checkout-billing-form'
-
-//get cart independently; what happens if people refresh? might be easier to also get the cart independently than to rely on clicks from the cart page
+import {Button} from 'react-bootstrap'
+import {completeCheckoutThunk} from '../store/orders'
+import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 
 class Checkout extends React.Component {
   render() {
     console.log(this.props)
     return (
-      <Fragment>
-        <BillingForm />
-      </Fragment>
-      // <Fragment>
-      //   <div className="checkout-form">
-      //     Hello!
-      //   </div>
-      // </Fragment>
+      <div>
+        <Fragment>
+          <BillingForm />
+        </Fragment>
+        <Button onClick={() => this.props.submitCheckout(this.props.userId)}>
+          <Link to="/checkout/complete">Submit</Link>
+        </Button>
+      </div>
     )
   }
 }
 
-export default Checkout
+const mapState = state => ({
+  userId: state.auth.id
+})
 
-//get cart (use the get cart thing thunk)
-//have the user fill out the form
-//once the user hits submit, we change the order status to complete (but really user/id/cart status)
+const mapDispatch = dispatch => ({
+  submitCheckout: userId => dispatch(completeCheckoutThunk(userId))
+})
+
+export default connect(mapState, mapDispatch)(Checkout)

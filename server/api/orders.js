@@ -32,7 +32,6 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-//this gets a specific user's order
 router.get('/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
@@ -45,7 +44,6 @@ router.get('/:orderId', async (req, res, next) => {
   }
 })
 
-// posting to orders database, but not connecting to shoes in cart
 router.post('/', async (req, res, next) => {
   try {
     const {userId, status, shoeId} = req.body
@@ -75,23 +73,3 @@ router.post('/', async (req, res, next) => {
     next(e)
   }
 })
-
-// router.delete('/:orderId', async (req, res, next) => {
-//   try {
-//     const {shoeId} = req.body
-//     const order = await Order.findByPk(req.params.orderId)
-//     const shoe = await Shoe.findByPk(shoeId)
-
-//     await order.removeShoe(shoe)
-
-//     const updatedOrder = await Order.findByPk(req.params.orderId, {
-//       include: {
-//         model: Shoe,
-//         attributes: ['name', 'price'],
-//       },
-//     })
-//     res.json(updatedOrder)
-//   } catch (e) {
-//     next(e)
-//   }
-// })

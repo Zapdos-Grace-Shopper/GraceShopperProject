@@ -32,24 +32,16 @@ class SingleShoe extends React.Component {
     this.setState({
       [event.target.name]: event.target.value
     })
-    // console.log(this.state)
   }
-
-  // if user logged in - check if order status "cart" exists with user id
-  // if yes, associate this shoe id with that order id
-  // if no, create new order with status "cart", associated with user id and shoe id
 
   handleAddCart() {
     const shoeId = this.props.match.params.id
     this.props.addToCart(shoeId, this.props.userId)
   }
 
-  // OK - update shoe form only accessible to admins - need to conditionally render if have admin access
   handleUpdateSubmit(event) {
-    console.log('in submit')
     event.preventDefault()
     const id = this.props.match.params.id
-    // const updateInfo = this.state
     const updateInfo = {
       name: this.state.name === '' ? this.props.shoe.name : this.state.name,
       brand: this.state.brand === '' ? this.props.shoe.brand : this.state.brand,

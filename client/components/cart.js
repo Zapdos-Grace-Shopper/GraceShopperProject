@@ -52,9 +52,11 @@ class Cart extends React.Component {
                   </Button>
                 </div>
               ))}
-            <Button>
-              <Link to="/checkout">Checkout</Link>
-            </Button>
+            {cart.id && (
+              <Button>
+                <Link to="/checkout">Checkout</Link>
+              </Button>
+            )}
           </div>
         )}
         {!cart.id && <div>your cart is currently empty</div>}
