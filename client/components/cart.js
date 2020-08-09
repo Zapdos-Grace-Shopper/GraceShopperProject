@@ -6,25 +6,14 @@ import {
   changeQuantityCart
 } from '../store/orders'
 import {Link} from 'react-router-dom'
+import {Link, Route} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
+import {QuantityButton} from './cart-quantity-button'
+import Checkout from './checkout'
 
 class Cart extends React.Component {
-  constructor() {
-    super()
-    this.state = {
-      quantity: 0
-    }
-    this.handleClick = this.handleClick.bind(this)
-  }
-
   componentDidMount() {
     this.props.getCart(this.props.userId)
-  }
-
-  handleClick() {
-    this.setState({
-      quantity: quantity + 1
-    })
   }
 
   render() {
@@ -47,17 +36,25 @@ class Cart extends React.Component {
                   <div key={shoe.price}>
                     price: ${(shoe.price / 100).toFixed(2)}
                   </div>
+
+                  {/* //keep in local state until submission? or? */}
+                  <div key={shoe.quantity}>
+                    {shoe.quantity}
+                    <QuantityButton />
+                  </div>
+                  {/* //alternative solution */}
                   {/* <div key={shoe.quantity}>
                     quantity: {shoe.quantity}  */}
-                  <h1>quantity: {shoe.quantity}</h1>
-                  <Button
-                    onClick={() =>
-                      this.props.increment(this.props.userId, shoe.id, 10)
-                    }
+//                   <h1>quantity: {shoe.quantity}</h1>
+//                   <Button
+//                     onClick={() =>
+//                       this.props.increment(this.props.userId, shoe.id, 10)
+//                     }
                   >
-                    increase
-                  </Button>
+//                     increase
+//                   </Button>
                   {/* </div> */}
+
                   <Button
                     variant="outline-primary"
                     type="submit"
@@ -70,6 +67,9 @@ class Cart extends React.Component {
                   </Button>
                 </div>
               ))}
+            <Button>
+              <Link to="/checkout">Checkout</Link>
+            </Button>
           </div>
         )}
         {!cart.id && <div>your cart is currently empty</div>}
