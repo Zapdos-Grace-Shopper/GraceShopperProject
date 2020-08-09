@@ -11,7 +11,6 @@ class Orders extends React.Component {
     }
   }
   render() {
-    // console.log('props', this.props.orders)
     const {orders} = this.props
     console.log(orders)
     return (

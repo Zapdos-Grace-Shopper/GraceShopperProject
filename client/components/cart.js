@@ -5,7 +5,6 @@ import {
   fetchDeleteShoeCart,
   changeQuantityCart
 } from '../store/orders'
-import {Link} from 'react-router-dom'
 import {Link, Route} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 import {QuantityButton} from './cart-quantity-button'
@@ -36,7 +35,6 @@ class Cart extends React.Component {
                   <div key={shoe.price}>
                     price: ${(shoe.price / 100).toFixed(2)}
                   </div>
-
                   {/* //keep in local state until submission? or? */}
                   <div key={shoe.quantity}>
                     {shoe.quantity}
@@ -45,16 +43,7 @@ class Cart extends React.Component {
                   {/* //alternative solution */}
                   {/* <div key={shoe.quantity}>
                     quantity: {shoe.quantity}  */}
-//                   <h1>quantity: {shoe.quantity}</h1>
-//                   <Button
-//                     onClick={() =>
-//                       this.props.increment(this.props.userId, shoe.id, 10)
-//                     }
-                  >
-//                     increase
-//                   </Button>
                   {/* </div> */}
-
                   <Button
                     variant="outline-primary"
                     type="submit"
@@ -86,9 +75,7 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   getCart: userId => dispatch(fetchGetCart(userId)),
   deleteShoeCart: (userId, shoeId) =>
-    dispatch(fetchDeleteShoeCart(userId, shoeId)),
-  increment: (userId, shoeId, quantity) =>
-    dispatch(changeQuantityCart(userId, shoeId, quantity))
+    dispatch(fetchDeleteShoeCart(userId, shoeId))
 })
 
 export default connect(mapState, mapDispatch)(Cart)
