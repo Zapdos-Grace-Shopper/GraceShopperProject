@@ -73,3 +73,23 @@ form div {
 .allShoesImage {
   width: 250px;
 }
+
+.profile-container {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.profile-container-top {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.profile-container-bottom {
+  display: flex;
+  flex-flow: column nowrap;
+}
+.profile-container-header {
+  align-self: flex-start;
+}
