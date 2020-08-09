@@ -15,23 +15,23 @@ class singleBrand extends React.Component {
     return (
       <div>
         <h1>{brand.name}</h1>
-        <img src={brand.imageURL} />
+        <img className="brandImg" src={brand.imageURL} />
         <h3>Brand description: </h3>
         <h5>{brand.description}</h5>
         <h1>Shoes by {brand.name}</h1>
-        {shoes &&
-          shoes.map(shoe => {
-            return (
-              <div className="brand" key={shoe.id}>
-                <div>
-                  <Link to={`/shoes/${shoe.id}`}>{shoe.name}</Link>
+        <div className="box">
+          {shoes &&
+            shoes.map(shoe => {
+              return (
+                <div className="brand" key={shoe.id}>
+                  <img src={shoe.imageURL} className="brandImg" />
+                  <div>
+                    <Link to={`/shoes/${shoe.id}`}>{shoe.name}</Link>
+                  </div>
                 </div>
-                <div>
-                  <img src={shoe.imageURL} />
-                </div>
-              </div>
-            )
-          })}
+              )
+            })}
+        </div>
       </div>
     )
   }
