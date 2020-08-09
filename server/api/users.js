@@ -78,7 +78,28 @@ router.delete('/:id/cart', async (req, res, next) => {
   }
 })
 
-// for checkout page
+// router.put('/:id/cart', async (req, res, next) => {
+//   try {
+//     const userId = req.params.id
+//     const order = await Order.findOne({
+//       where: {userId: userId, status: 'cart'},
+//       include: {model: Shoe}
+//     })
+//     req.body.quantity.map(update => {
+//       let shoe = await Shoe.findByPk(update.shoeId)
+//       await shoe.update({quantity: update.quantity})
+//     }
+//     )
+//     const updatedOrder = await Order.findOne({
+//       where: {userId: userId, status: 'cart'},
+//       include: {model: Shoe}
+//     })
+//     res.json(updatedOrder)
+//   } catch (error) {
+//     next(error)
+//   }
+// })
+// // for checkout page
 
 // router.get('/:id/cart/checkout')
 // load the order
@@ -92,6 +113,8 @@ router.put('/:id/cart/checkout/complete', async (req, res, next) => {
       where: {userId: userId, status: 'cart'}
     })
     await order.update({status: 'complete'})
+    // await shoe.update(shoe.updateInventory(), )
+
     const updatedOrder = await Order.findOne({
       where: {userId: userId, status: 'complete'},
       include: {model: Shoe}

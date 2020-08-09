@@ -33,17 +33,17 @@ class Routes extends Component {
         {/* Routes placed here are available to all visitors */}
         <Route exact path="/" component={Homepage} />
         <Route exact path="/login" component={Login} />
-        <Route path="/signup" component={Signup} />
+        <Route exact path="/signup" component={Signup} />
         <Route exact path="/shoes" component={AllShoes} />
-        <Route path="/shoes/:id" component={SingleShoe} />
+        <Route exact path="/shoes/:id" component={SingleShoe} />
         <Route exact path="/brands" component={Brands} />
-        <Route path="/brands/:id" component={singleBrand} />
+        <Route exact path="/brands/:id" component={singleBrand} />
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
-            <Route path="/me" component={UserHome} />
-            <Route path="/orders" component={Orders} />
-            <Route path="/cart" component={Cart} />
+            <Route exact path="/me" component={UserHome} />
+            <Route exact path="/orders" component={Orders} />
+            <Route exact path="/cart" component={Cart} />
             <Route exact path="/checkout" component={Checkout} />
             <Route
               exact

@@ -49,12 +49,16 @@ const Shoe = db.define('shoe', {
   },
   quantity: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 0,
+    validate: {
+      min: 0
+    }
   }
 })
 
-// Shoe.getPrice = function () {
-//   this.displayPrice = `USD ${this.price / 100}`
-// }
+Shoe.prototype.updateInventory = () => {
+  this.inventory = this.inventory - this.quantity
+  this.quantity = 0
+}
 
 module.exports = Shoe

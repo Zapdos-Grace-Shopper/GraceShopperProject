@@ -55,9 +55,7 @@ router.post('/', async (req, res, next) => {
         status
       }
     })
-
     const addedShoe = await order.addShoe(shoe)
-
     let [updatedOrder, updateWasCreated] = await Order.findOrCreate({
       where: {
         userId,

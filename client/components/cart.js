@@ -5,7 +5,7 @@ import {
   fetchDeleteShoeCart,
   changeQuantityCart
 } from '../store/orders'
-import {Link, Route} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 import {QuantityButton} from './cart-quantity-button'
 import Checkout from './checkout'
@@ -18,7 +18,7 @@ class Cart extends React.Component {
   render() {
     const cart = this.props.cart
     const shoesArr = cart.shoes
-    console.log(this.props)
+    console.log(shoesArr)
     return (
       <div>
         <h1>Cart</h1>
