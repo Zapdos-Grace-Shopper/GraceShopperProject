@@ -18,42 +18,46 @@ class Cart extends React.Component {
   render() {
     const cart = this.props.cart
     const shoesArr = cart.shoes
-    console.log(shoesArr)
+    let totalPrice = 0
     return (
       <div>
         <h1>Cart</h1>
         {cart && (
           <div>
             {shoesArr &&
-              shoesArr.map(shoe => (
-                <div key={shoe.id}>
-                  <img className="cartImage" src={`${shoe.imageURL}`} />
-                  <Link to={`/shoes/${shoe.id}`}>
-                    <p>{shoe.name}</p>
-                  </Link>
-                  <div key={shoe.size}>size: {shoe.size}</div>
-                  <div key={shoe.price}>
-                    price: ${(shoe.price / 100).toFixed(2)}
+              shoesArr.map(shoe => {
+                totalPrice += shoe.price
+                return (
+                  <div key={shoe.id}>
+                    <img className="cartImage" src={`${shoe.imageURL}`} />
+                    <Link to={`/shoes/${shoe.id}`}>
+                      <p>{shoe.name}</p>
+                    </Link>
+                    <div key={shoe.size}>size: {shoe.size}</div>
+                    <div key={shoe.price}>
+                      price: ${(shoe.price / 100).toFixed(2)}
+                    </div>
+                    {/* //keep in local state until submission? or? */}
+                    <div key={shoe.inventory}>
+                      Quantity in stock: {shoe.inventory}
+                      <QuantityButton inventory={shoe.inventory} />
+                    </div>
+                    <Button
+                      variant="outline-primary"
+                      type="submit"
+                      className="btn"
+                      onClick={() =>
+                        this.props.deleteShoeCart(this.props.userId, shoe.id)
+                      }
+                    >
+                      Remove from Cart
+                    </Button>
                   </div>
-                  {/* //keep in local state until submission? or? */}
-                  <div key={shoe.inventory}>
-                    Quantity in stock: {shoe.inventory}
-                    <QuantityButton inventory={shoe.inventory} />
-                  </div>
-                  <Button
-                    variant="outline-primary"
-                    type="submit"
-                    className="btn"
-                    onClick={() =>
-                      this.props.deleteShoeCart(this.props.userId, shoe.id)
-                    }
-                  >
-                    Remove from Cart
-                  </Button>
-                </div>
-              ))}
+                )
+              })}
+            <h5>Cart total: ${(totalPrice / 100).toFixed(2)}</h5>
             {cart.id && (
-              <Button>
+              <Button variant="outline-primary" type="submit" className="btn">
                 <Link to="/checkout">Checkout</Link>
               </Button>
             )}

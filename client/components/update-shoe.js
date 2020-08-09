@@ -13,7 +13,7 @@ class UpdateShoe extends Component {
       imageURL: props.shoe.imageURL,
       price: props.shoe.price,
       description: props.shoe.description,
-      quantity: props.shoe.quantity,
+      inventory: props.shoe.inventory,
       size: props.shoe.size
     }
     this.handleChange = this.handleChange.bind(this)

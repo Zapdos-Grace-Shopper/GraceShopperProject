@@ -12,26 +12,30 @@ class Orders extends React.Component {
   }
   render() {
     const {orders} = this.props
-    console.log(orders)
     return (
-      <div>
+      <div key={orders.user}>
         {orders &&
           orders.map(order => {
             if (order.status === 'complete') {
+              let totalPrice = 0
               return (
-                <div>
+                <div key={order.id}>
                   <h3>Ordered by: {order.user ? order.user.firstname : ''}</h3>
                   <h4>Order status is {order.status}</h4>
                   <div>
                     {order.shoes.map(shoe => {
+                      totalPrice += shoe.price
                       return (
                         <div key={shoe.id}>
-                          <h5>You purchased {shoe.name}</h5>
-                          <h4>Total: {shoe.price}</h4>
+                          <h5 key={shoe.name}>You purchased {shoe.name}</h5>
+                          <h4 key={shoe.price}>
+                            Price: ${(shoe.price / 100).toFixed(2)}
+                          </h4>
                         </div>
                       )
                     })}
                   </div>
+                  <div>Total Order Price: ${(totalPrice / 100).toFixed(2)}</div>
                 </div>
               )
             }
