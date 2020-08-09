@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 import UpdateShoe from './update-shoe'
 import {postUserCart} from '../store/orders'
 
@@ -89,6 +90,7 @@ class SingleShoe extends React.Component {
             this.state.viewUpdate && (
               <UpdateShoe
                 shoe={shoe}
+                brand={brand.name}
                 handleChange={this.handleChange}
                 handleSubmit={this.handleUpdateSubmit}
               />

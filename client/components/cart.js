@@ -53,9 +53,11 @@ class Cart extends React.Component {
                 </div>
               ))}
             {cart.id && (
-              <Button>
-                <Link to="/checkout">Checkout</Link>
-              </Button>
+              <Link to="/checkout">
+                <Button variant="outline-primary" className="btn">
+                  Checkout
+                </Button>
+              </Link>
             )}
           </div>
         )}

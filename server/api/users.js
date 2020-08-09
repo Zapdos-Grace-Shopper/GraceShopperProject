@@ -5,7 +5,15 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'firstname', 'lastname', 'email', 'shoeSize']
+      attributes: [
+        'id',
+        'firstname',
+        'lastname',
+        'email',
+        'shoeSize',
+        'imageURL',
+        'access'
+      ]
     })
     if (req.user && req.user.access === 'admin') {
       res.json(users)
@@ -23,7 +31,14 @@ router.get('/:id', async (req, res, next) => {
       where: {
         id: req.params.id
       },
-      attributes: ['id', 'firstname', 'lastname', 'email', 'shoeSize']
+      attributes: [
+        'id',
+        'firstname',
+        'lastname',
+        'email',
+        'shoeSize',
+        'imageURL'
+      ]
     })
     if (req.user && req.user.access === 'admin') {
       res.json(user)
