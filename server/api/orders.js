@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
     } else {
       orders = await Order.findAll({
         include: [
-          {model: Shoe, attributes: ['name', 'price']},
+          {model: Shoe, attributes: ['name', 'price', 'inventory']},
           {
             model: User,
             where: {
@@ -36,7 +36,7 @@ router.get('/:orderId', async (req, res, next) => {
   try {
     const orderId = req.params.orderId
     const orderById = await Order.findByPk(orderId, {
-      include: [{model: Shoe, attributes: ['name', 'price']}]
+      include: [{model: Shoe, attributes: ['name', 'price', 'inventory']}]
     })
     res.json(orderById)
   } catch (err) {
@@ -44,6 +44,7 @@ router.get('/:orderId', async (req, res, next) => {
   }
 })
 
+//creates order
 router.post('/', async (req, res, next) => {
   try {
     const {userId, status, shoeId} = req.body
@@ -63,7 +64,7 @@ router.post('/', async (req, res, next) => {
       },
       include: {
         model: Shoe,
-        attributes: ['name', 'price']
+        attributes: ['name', 'price', 'inventory']
       }
     })
     res.json(updatedOrder)

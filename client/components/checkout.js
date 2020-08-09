@@ -1,9 +1,9 @@
 import React, {Fragment} from 'react'
 import BillingForm from './checkout-billing-form'
 import {Button} from 'react-bootstrap'
-import {completeCheckoutThunk} from '../store/orders'
+import {completeCheckoutThunk} from '../store'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
+import {Link, withRouter} from 'react-router-dom'
 
 class Checkout extends React.Component {
   render() {
