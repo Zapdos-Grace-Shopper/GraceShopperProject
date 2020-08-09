@@ -25,6 +25,9 @@ deploy: # see README for details on these keys
   provider: heroku
   # app should be your heroku app name; see README
   app: zapdos-shoes
+  branches:
+    only:
+      - main
   # the secure key indicates an encrypted value; see README
   api_key:
     secure: QYpAx3xmLylTyiCUrw2XYFn2asO0efBsYTMQA/HePtcNrJwDPXy168tZPF4a08tfzVqxd1KP68lUpbYs+P/6ZiqamGlKkEMrbZB6DIYuI0sHGTXOti5FoKjiwiF3RXjnnFmRvnZy7Db42WYiVGkh4C6brL2o8jj1nO3RXM1z0lW29glTCm3K4HnOYGiP2C9ZjeDBV8/j5Qd0c3IWxel2keCBFkJsvqSlkz1N9jJHR4kGlJAdPntYweV8DICQCbGhrQwcEqfJhpu59PT+2+L9cq2Tp+vhD/InhioabKJYYqrMBWEe77j/rGe43hfcNbnBYqxRJ6mEE37FnYj8NwYqGtFzYUA7dpJutIN9yBuHeFLj0MTEapCZ+RGm46MKZwFT4zYTvCBKuRBRwm0JQc9ESKaN/5FucU/Zi+v/0TlBxs/+6/pys1kyPD/4uib2DKczisxVVSySPmXZ4mh7xdlFHCDYQrH+8/KB1c71FKEQsPiMyIogu+ag8JPEVbVtS3xuGQzDp/3+s10oCi8MyzEVu2lGFwHbRkYPQ+8clS948rNtz98Eh1FJOzItu0q1jsDXpRs03RasoC0NHHxzBRlAQwvrdjHzB4RgNv3MrTlVP95XfguBs3HxoLEyeaeje5tRvc7oczeN3KltI1S9fTcQSXWiJ7i1AJHONwAZHsPwPWY=
