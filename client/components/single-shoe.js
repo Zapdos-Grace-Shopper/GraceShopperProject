@@ -4,6 +4,7 @@ import {fetchSingleShoe, fetchUpdateShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
 import ShoeForm from './shoe-form'
 import {postUserCart} from '../store/orders'
+import {Link} from 'react-router-dom'
 
 class SingleShoe extends React.Component {
   constructor(props) {
@@ -37,6 +38,9 @@ class SingleShoe extends React.Component {
   handleAddCart() {
     const shoeId = this.props.match.params.id
     this.props.addToCart(shoeId, this.props.userId)
+    setTimeout(() => {
+      this.props.history.push('/cart')
+    }, 500)
   }
 
   handleUpdateSubmit(event) {

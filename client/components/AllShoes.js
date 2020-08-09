@@ -15,6 +15,9 @@ class AllShoes extends React.Component {
   }
   handleAddCart(shoeId) {
     this.props.addToCart(shoeId, this.props.userId)
+    setTimeout(() => {
+      this.props.history.push('/cart')
+    }, 500)
   }
 
   render() {
@@ -39,6 +42,7 @@ class AllShoes extends React.Component {
                       onClick={() => this.handleAddCart(shoe.id)}
                     >
                       Add to Cart
+                      {/* <Link to="/cart">Add to Cart</Link> */}
                     </Button>
                   </div>
                 </div>
