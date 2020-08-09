@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-// import AddBrandForm from './add-brand-form'
+import AddBrand from './add-brand'
 import AddShoe from './add-shoe'
 
 export default function AdminDashboard() {
@@ -10,16 +10,19 @@ export default function AdminDashboard() {
 
   return (
     <div id="admin-dashboard">
+      <Link to="/users" className="links">
+        View All Users
+      </Link>
       <div id="admin-dashboard-buttons">
-        <Link to="/users" className="links">
-          View All Users
-        </Link>
         <br />
         <Button
           type="submit"
           value="brand"
           variant="outline-primary"
-          onClick={() => setShowBrandForm(true)}
+          onClick={() => {
+            setShowBrandForm(true)
+            setShowShoeForm(false)
+          }}
         >
           Add Brand
         </Button>
@@ -27,13 +30,16 @@ export default function AdminDashboard() {
           type="submit"
           value="shoe"
           variant="outline-primary"
-          onClick={() => setShowShoeForm(true)}
+          onClick={() => {
+            setShowShoeForm(true)
+            setShowBrandForm(false)
+          }}
         >
           Add Shoe
         </Button>
       </div>
       <div id="forms">
-        {/* {this.state.showBrandForm && <AddBrandForm />} */}
+        {showBrandForm && <AddBrand />}
         {showShoeForm && <AddShoe />}
       </div>
     </div>

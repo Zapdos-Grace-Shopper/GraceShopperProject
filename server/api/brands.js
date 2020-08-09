@@ -24,3 +24,18 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
+
+router.post('/', async (req, res, next) => {
+  try {
+    const {name, imageURL, description} = req.body
+    const brand = await Brand.create({
+      name,
+      imageURL,
+      description
+    })
+    console.log(brand)
+    res.json(brand)
+  } catch (e) {
+    next(e)
+  }
+})
