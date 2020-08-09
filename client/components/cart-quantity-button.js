@@ -1,17 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Button} from 'react-bootstrap'
 
 export const QuantityButton = () => {
   const [quantity, setQuantity] = useState(1)
+  const [isEmpty, setEmpty] = useState(false)
 
-  // useEffect(() => {
-  //   function handleClick(value){
-  //     if (type === 'increase') {
-  //       this.setQuantity()
-  //     }
-  //   }
-  //   console.log(`Quantity: ${quantity}`);
-  // }, [quantity])
+  useEffect(
+    () => {
+      if (quantity <= 0) {
+        setEmpty(true)
+      } else {
+        setEmpty(false)
+      }
+    },
+    [quantity]
+  )
 
   return (
     <div className="quantity-button-container">
@@ -26,7 +29,8 @@ export const QuantityButton = () => {
       <Button
         variant="outline-info"
         value="decrease"
-        onClick={() => setQuantity(quantity - 1)}
+        disabled={isEmpty}
+        onClick={!isEmpty ? () => setQuantity(quantity - 1) : null}
       >
         Subtract
       </Button>
