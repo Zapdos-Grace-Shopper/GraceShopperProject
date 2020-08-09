@@ -12,10 +12,9 @@ class Cart extends React.Component {
   render() {
     const cart = this.props.cart
     const shoesArr = cart.shoes
-
     return (
       <div>
-        <h1>cart</h1>
+        <h1>Cart</h1>
         {cart && (
           <div>
             {shoesArr &&
@@ -29,9 +28,12 @@ class Cart extends React.Component {
                   <div key={shoe.price}>
                     price: ${(shoe.price / 100).toFixed(2)}
                   </div>
-                  <div key={shoe.quantity}>
-                    quantity: {shoe.quantity} increase {shoe.quantity + 1}
-                  </div>
+                  {/* <div key={shoe.quantity}>
+                    quantity: {shoe.quantity}  */}
+                  {/* {this.props.amout && 
+                    <h1>quantity: {this.props.amout}</h1>}
+                    <Button onClick={() => this.props.increment()}>increase</Button> */}
+                  {/* </div> */}
                   <Button
                     variant="outline-primary"
                     type="submit"
@@ -54,13 +56,15 @@ class Cart extends React.Component {
 
 const mapState = state => ({
   cart: state.orders.cart,
-  userId: state.auth.id
+  userId: state.auth.id,
+  amount: state.orders.quantity
 })
 
 const mapDispatch = dispatch => ({
   getCart: userId => dispatch(fetchGetCart(userId)),
   deleteShoeCart: (userId, shoeId) =>
     dispatch(fetchDeleteShoeCart(userId, shoeId))
+  // increment: () => dispatch({ type: 'INCREASE_QUANTITY' })
 })
 
 export default connect(mapState, mapDispatch)(Cart)
