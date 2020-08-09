@@ -79,18 +79,18 @@ class SingleShoe extends React.Component {
 
   render() {
     const {shoe} = this.props
+    const brand = shoe.brand
     return (
       <div>
         <div>
           <img src={shoe.imageURL} className="singleShoeImg" />
-          <div>name: {shoe.name}</div>
-          <div>price: ${(shoe.price / 100).toFixed(2)}</div>
-          <div>quantity: {shoe.quantity}</div>
-          <div>size: {shoe.size}</div>
-          <div>description: {shoe.description}</div>
-          {/* <div>brand: {this.props.shoe.brand.name}</div> */}
+          <div>Name: {shoe.name}</div>
+          <div>Price: ${(shoe.price / 100).toFixed(2)}</div>
+          <div>Quantity: {shoe.inventory}</div>
+          <div>Size: {shoe.size}</div>
+          <div>Description: {shoe.description}</div>
+          Brand: {brand && <Link to={`/brands/${brand.id}`}>{brand.name}</Link>}
         </div>
-
         <div>
           <Button
             variant="outline-primary"

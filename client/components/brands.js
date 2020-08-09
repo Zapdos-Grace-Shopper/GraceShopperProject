@@ -16,10 +16,8 @@ class Brands extends React.Component {
           {brands &&
             brands.map(brand => {
               return (
-                <div key={brand.id}>
-                  <div className="brand">
-                    <img src={brand.imageURL} />
-                  </div>
+                <div key={brand.id} className="brand">
+                  <img src={brand.imageURL} className="brandImg" />
                   <div>
                     <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
                   </div>

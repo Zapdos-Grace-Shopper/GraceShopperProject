@@ -44,22 +44,11 @@ form div {
   background-color: lightgray;
 }
 
-.box {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
 .card img {
   width: 300px;
 }
 .mainPic {
   width: 100%;
-}
-.brand {
-  width: 500px;
-}
-.brand img {
-  width: 33%;
 }
 
 .cartImage {
@@ -72,4 +61,40 @@ form div {
 
 .allShoesImage {
   width: 250px;
+}
+
+.all-shoes-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.all-shoes-container div {
+  border: 1px;
+  padding: 10px;
+}
+
+.shoe-box {
+  flex: 1;
+}
+
+.box {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.box div {
+  border: 1px;
+  padding: 20px;
+}
+
+.brand {
+  flex: 1;
+}
+
+.brandImg {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
 }
