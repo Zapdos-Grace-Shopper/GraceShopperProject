@@ -22,6 +22,11 @@
 //       const res = await request(app)
 //         .get('/api/orders')
 //         .expect(200)
+      xit('GET /api/orders', async () => {
+      const res = await request(app)
+        .get('/api/orders')
+        .expect(200)
+
 
 //       expect(res.body).to.be.an('array')
 //       expect(res.body[0].status).to.be.equal(status)
