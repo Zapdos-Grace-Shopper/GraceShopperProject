@@ -36,14 +36,10 @@ class Cart extends React.Component {
                     price: ${(shoe.price / 100).toFixed(2)}
                   </div>
                   {/* //keep in local state until submission? or? */}
-                  <div key={shoe.quantity}>
-                    {shoe.quantity}
-                    <QuantityButton />
+                  <div key={shoe.inventory}>
+                    Quantity in stock: {shoe.inventory}
+                    <QuantityButton inventory={shoe.inventory} />
                   </div>
-                  {/* //alternative solution */}
-                  {/* <div key={shoe.quantity}>
-                    quantity: {shoe.quantity}  */}
-                  {/* </div> */}
                   <Button
                     variant="outline-primary"
                     type="submit"
