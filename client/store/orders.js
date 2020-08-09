@@ -37,7 +37,6 @@ export const removeFromCart = cart => {
     cart
   }
 }
-
 export const deleteShoeCart = cart => {
   return {
     type: DELETE_SHOE_CART,
