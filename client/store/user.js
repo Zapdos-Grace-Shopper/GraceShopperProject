@@ -55,7 +55,6 @@ export const fetchSingleUser = id => {
 export const deleteUserThunk = userId => {
   return async dispatch => {
     try {
-      console.log('hit the delete thunk')
       await axios.delete(`/api/users/${userId}`)
       dispatch(deleteUser(userId))
     } catch (e) {
