@@ -69,4 +69,30 @@ describe('Sequelize Shoe Model', () => {
       expect(err.message).to.contain('max on size')
     }
   })
+
+  describe('checkQuantity', async () => {
+    const shoe2 = await Shoe.create({
+      name: 'Fave Shoe',
+      price: 700,
+      size: 8,
+      inventory: 3,
+      quantity: 2
+    })
+
+    const shoe3 = await Shoe.create({
+      name: 'Fave Shoe',
+      price: 700,
+      size: 8,
+      inventory: 3,
+      quantity: 5
+    })
+
+    it('returns true if the quantity is less than the inventory', () => {
+      expect(shoe2.checkQuantity()).to.be.equal(true)
+    })
+
+    it('returns true if the quantity is greater than the inventory', () => {
+      expect(shoe3.checkQuantity()).to.be.equal(false)
+    })
+  })
 })
