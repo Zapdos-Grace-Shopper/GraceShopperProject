@@ -10,11 +10,12 @@ export default function AdminDashboard() {
 
   return (
     <div id="admin-dashboard">
-      <Link to="/users" className="links">
-        View All Users
-      </Link>
       <div id="admin-dashboard-buttons">
-        <br />
+        <Link to="/users" className="links">
+          <Button variant="outline-primary" className="btn">
+            Manage Users
+          </Button>
+        </Link>
         <Button
           type="submit"
           value="brand"

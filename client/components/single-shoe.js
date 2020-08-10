@@ -82,7 +82,11 @@ class SingleShoe extends React.Component {
         </div>
         <div>
           {this.props.isAdmin && (
-            <Button type="submit" onClick={() => this.toggle()}>
+            <Button
+              variant="outline-primary"
+              type="submit"
+              onClick={() => this.toggle()}
+            >
               Update Shoe
             </Button>
           )}

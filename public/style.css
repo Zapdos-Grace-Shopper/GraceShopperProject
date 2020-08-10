@@ -3,8 +3,19 @@
 }
 
 body {
-  font-family: sweet-sans-pro, sans-serif;
-  font-weight: 400;
+  font-family: houschka-pro, sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: span-condensed, serif;
+  font-weight: 600;
   font-style: normal;
 }
 
@@ -130,7 +141,7 @@ form div {
 }
 
 .links {
-  color: goldenrod;
+  color: rgb(143, 10, 27);
 }
 
 .links:hover {
@@ -139,12 +150,12 @@ form div {
 }
 
 .btn {
-  color: goldenrod;
-  border: 1px solid goldenrod;
+  color: rgb(143, 10, 27);
+  border: 1px solid rgb(143, 10, 27);
 }
 
 .btn:hover {
-  background-color: goldenrod;
+  background-color: rgb(143, 10, 27);
   border: 1px solid silver;
 }
 
@@ -176,6 +187,13 @@ form div {
   box-shadow: 1px 1px gray;
   border-radius: 5%;
 }
+
 .image-div img:hover {
   opacity: 0.7;
+}
+
+.order-div {
+  border: 1px solid lightslategray;
+  border-radius: 5%;
+  margin: 1em;
 }

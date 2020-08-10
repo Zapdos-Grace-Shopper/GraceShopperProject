@@ -31,7 +31,10 @@ export class Homepage extends React.Component {
                     <img src={shoe.imageURL} />
                   </div>
                   <div>
-                    <Link to={`/shoes/${shoe.id}`}>{shoe.name}</Link>
+                    <h5>{shoe.brand.name}</h5>
+                    <Link className="links" to={`/shoes/${shoe.id}`}>
+                      {shoe.name}
+                    </Link>
                   </div>
                 </div>
               )

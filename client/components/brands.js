@@ -19,7 +19,9 @@ export class Brands extends React.Component {
                 <div key={brand.id} className="brand">
                   <img src={brand.imageURL} className="brandImg" />
                   <div>
-                    <Link to={`/brands/${brand.id}`}>{brand.name}</Link>
+                    <Link to={`/brands/${brand.id}`} className="links">
+                      <h5>{brand.name}</h5>
+                    </Link>
                   </div>
                 </div>
               )
