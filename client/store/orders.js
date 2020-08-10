@@ -9,6 +9,7 @@ const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const DELETE_SHOE_CART = 'DELETE_SHOE_CART'
 const COMPLETE_CHECKOUT = 'COMPLETE_CHECKOUT'
 const CLEAR_CART = 'CLEAR_CART'
+const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
 
 //action creators
 export const getOrders = orders => {
@@ -52,6 +53,12 @@ export const clearCart = () => {
     type: CLEAR_CART
   }
 }
+export const updateQuantity = cart => {
+  return {
+    type: UPDATE_QUANTITY,
+    cart
+  }
+}
 
 //thunks
 export const getOrdersThunk = () => {
@@ -60,7 +67,7 @@ export const getOrdersThunk = () => {
       const {data} = await axios.get('api/orders')
       dispatch(getOrders(data))
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 }
@@ -75,7 +82,7 @@ export const postUserCart = (shoeId, userId) => {
       })
       dispatch(addToCart(cart.data))
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 }
@@ -118,7 +125,21 @@ export const completeCheckoutThunk = userId => {
       await dispatch(completeCheckout(cart.data))
       dispatch(clearCart())
     } catch (error) {
-      console.log(error)
+      console.error(error)
+    }
+  }
+}
+
+export const fetchUpdateQuantity = (userId, update) => {
+  return async dispatch => {
+    try {
+      console.log('in thunk', update)
+      const cart = await axios.put(`/api/users/${userId}/cart`, {
+        quantArr: update
+      })
+      dispatch(updateQuantity(cart.data))
+    } catch (err) {
+      console.error(err)
     }
   }
 }
@@ -137,6 +158,8 @@ export default function(state = initialState, action) {
       return {...state, cart: action.cart}
     case CLEAR_CART:
       return initialState
+    case UPDATE_QUANTITY:
+      return {...state, cart: action.cart}
     default:
       return state
   }

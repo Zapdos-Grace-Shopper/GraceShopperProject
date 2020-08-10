@@ -7,7 +7,6 @@ import {Link} from 'react-router-dom'
 
 class Checkout extends React.Component {
   render() {
-    console.log(this.props)
     return (
       <div>
         <Fragment>

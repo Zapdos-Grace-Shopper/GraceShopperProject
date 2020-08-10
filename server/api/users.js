@@ -113,7 +113,7 @@ router.delete('/:id', async (req, res, next) => {
       res.sendStatus(201)
     }
   } catch (e) {
-    console.log(e)
+    next(e)
   }
 })
 
@@ -164,10 +164,12 @@ router.delete('/:id/cart', async (req, res, next) => {
 router.put('/:id/cart', async (req, res, next) => {
   try {
     const userId = req.params.id
-    req.body.quantity.map(async update => {
+    console.log('req.body', req.body)
+    req.body.quantArr.map(async update => {
       let shoe = await Shoe.findByPk(update.shoeId)
       await shoe.update({quantity: update.quantity})
     })
+
     const updatedOrder = await Order.findOne({
       where: {userId: userId, status: 'cart'},
       include: {model: Shoe}
@@ -192,11 +194,8 @@ router.put('/:id/cart/checkout/complete', async (req, res, next) => {
       let findShoe = await Shoe.findByPk(shoeID)
       const updateInventory =
         Number(findShoe.inventory) - Number(findShoe.quantity)
-      await findShoe.update({inventory: updateInventory})
-      const updateFindShoe = await Shoe.findByPk(shoeID)
-      await updateFindShoe.update({quantity: 0})
+      await findShoe.update({inventory: updateInventory, quantity: 0})
     })
-
     res.json('updated shoe quantity and cart status')
   } catch (err) {
     next(err)
