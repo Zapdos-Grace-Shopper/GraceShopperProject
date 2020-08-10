@@ -16,7 +16,7 @@ class SingleShoe extends React.Component {
       imageURL: props.shoe.imageURL,
       price: props.shoe.price,
       description: props.shoe.description,
-      quantity: props.shoe.quantity,
+      inventory: props.shoe.inventory,
       size: props.shoe.size,
       viewUpdate: false
     }
@@ -65,7 +65,7 @@ class SingleShoe extends React.Component {
           <img src={shoe.imageURL} className="singleShoeImg" />
           <div>Name: {shoe.name}</div>
           <div>Price: ${(shoe.price / 100).toFixed(2)}</div>
-          <div>Quantity: {shoe.inventory}</div>
+          <div>Inventory: {shoe.inventory}</div>
           <div>Size: {shoe.size}</div>
           <div>Description: {shoe.description}</div>
           Brand: {brand && <Link to={`/brands/${brand.id}`}>{brand.name}</Link>}
