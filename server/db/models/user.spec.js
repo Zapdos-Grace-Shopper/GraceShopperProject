@@ -5,9 +5,8 @@ const db = require('../index')
 const User = db.model('user')
 
 describe('User model', () => {
-  beforeEach(() => {
-    return db.sync({force: true})
-  })
+  before(() => db.sync({force: true}))
+  afterEach(() => db.sync({force: true}))
 
   describe('instanceMethods', () => {
     describe('correctPassword', () => {
@@ -31,24 +30,69 @@ describe('User model', () => {
       })
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')
-  // describe('validation', () => {
-  //   describe('email validation', () => {
-  //     beforeEach(async () => {
-  //       await User.create({
-  //         email: 'cody@puppybook.com',
-  //         password: 'bones',
-  //         firstname: 'cody',
-  //         lastname: 'pug'
-  //       })
-  //     })
-  //     it ('requires unique emails', async () => {
-  //       expect(await User.create({
-  //         email: 'cody@puppybook.com',
-  //         password: 'treats',
-  //         firstname: 'notCody',
-  //         lastname: 'terrier'
-  //       })).to.throw('Validation error')
-  //     })
-  //   })
-  // })
+  describe('validation', () => {
+    describe('email validation', () => {
+      beforeEach(async () => {
+        await User.create({
+          email: 'cody@puppybook.com',
+          password: 'bones',
+          firstname: 'cody',
+          lastname: 'pug'
+        })
+      })
+      it('requires firstnames that are not null', async () => {
+        const user = User.build({
+          email: 'lauren@gmail.com',
+          lastname: 'Pitruzzello'
+        })
+        try {
+          await user.validate()
+          throw Error('validation should have failed without firstname')
+        } catch (err) {
+          expect(err.message).to.contain('cannot be null')
+        }
+      })
+      it('requires lastnames that are not null', async () => {
+        const user = User.build({
+          email: 'lauren@gmail.com',
+          firstname: 'Lauren'
+        })
+        try {
+          await user.validate()
+          throw Error('validation should have failed without lastname')
+        } catch (err) {
+          expect(err.message).to.contain('cannot be null')
+        }
+      })
+      it('requires emails that are not null', async () => {
+        const user = User.build({firstname: 'Lauren', lastname: 'Pitruzzello'})
+        try {
+          await user.validate()
+          throw Error('validation should have failed without email')
+        } catch (err) {
+          expect(err.message).to.contain('cannot be null')
+        }
+      })
+      it('requires unique emails', async () => {
+        let user1 = await User.create({
+          email: 'lauren@gmail.com',
+          password: 'hello',
+          firstname: 'Lauren',
+          lastname: 'Nicole'
+        })
+        try {
+          let user2 = await User.create({
+            email: 'lauren@gmail.com',
+            password: 'hello',
+            firstname: 'Lauren',
+            lastname: 'Pitruzzello'
+          })
+          await user2.validate()
+          throw Error('validation should have failed without unique email')
+        } catch (err) {
+          expect(err.message).to.contain(`Validation error`)
+        }
+      })
+    })
+  })
 }) // end describe('User model')
