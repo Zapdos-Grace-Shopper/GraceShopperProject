@@ -92,6 +92,17 @@ class SingleShoe extends React.Component {
             <Button
               variant="outline-primary"
               type="submit"
+              className="btn"
+              onClick={() => this.handleDeleteShoe(shoe.id)}
+            >
+              Delete Shoe
+            </Button>
+          )}
+          {this.props.isAdmin && (
+            <Button
+              variant="outline-primary"
+              className="btn"
+              type="submit"
               onClick={() => this.toggle()}
             >
               Update Shoe
