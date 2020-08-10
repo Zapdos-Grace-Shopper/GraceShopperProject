@@ -59,7 +59,7 @@ const db = require('../db')
 const app = require('../api')
 const User = db.model('user')
 
-describe('User routes', () => {
+xdescribe('User routes', () => {
   beforeEach(() => {
     return db.sync({force: true})
   })
@@ -75,7 +75,7 @@ describe('User routes', () => {
       })
     })
 
-    xit('GET /api/users', async () => {
+    it('GET /api/users', async () => {
       const res = await request(app)
         .get('/api/users')
         .expect(200)
@@ -95,7 +95,7 @@ describe('User routes', () => {
       })
     })
 
-    xit('GET /api/users/:id', async () => {
+    it('GET /api/users/:id', async () => {
       const res = await request(app)
         .get('/api/users/:id')
         .expect(200)
@@ -105,4 +105,3 @@ describe('User routes', () => {
     })
   })
 })
-

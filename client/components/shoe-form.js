@@ -14,7 +14,7 @@ const ShoeForm = props => {
           value={props.shoe.name}
         />
       </Form.Group>
-      <Form.Group>
+      {/* <Form.Group>
         <Form.Label>Shoe Brand: </Form.Label>
         <Form.Control
           type="text"
@@ -23,7 +23,7 @@ const ShoeForm = props => {
           onChange={props.handleChange}
           value={props.shoe.brand}
         />
-      </Form.Group>
+      </Form.Group> */}
       <Form.Group>
         <Form.Label>Shoe Image: </Form.Label>
         <Form.Control

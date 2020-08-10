@@ -28,7 +28,8 @@ const Shoe = db.define('shoe', {
     allowNull: false,
     validate: {
       min: 4,
-      max: 12
+      max: 12,
+      notEmpty: true
     }
   },
   description: {
@@ -39,7 +40,8 @@ const Shoe = db.define('shoe', {
   inventory: {
     type: Sequelize.INTEGER,
     validate: {
-      notEmpty: true
+      notEmpty: true,
+      min: 0
     }
   },
   quantity: {
