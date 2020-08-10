@@ -5,7 +5,7 @@ const agent = request.agent(app)
 const db = require('../db')
 const Shoe = db.model('shoe')
 
-describe('Shoes routes:', () => {
+xdescribe('Shoes routes:', () => {
   before(() => {
     return db.sync({force: true})
   })
@@ -19,7 +19,7 @@ describe('Shoes routes:', () => {
       })
     })
 
-    xit('GET /api/shoes', async () => {
+    it('GET /api/shoes', async () => {
       const res = await request(app)
         .get('/api/shoes')
         .expect(200)
@@ -28,7 +28,7 @@ describe('Shoes routes:', () => {
       expect(res.body[0].inventory).to.be.equal('10')
     })
 
-    xit('POST /api/shoes', async () => {
+    it('POST /api/shoes', async () => {
       await agent
         .post('/api/shoes')
         .send({
@@ -54,7 +54,7 @@ describe('Shoes routes:', () => {
         inventory: 10
       })
     })
-    xit('GET /api/shoes/:id', async () => {
+    it('GET /api/shoes/:id', async () => {
       const res = await request(app)
         .get('/api/shoes/:id')
         .expect(200)
@@ -64,7 +64,7 @@ describe('Shoes routes:', () => {
     })
   })
 
-  xit('PUT /api/shoes/:id', async () => {
+  it('PUT /api/shoes/:id', async () => {
     const res = await agent
       .put('/api/shoes/:id')
       .send({
