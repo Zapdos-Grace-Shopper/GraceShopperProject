@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchShoes} from '../store/shoes'
+import {fetchShoes, fetchDeleteShoe} from '../store/shoes'
 import {postUserCart} from '../store/orders'
 import {Button} from 'react-bootstrap'
 
@@ -45,6 +45,16 @@ class AllShoes extends React.Component {
                   >
                     Add to Cart
                   </Button>
+                  {this.props.isAdmin && (
+                    <Button
+                      variant="outline-primary"
+                      type="submit"
+                      className="btn"
+                      onClick={() => this.props.deleteShoe(shoe.id)}
+                    >
+                      Delete Shoe
+                    </Button>
+                  )}
                 </div>
               </div>
             ))}
@@ -57,14 +67,16 @@ class AllShoes extends React.Component {
 const mapStateToProps = state => {
   return {
     shoes: state.shoes,
-    userId: state.auth.id
+    userId: state.auth.id,
+    isAdmin: state.auth.access === 'admin'
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getAllShoes: () => dispatch(fetchShoes()),
-    addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
+    addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId)),
+    deleteShoe: shoeId => dispatch(fetchDeleteShoe(shoeId))
   }
 }
 
