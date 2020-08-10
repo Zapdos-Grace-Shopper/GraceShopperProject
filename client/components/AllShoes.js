@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchShoes} from '../store/shoes'
+import {fetchShoes, fetchDeleteShoe} from '../store/shoes'
 import {postUserCart} from '../store/orders'
 import {Button} from 'react-bootstrap'
 
@@ -28,8 +28,11 @@ class AllShoes extends React.Component {
           {this.props.shoes &&
             this.props.shoes.map(shoe => (
               <div key={shoe.id} className="shoe-box">
-                <img src={`${shoe.imageURL}`} className="allShoesImage" />
                 <Link to={`/shoes/${shoe.id}`}>
+                  <img src={`${shoe.imageURL}`} className="allShoesImage" />
+                </Link>
+                <h5 fontWeight="900">{shoe.brand.name}</h5>
+                <Link to={`/shoes/${shoe.id}`} className="links">
                   <p>{shoe.name}</p>
                 </Link>
                 <p>${(shoe.price / 100).toFixed(2)}</p>
@@ -42,6 +45,16 @@ class AllShoes extends React.Component {
                   >
                     Add to Cart
                   </Button>
+                  {this.props.isAdmin && (
+                    <Button
+                      variant="outline-primary"
+                      type="submit"
+                      className="btn"
+                      onClick={() => this.props.deleteShoe(shoe.id)}
+                    >
+                      Delete Shoe
+                    </Button>
+                  )}
                 </div>
               </div>
             ))}
@@ -54,14 +67,16 @@ class AllShoes extends React.Component {
 const mapStateToProps = state => {
   return {
     shoes: state.shoes,
-    userId: state.auth.id
+    userId: state.auth.id,
+    isAdmin: state.auth.access === 'admin'
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getAllShoes: () => dispatch(fetchShoes()),
-    addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
+    addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId)),
+    deleteShoe: shoeId => dispatch(fetchDeleteShoe(shoeId))
   }
 }
 

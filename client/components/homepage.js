@@ -15,7 +15,6 @@ export class Homepage extends React.Component {
     const firstThree = shoes.slice(0, 4)
     return (
       <div>
-        <h4 color="red">DEPLOYMENT TEST</h4>
         <h4 className="promo">FREE SHIPPING WITH PROMO CODE "GRACESHOPPER"</h4>
         <div>
           <img
@@ -32,7 +31,10 @@ export class Homepage extends React.Component {
                     <img src={shoe.imageURL} />
                   </div>
                   <div>
-                    <Link to={`/shoes/${shoe.id}`}>{shoe.name}</Link>
+                    <h5>{shoe.brand.name}</h5>
+                    <Link className="links" to={`/shoes/${shoe.id}`}>
+                      {shoe.name}
+                    </Link>
                   </div>
                 </div>
               )

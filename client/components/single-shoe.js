@@ -1,7 +1,9 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleShoe} from '../store/singleShoe'
+import {fetchDeleteShoe} from '../store/shoes'
 import {Button} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 import UpdateShoe from './update-shoe'
 import {postUserCart} from '../store/orders'
 import {Link} from 'react-router-dom'
@@ -16,7 +18,7 @@ class SingleShoe extends React.Component {
       imageURL: props.shoe.imageURL,
       price: props.shoe.price,
       description: props.shoe.description,
-      quantity: props.shoe.quantity,
+      inventory: props.shoe.inventory,
       size: props.shoe.size,
       viewUpdate: false
     }
@@ -24,6 +26,7 @@ class SingleShoe extends React.Component {
     this.handleAddCart = this.handleAddCart.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
+    this.handleDeleteShoe = this.handleDeleteShoe.bind(this)
   }
 
   componentDidMount() {
@@ -56,6 +59,11 @@ class SingleShoe extends React.Component {
     this.props.updateShoe(this.state)
   }
 
+  handleDeleteShoe(shoeId) {
+    this.props.deleteShoe(shoeId)
+    this.props.history.push('/shoes')
+  }
+
   render() {
     const {shoe} = this.props
     const brand = shoe.brand
@@ -65,7 +73,7 @@ class SingleShoe extends React.Component {
           <img src={shoe.imageURL} className="singleShoeImg" />
           <div>Name: {shoe.name}</div>
           <div>Price: ${(shoe.price / 100).toFixed(2)}</div>
-          <div>Quantity: {shoe.inventory}</div>
+          <div>Inventory: {shoe.inventory}</div>
           <div>Size: {shoe.size}</div>
           <div>Description: {shoe.description}</div>
           Brand: {brand && <Link to={`/brands/${brand.id}`}>{brand.name}</Link>}
@@ -82,7 +90,22 @@ class SingleShoe extends React.Component {
         </div>
         <div>
           {this.props.isAdmin && (
-            <Button type="submit" onClick={() => this.toggle()}>
+            <Button
+              variant="outline-primary"
+              type="submit"
+              className="btn"
+              onClick={() => this.handleDeleteShoe(shoe.id)}
+            >
+              Delete Shoe
+            </Button>
+          )}
+          {this.props.isAdmin && (
+            <Button
+              variant="outline-primary"
+              className="btn"
+              type="submit"
+              onClick={() => this.toggle()}
+            >
               Update Shoe
             </Button>
           )}
@@ -90,6 +113,7 @@ class SingleShoe extends React.Component {
             this.state.viewUpdate && (
               <UpdateShoe
                 shoe={shoe}
+                brand={brand.name}
                 handleChange={this.handleChange}
                 handleSubmit={this.handleUpdateSubmit}
               />
@@ -108,7 +132,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getSingleShoe: id => dispatch(fetchSingleShoe(id)),
-  addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
+  addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId)),
+  deleteShoe: shoeId => dispatch(fetchDeleteShoe(shoeId))
 })
 
 export default connect(mapState, mapDispatch)(SingleShoe)

@@ -5,7 +5,15 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'firstname', 'lastname', 'email', 'shoeSize']
+      attributes: [
+        'id',
+        'firstname',
+        'lastname',
+        'email',
+        'shoeSize',
+        'imageURL',
+        'access'
+      ]
     })
     if (req.user && req.user.access === 'admin') {
       res.json(users)
@@ -23,7 +31,14 @@ router.get('/:id', async (req, res, next) => {
       where: {
         id: req.params.id
       },
-      attributes: ['id', 'firstname', 'lastname', 'email', 'shoeSize']
+      attributes: [
+        'id',
+        'firstname',
+        'lastname',
+        'email',
+        'shoeSize',
+        'imageURL'
+      ]
     })
     if (req.user && req.user.access === 'admin') {
       res.json(user)
@@ -58,6 +73,44 @@ router.post('/', async (req, res, next) => {
       res.json(user)
     } else {
       res.sendStatus(401)
+    }
+  } catch (e) {
+    next(e)
+  }
+})
+
+router.put('/:id', async (req, res, next) => {
+  try {
+    const {firstname, lastname, email, shoeSize} = req.body
+    const [num, affected] = await User.update(
+      {
+        firstname,
+        lastname,
+        email,
+        shoeSize
+      },
+      {
+        where: {
+          id: req.params.id
+        },
+        returning: true
+      }
+    )
+    res.json(affected[0])
+  } catch (e) {
+    next(e)
+  }
+})
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    if (req.user && req.user.access === 'admin') {
+      await User.destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      res.sendStatus(201)
     }
   } catch (e) {
     next(e)
@@ -130,26 +183,38 @@ router.put('/:id/cart', async (req, res, next) => {
   }
 })
 // // for checkout page
-
-// router.get('/:id/cart/checkout')
-// load the order
-
-// change order status to complete
-// update shoe quantity
-router.put('/:id/cart/checkout/complete', async (req, res, next) => {
-  try {
-    const userId = req.params.id
-    const order = await Order.findOne({
-      where: {userId: userId, status: 'cart'}
+    req.body.quantArr.map(async update => {
+      let shoe = await Shoe.findByPk(update.shoeId)
+      await shoe.update({quantity: update.quantity})
     })
-    await order.update({status: 'complete'})
-    // await shoe.update(shoe.updateInventory(), )
 
     const updatedOrder = await Order.findOne({
-      where: {userId: userId, status: 'complete'},
+      where: {userId: userId, status: 'cart'},
       include: {model: Shoe}
     })
     res.json(updatedOrder)
+  } catch (error) {
+    next(error)
+  }
+})
+
+router.put('/:id/cart/checkout/complete', async (req, res, next) => {
+  try {
+    const userId = req.params.id
+    let order = await Order.findOne({
+      where: {userId: userId, status: 'cart'},
+      include: {model: Shoe}
+    })
+    await order.update({status: 'complete'})
+
+    const shoeIDs = order.shoes.map(shoe => shoe.id)
+    shoeIDs.map(async shoeID => {
+      let findShoe = await Shoe.findByPk(shoeID)
+      const updateInventory =
+        Number(findShoe.inventory) - Number(findShoe.quantity)
+      await findShoe.update({inventory: updateInventory, quantity: 0})
+    })
+    res.json('updated shoe quantity and cart status')
   } catch (err) {
     next(err)
   }

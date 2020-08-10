@@ -46,8 +46,8 @@ export const fetchAddShoe = newShoe => {
 export const fetchDeleteShoe = id => {
   return async dispatch => {
     try {
-      const deletedShoe = await axios.delete(`/api/shoes/${id}`)
-      dispatch(deleteShoe(deletedShoe.data))
+      await axios.delete(`/api/shoes/${id}`)
+      dispatch(deleteShoe(id))
     } catch (err) {
       console.error(err)
     }

@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Order, Shoe, User} = require('../db/models')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -44,6 +45,7 @@ router.get('/:orderId', async (req, res, next) => {
   }
 })
 
+//creates order
 router.post('/', async (req, res, next) => {
   try {
     const {userId, status, shoeId} = req.body
@@ -67,7 +69,7 @@ router.post('/', async (req, res, next) => {
       }
     })
     res.json(updatedOrder)
-  } catch (e) {
-    next(e)
+  } catch (err) {
+    next(err)
   }
 })
