@@ -12,7 +12,7 @@
   * [ ] change the quantity of a product in my cart.
   * [x] remove a product in my cart.
   * [x] _No one else should be able to edit my cart except me._
-* [ ] "checkout" the items in my cart so I can purchase my desired goods.
+* [x] "checkout" the items in my cart so I can purchase my desired goods.
   * [ ] _Think of a typical user experience on popular websites from a guest user and logged-in user perspective._
   * [ ] _You can just start with by simulating the experience of checking out with a simple confirmation page._
 * [x] create an account so I can have a logged-in experience.
