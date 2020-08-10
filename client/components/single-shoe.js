@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleShoe} from '../store/singleShoe'
+import {fetchDeleteShoe} from '../store/shoes'
 import {Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import UpdateShoe from './update-shoe'
@@ -24,6 +25,7 @@ class SingleShoe extends React.Component {
     this.handleAddCart = this.handleAddCart.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
+    this.handleDeleteShoe = this.handleDeleteShoe.bind(this)
   }
 
   componentDidMount() {
@@ -56,6 +58,11 @@ class SingleShoe extends React.Component {
     this.props.updateShoe(this.state)
   }
 
+  handleDeleteShoe(shoeId) {
+    this.props.deleteShoe(shoeId)
+    this.props.history.push('/shoes')
+  }
+
   render() {
     const {shoe} = this.props
     const brand = shoe.brand
@@ -85,6 +92,17 @@ class SingleShoe extends React.Component {
             <Button
               variant="outline-primary"
               type="submit"
+              className="btn"
+              onClick={() => this.handleDeleteShoe(shoe.id)}
+            >
+              Delete Shoe
+            </Button>
+          )}
+          {this.props.isAdmin && (
+            <Button
+              variant="outline-primary"
+              className="btn"
+              type="submit"
               onClick={() => this.toggle()}
             >
               Update Shoe
@@ -113,7 +131,8 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getSingleShoe: id => dispatch(fetchSingleShoe(id)),
-  addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
+  addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId)),
+  deleteShoe: shoeId => dispatch(fetchDeleteShoe(shoeId))
 })
 
 export default connect(mapState, mapDispatch)(SingleShoe)

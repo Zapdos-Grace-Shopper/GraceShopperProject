@@ -3,7 +3,7 @@ import {connect} from 'react-redux'
 import {
   fetchGetCart,
   fetchDeleteShoeCart,
-  changeQuantityCart
+  fetchUpdateQuantity
 } from '../store/orders'
 import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
@@ -18,6 +18,15 @@ class Cart extends React.Component {
   render() {
     const cart = this.props.cart
     const shoesArr = cart.shoes
+
+    // want to fill in this Array as change quantity and only send to backend when click checkout
+    const quantArr =
+      shoesArr &&
+      shoesArr.map(obj => {
+        return {shoeId: obj.id, quantity: 1}
+      })
+    console.log(quantArr)
+
     let totalPrice = 0
     return (
       <div>
@@ -45,7 +54,6 @@ class Cart extends React.Component {
                     <div key={shoe.price}>
                       price: ${(shoe.price / 100).toFixed(2)}
                     </div>
-                    {/* //keep in local state until submission? or? */}
                     <div key={shoe.inventory}>
                       Quantity in stock: {shoe.inventory}
                       <QuantityButton inventory={shoe.inventory} />
@@ -65,7 +73,14 @@ class Cart extends React.Component {
               })}
             <h5>Cart total: ${(totalPrice / 100).toFixed(2)}</h5>
             {cart.id && (
-              <Button variant="outline-primary" type="submit" className="btn">
+              <Button
+                variant="outline-primary"
+                type="submit"
+                className="btn"
+                onClick={() =>
+                  this.props.updateQuantity(this.props.userId, quantArr)
+                }
+              >
                 <Link to="/checkout">Checkout</Link>
               </Button>
             )}
@@ -85,7 +100,9 @@ const mapState = state => ({
 const mapDispatch = dispatch => ({
   getCart: userId => dispatch(fetchGetCart(userId)),
   deleteShoeCart: (userId, shoeId) =>
-    dispatch(fetchDeleteShoeCart(userId, shoeId))
+    dispatch(fetchDeleteShoeCart(userId, shoeId)),
+  updateQuantity: (userId, shoeId, quantity) =>
+    dispatch(fetchUpdateQuantity(userId, shoeId, quantity))
 })
 
 export default connect(mapState, mapDispatch)(Cart)
