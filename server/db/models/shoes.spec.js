@@ -19,17 +19,7 @@ describe('Sequelize Shoe Model', () => {
     expect(shoe.inventory).to.equal(3)
   })
 
-  it('name and size cannot be null', async () => {
-    const shoe = Shoe.build()
-    try {
-      await shoe.validate()
-      throw Error(
-        'validation should have failed without name, price, size, and inventory'
-      )
-    } catch (err) {
-      expect(err.message).to.contain('cannot be null')
-    }
-  })
+  it('name and size cannot be null', async () => {})
 
   it('price and inventory cannot be empty', async () => {
     const shoe = Shoe.build({
