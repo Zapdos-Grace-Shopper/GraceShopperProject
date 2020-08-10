@@ -53,4 +53,8 @@ const Shoe = db.define('shoe', {
   }
 })
 
+Shoe.prototype.checkQuantity = function() {
+  return this.quantity <= this.inventory
+}
+
 module.exports = Shoe
