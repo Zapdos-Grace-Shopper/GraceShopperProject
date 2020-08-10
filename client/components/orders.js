@@ -14,28 +14,41 @@ class Orders extends React.Component {
     const {orders} = this.props
     return (
       <div key={orders.user}>
+        <h2 style={{textDecoration: 'double underline black'}}>Past Orders</h2>
         {orders &&
           orders.map(order => {
+            let date = new Date(order.updatedAt)
             if (order.status === 'complete') {
               let totalPrice = 0
               return (
-                <div key={order.id}>
-                  <h3>Ordered by: {order.user ? order.user.firstname : ''}</h3>
-                  <h4>Order status is {order.status}</h4>
+                <div key={order.id} className="order-div">
+                  <h5>Order date: {date.toLocaleDateString()}</h5>
+                  <p>
+                    Ordered by:{' '}
+                    {order.user
+                      ? `${order.user.firstname} ${order.user.lastname}`
+                      : 'Unknown'}{' '}
+                    || Status: {order.status}
+                  </p>
                   <div>
+                    <h6>Shoes Ordered:</h6>
                     {order.shoes.map(shoe => {
                       totalPrice += shoe.price
                       return (
                         <div key={shoe.id}>
-                          <h5 key={shoe.name}>You purchased {shoe.name}</h5>
-                          <h4 key={shoe.price}>
-                            Price: ${(shoe.price / 100).toFixed(2)}
-                          </h4>
+                          <p key={shoe.name}>
+                            {shoe.name}{' '}
+                            <strong>${(shoe.price / 100).toFixed(2)}</strong>
+                          </p>
                         </div>
                       )
                     })}
                   </div>
-                  <div>Total Order Price: ${(totalPrice / 100).toFixed(2)}</div>
+                  <div>
+                    <strong>
+                      Total Order Price: ${(totalPrice / 100).toFixed(2)}
+                    </strong>
+                  </div>
                 </div>
               )
             }
