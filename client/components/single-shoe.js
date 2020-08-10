@@ -4,6 +4,7 @@ import {fetchSingleShoe} from '../store/singleShoe'
 import {Button} from 'react-bootstrap'
 import UpdateShoe from './update-shoe'
 import {postUserCart} from '../store/orders'
+import {Link} from 'react-router-dom'
 
 class SingleShoe extends React.Component {
   constructor(props) {

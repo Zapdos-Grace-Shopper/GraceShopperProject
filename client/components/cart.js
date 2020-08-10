@@ -18,7 +18,6 @@ class Cart extends React.Component {
   render() {
     const cart = this.props.cart
     const shoesArr = cart.shoes
-    console.log(shoesArr)
     return (
       <div>
         <h1>Cart</h1>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Button} from 'react-bootstrap'
 
-// import AddBrandForm from './add-brand-form'
+import AddBrandForm from './brand-form'
 import AddShoe from './add-shoe'
 
 export default function AdminDashboard() {
@@ -29,7 +29,7 @@ export default function AdminDashboard() {
         </Button>
       </div>
       <div id="forms">
-        {/* {this.state.showBrandForm && <AddBrandForm />} */}
+        {showBrandForm && <AddBrandForm />}
         {showShoeForm && <AddShoe />}
       </div>
     </div>
