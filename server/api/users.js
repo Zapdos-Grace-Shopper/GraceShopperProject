@@ -140,8 +140,6 @@ router.put('/:id/cart', async (req, res, next) => {
   }
 })
 
-// change order status to complete - working
-// update shoe quantity
 router.put('/:id/cart/checkout/complete', async (req, res, next) => {
   try {
     const userId = req.params.id
@@ -152,11 +150,16 @@ router.put('/:id/cart/checkout/complete', async (req, res, next) => {
     await order.update({status: 'complete'})
 
     const shoeIDs = order.shoes.map(shoe => shoe.id)
+    shoeIDs.map(async shoeID => {
+      let findShoe = await Shoe.findByPk(shoeID)
+      const updateInventory =
+        Number(findShoe.inventory) - Number(findShoe.quantity)
+      await findShoe.update({inventory: updateInventory})
+      const updateFindShoe = await Shoe.findByPk(shoeID)
+      await updateFindShoe.update({quantity: 0})
+    })
 
-    await Shoe.update({description: 'updated'}, {where: {id: shoeIDs}})
-
-    const updatedOrder = await Order.update(order, {where: {userId: userId}})
-    res.json(updatedOrder)
+    res.json('updated shoe quantity and cart status')
   } catch (err) {
     next(err)
   }

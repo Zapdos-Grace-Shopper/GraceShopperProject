@@ -56,15 +56,4 @@ const Shoe = db.define('shoe', {
   }
 })
 
-Shoe.prototype.updateInventory = function() {
-  console.log('before', this.inventory, this.quantity)
-  this.inventory = Number(this.inventory) - Number(this.quantity)
-  this.quantity = 0
-  console.log('after', this.inventory, this.quantity)
-}
-
-Shoe.beforeUpdate(shoe => {
-  shoe.updateInventory()
-})
-
 module.exports = Shoe
