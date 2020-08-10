@@ -197,3 +197,27 @@ form div {
   border-radius: 5%;
   margin: 1em;
 }
+
+.checkout-row {
+  display: flex;
+  align-content: space-between;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.checkout-form-container {
+  display: inline-flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.checkout-50 {
+  flex: 2;
+  -ms-flex: auto; /* for IE 10 */
+}
+
+#checkout-button {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}
