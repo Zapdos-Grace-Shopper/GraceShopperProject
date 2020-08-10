@@ -42,8 +42,8 @@ describe('shoe reducer thunks', () => {
     })
   })
 
-  describe('fetchUpdateShoe thunk', () => {
-    xit('dispatches the UPDATE_SHOE action', async () => {
+  xdescribe('fetchUpdateShoe thunk', () => {
+    it('dispatches the UPDATE_SHOE action', async () => {
       const fakeShoe = {
         id: 1,
         name: 'loafer',
