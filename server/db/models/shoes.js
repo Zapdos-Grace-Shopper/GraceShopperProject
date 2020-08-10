@@ -10,11 +10,6 @@ const Shoe = db.define('shoe', {
       notEmpty: true
     }
   },
-  // brand: {
-  //   type: Sequelize.STRING,
-  //   defaultValue: 'Zapdos Vintage',
-  //   allowNull: false
-  // },
   imageURL: {
     type: Sequelize.STRING,
     defaultValue:
@@ -55,10 +50,5 @@ const Shoe = db.define('shoe', {
     }
   }
 })
-
-Shoe.prototype.updateInventory = () => {
-  this.inventory = this.inventory - this.quantity
-  this.quantity = 0
-}
 
 module.exports = Shoe
