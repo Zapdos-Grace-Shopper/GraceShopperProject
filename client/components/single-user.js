@@ -4,7 +4,6 @@ import {fetchSingleUser} from '../store/user'
 
 class SingleUser extends React.Component {
   componentDidMount() {
-    console.log('props', this.props)
     const id = this.props.match.params.id
     this.props.getSingleUser(id)
   }
@@ -27,7 +26,6 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getSingleUser: id => dispatch(fetchSingleUser(id))
-  // updateUser
 })
 
 export default connect(mapState, mapDispatch)(SingleUser)

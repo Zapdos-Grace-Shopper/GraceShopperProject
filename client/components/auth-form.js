@@ -2,7 +2,8 @@ import React, {Fragment} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
-
+import {Button, Form} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 /**
  * COMPONENT
  */
@@ -11,41 +12,64 @@ const AuthForm = props => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
+      <Form onSubmit={handleSubmit} name={name}>
         {displayName === 'Sign Up' && (
           <Fragment>
-            <div>
-              <label htmlFor="firstname">
-                <small>First Name</small>
-              </label>
-              <input name="firstname" type="text" />
-            </div>
-            <div>
-              <label htmlFor="lastname">
-                <small>Last Name</small>
-              </label>
-              <input name="lastname" type="text" />
-            </div>
+            <Form.Group>
+              <Form.Label htmlFor="firstname">First Name</Form.Label>
+              <Form.Control
+                size="sm"
+                name="firstname"
+                type="text"
+                placeholder="Enter First Name"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label htmlFor="lastname">Last Name</Form.Label>
+              <Form.Control
+                size="sm"
+                name="lastname"
+                type="text"
+                placeholder="Enter Last Name"
+              />
+            </Form.Group>
+            <Form.Group>
+              <Form.Label htmlFor="shoeSize">Shoe Size</Form.Label>
+              <Form.Control
+                size="sm"
+                name="shoeSize"
+                type="text"
+                placeholder="Enter Shoe Size"
+              />
+            </Form.Group>
           </Fragment>
         )}
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
+        <Form.Group>
+          <Form.Label htmlFor="email">Email</Form.Label>
+          <Form.Control
+            size="sm"
+            name="email"
+            type="email"
+            placeholder="Enter Email"
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor="password">Password</Form.Label>
+          <Form.Control
+            size="sm"
+            name="password"
+            type="password"
+            placeholder="Enter Password"
+          />
+        </Form.Group>
+        <Button variant="outline-primary" type="submit">
+          {displayName}
+        </Button>
         {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+      </Form>
+      <Link to="/auth/google">
+        <Button variant="outline-primary">{displayName} with Google</Button>
+      </Link>
     </div>
   )
 }
@@ -61,7 +85,7 @@ const mapLogin = state => {
   return {
     name: 'login',
     displayName: 'Login',
-    error: state.user.error
+    error: state.auth.error
   }
 }
 
@@ -69,7 +93,7 @@ const mapSignup = state => {
   return {
     name: 'signup',
     displayName: 'Sign Up',
-    error: state.user.error
+    error: state.auth.error
   }
 }
 
@@ -85,6 +109,7 @@ const mapDispatch = dispatch => {
       if (formName === 'signup') {
         user.firstname = event.target.firstname.value
         user.lastname = event.target.lastname.value
+        user.shoeSize = event.target.shoeSize.value
       }
       dispatch(auth(user, formName))
     }

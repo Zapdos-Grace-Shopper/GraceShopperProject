@@ -5,7 +5,15 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   try {
     const users = await User.findAll({
-      attributes: ['id', 'firstname', 'lastname', 'email', 'shoeSize']
+      attributes: [
+        'id',
+        'firstname',
+        'lastname',
+        'email',
+        'shoeSize',
+        'imageURL',
+        'access'
+      ]
     })
     if (req.user && req.user.access === 'admin') {
       res.json(users)
@@ -23,7 +31,14 @@ router.get('/:id', async (req, res, next) => {
       where: {
         id: req.params.id
       },
-      attributes: ['id', 'firstname', 'lastname', 'email', 'shoeSize']
+      attributes: [
+        'id',
+        'firstname',
+        'lastname',
+        'email',
+        'shoeSize',
+        'imageURL'
+      ]
     })
     if (req.user && req.user.access === 'admin') {
       res.json(user)
@@ -35,6 +50,36 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.post('/', async (req, res, next) => {
+  try {
+    if (req.user && req.user.access === 'admin') {
+      const {
+        email,
+        firstname,
+        lastname,
+        password,
+        shoeSize,
+        imageURL
+      } = req.body
+      const user = await User.create({
+        email,
+        firstname,
+        lastname,
+        password,
+        access: 'user',
+        shoeSize,
+        imageURL
+      })
+      res.json(user)
+    } else {
+      res.sendStatus(401)
+    }
+  } catch (e) {
+    next(e)
+  }
+})
+
+//cart routes
 router.get('/:id/cart', async (req, res, next) => {
   try {
     const userId = req.params.id

@@ -35,10 +35,11 @@ export const auth = (user, method) => async dispatch => {
   try {
     let post
     if (method === 'signup') {
-      const {email, password, firstname, lastname} = user
+      const {email, password, shoeSize, firstname, lastname} = user
       post = {
         email,
         password,
+        shoeSize,
         firstname,
         lastname
       }

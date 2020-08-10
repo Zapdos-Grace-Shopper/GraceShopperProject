@@ -30,10 +30,10 @@ export const fetchSingleShoe = id => {
   }
 }
 
-export const fetchUpdateShoe = (id, updateInfo) => {
+export const fetchUpdateShoe = shoe => {
   return async dispatch => {
     try {
-      const singleUpdateShoe = await axios.put(`/api/shoes/${id}`, updateInfo)
+      const singleUpdateShoe = await axios.put(`/api/shoes/${shoe.id}`, shoe)
       dispatch(updateShoe(singleUpdateShoe.data))
     } catch (err) {
       console.error(err)

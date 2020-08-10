@@ -15,7 +15,7 @@ const seed = async () => {
     const chanel = await Brand.create({
       name: 'Chanel',
       imageURL:
-        'https://realstyle.therealreal.com/wp-content/uploads/2017/04/RealStyle_582x360-96.jpg',
+        'https://www.chanel.com/images//t_fashion//q_auto,f_jpg,fl_lossy,dpr_2/w_620/pumps-beige-black-lambskin-grosgrain-lambskin-grosgrain-packshot-alternative-g35536y50387c0204-8824086495262.jpg',
       description:
         'Chanel is French fashion house that focuses on womens high fashion and ready-to-wear clothes, luxury goods and accessories. The company is owned by Alain Wertheimer and Gérard Wertheimer, grandsons of Pierre Wertheimer, who was an early business partner of the couturière Coco Chanel.'
     })
