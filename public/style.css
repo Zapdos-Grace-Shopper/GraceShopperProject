@@ -117,3 +117,85 @@ form div {
   height: 200px;
   object-fit: cover;
 }
+
+.links {
+  color: rgb(143, 10, 27);
+}
+
+.links:hover {
+  color: silver;
+  text-decoration: none;
+}
+
+.btn {
+  color: rgb(143, 10, 27);
+  border: 1px solid rgb(143, 10, 27);
+}
+
+.btn:hover {
+  background-color: rgb(143, 10, 27);
+  border: 1px solid silver;
+}
+
+.view-all-page {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.card {
+  height: 25em;
+  width: 15em;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 1em;
+  border-radius: 5%;
+  border: none;
+}
+
+.image-div {
+  height: 70%;
+  width: 100%;
+}
+
+.image-div img {
+  object-fit: cover;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  box-shadow: 1px 1px gray;
+  border-radius: 5%;
+}
+
+.image-div img:hover {
+  opacity: 0.7;
+}
+
+.order-div {
+  border: 1px solid lightslategray;
+  border-radius: 5%;
+  margin: 1em;
+}
+
+.checkout-row {
+  display: flex;
+  align-content: space-between;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.checkout-form-container {
+  display: inline-flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+.checkout-50 {
+  flex: 2;
+  -ms-flex: auto; /* for IE 10 */
+}
+
+#checkout-button {
+  display: flex;
+  justify-content: center;
+  align-self: center;
+}

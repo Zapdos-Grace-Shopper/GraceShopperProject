@@ -46,6 +46,17 @@ export const fetchSingleUser = id => {
   }
 }
 
+export const deleteUserThunk = userId => {
+  return async dispatch => {
+    try {
+      await axios.delete(`/api/users/${userId}`)
+      dispatch(deleteUser(userId))
+    } catch (e) {
+      console.log(e)
+    }
+  }
+}
+
 //REDUCER
 export default function(state = initialState, action) {
   switch (action.type) {
