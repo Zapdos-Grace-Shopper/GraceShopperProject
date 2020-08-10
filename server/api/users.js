@@ -79,6 +79,44 @@ router.post('/', async (req, res, next) => {
   }
 })
 
+router.put('/:id', async (req, res, next) => {
+  try {
+    const {firstname, lastname, email, shoeSize} = req.body
+    const [num, affected] = await User.update(
+      {
+        firstname,
+        lastname,
+        email,
+        shoeSize
+      },
+      {
+        where: {
+          id: req.params.id
+        },
+        returning: true
+      }
+    )
+    res.json(affected[0])
+  } catch (e) {
+    next(e)
+  }
+})
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    if (req.user && req.user.access === 'admin') {
+      await User.destroy({
+        where: {
+          id: req.params.id
+        }
+      })
+      res.sendStatus(201)
+    }
+  } catch (e) {
+    console.log(e)
+  }
+})
+
 //cart routes
 router.get('/:id/cart', async (req, res, next) => {
   try {
@@ -152,10 +190,27 @@ router.put('/:id/cart/checkout/complete', async (req, res, next) => {
     await order.update({status: 'complete'})
 
     const shoeIDs = order.shoes.map(shoe => shoe.id)
-
     await Shoe.update({description: 'updated'}, {where: {id: shoeIDs}})
-
     const updatedOrder = await Order.update(order, {where: {userId: userId}})
+    const order = await Order.findOne(
+      {
+        where: {userId: userId, status: 'cart'}
+      },
+      {
+        include: {
+          model: Shoe,
+          attributes: ['id', 'quantity']
+        }
+      }
+    )
+    await order.update({status: 'complete'})
+    // await shoe.update(shoe.updateInventory(), )
+    await order.shoes.map(shoe => shoe.updateInventory())
+    const updatedOrder = await Order.findOne({
+      where: {userId: userId, status: 'complete'},
+      include: {model: Shoe}
+    })
+
     res.json(updatedOrder)
   } catch (err) {
     next(err)
