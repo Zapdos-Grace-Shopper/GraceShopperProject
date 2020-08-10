@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import {Button} from 'react-bootstrap'
 
 const Card = props => {
   return (
@@ -13,6 +14,14 @@ const Card = props => {
         <h5>{props.head}</h5>
       </Link>
       <p>{props.sub}</p>
+      <Button
+        variant="outline-primary"
+        className="btn"
+        value={props.id}
+        onClick={props.delete}
+      >
+        X
+      </Button>
     </div>
   )
 }
