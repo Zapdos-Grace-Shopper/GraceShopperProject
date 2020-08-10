@@ -31,4 +31,25 @@ describe('User model', () => {
       })
     }) // end describe('correctPassword')
   }) // end describe('instanceMethods')
+  // describe('validation', () => {
+  //   describe('email validation', () => {
+  //     beforeEach(async () => {
+  //       await User.create({
+  //         email: 'cody@puppybook.com',
+  //         password: 'bones',
+  //         firstname: 'cody',
+  //         lastname: 'pug'
+  //       })
+  //     })
+  //     it ('requires unique emails', async () => {
+  //       let err = await User.create({
+  //         email: 'cody@puppybook.com',
+  //         password: 'treats',
+  //         firstname: 'notCody',
+  //         lastname: 'terrier'
+  //       })
+  //       expect(err).to.be.equal()
+  //     })
+  //   })
+  // })
 }) // end describe('User model')

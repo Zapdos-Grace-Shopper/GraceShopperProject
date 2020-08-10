@@ -1,5 +1,5 @@
 import {expect} from 'chai'
-import {fetchAllUsers, fetchSingleUser} from './user'
+import {fetchAllUsers, fetchSingleUser, deleteUserThunk} from './user'
 import axios from 'axios'
 import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
@@ -51,6 +51,16 @@ describe('user reducer thunk creators', () => {
       const actions = store.getActions()
       expect(actions[0].type).to.be.equal('GET_SINGLE_USER')
       expect(actions[0].user).to.be.deep.equal(fakeUser)
+    })
+  })
+
+  describe('deleteUserThunk', () => {
+    it('eventually dispatched the DELETE_USER action', async () => {
+      const fakeUserId = 1
+      mockAxios.onDelete(`/api/users/${fakeUserId}`).replyOnce(200)
+      await store.dispatch(deleteUserThunk(fakeUserId))
+      const actions = store.getActions()
+      expect(actions[0].userId).to.be.equal(fakeUserId)
     })
   })
 })
