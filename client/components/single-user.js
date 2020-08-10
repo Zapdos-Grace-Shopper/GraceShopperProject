@@ -7,6 +7,7 @@ class SingleUser extends React.Component {
     const id = this.props.match.params.id
     this.props.getSingleUser(id)
   }
+
   render() {
     const {user} = this.props
     return (
