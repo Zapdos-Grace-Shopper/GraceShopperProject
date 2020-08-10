@@ -42,13 +42,12 @@ describe('User model', () => {
   //       })
   //     })
   //     it ('requires unique emails', async () => {
-  //       let err = await User.create({
+  //       expect(await User.create({
   //         email: 'cody@puppybook.com',
   //         password: 'treats',
   //         firstname: 'notCody',
   //         lastname: 'terrier'
-  //       })
-  //       expect(err).to.be.equal()
+  //       })).to.throw('Validation error')
   //     })
   //   })
   // })
