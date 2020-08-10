@@ -3,8 +3,7 @@ const Shoe = require('./shoes')
 const Brand = require('./brands')
 const Order = require('./orders')
 const Purchased = require('./purchased')
-//  Associations
-// const db = require('../db')
+
 User.hasMany(Order)
 Order.belongsTo(User)
 
