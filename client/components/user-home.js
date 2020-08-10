@@ -63,7 +63,12 @@ class UserHome extends Component {
             <img src={user.imageURL} />
           </div>
           <div className="profile-right">
-            <Button type="submit" onClick={this.toggle}>
+            <Button
+              variant="outline-primary"
+              className="btn"
+              type="submit"
+              onClick={this.toggle}
+            >
               Update Profile Info
             </Button>
             <Orders id={user.id} access={user.access} />
