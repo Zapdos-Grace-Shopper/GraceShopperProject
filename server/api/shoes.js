@@ -3,7 +3,7 @@ const {Shoe, Brand, User} = require('../db/models')
 
 module.exports = router
 
-const adminGate = (req, res, next) => {
+const areYouAdmin = (req, res, next) => {
   const currentUser = req.session.user
   if (currentUser && currentUser.access === 'admin') {
     next()
@@ -14,7 +14,7 @@ const adminGate = (req, res, next) => {
   }
 }
 
-router.get('/', adminGate, async (req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
     const shoes = await Shoe.findAll({
       include: {model: Brand}
@@ -25,7 +25,7 @@ router.get('/', adminGate, async (req, res, next) => {
   }
 })
 
-router.get('/:id', adminGate, async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
   try {
     const singleShoe = await Shoe.findByPk(req.params.id, {
       include: [{model: Brand, attribute: ['name']}]
@@ -37,7 +37,7 @@ router.get('/:id', adminGate, async (req, res, next) => {
 })
 
 //updates individual shoe
-router.put('/:id', adminGate, async (req, res, next) => {
+router.put('/:id', areYouAdmin, async (req, res, next) => {
   try {
     const targetShoe = await Shoe.findByPk(req.params.id)
     await targetShoe.update(req.body)
@@ -47,7 +47,7 @@ router.put('/:id', adminGate, async (req, res, next) => {
   }
 })
 
-router.delete('/:id', adminGate, async (req, res, next) => {
+router.delete('/:id', areYouAdmin, async (req, res, next) => {
   try {
     await Shoe.destroy({where: {id: req.params.id}})
     const shoes = await Shoe.findAll({
@@ -59,7 +59,7 @@ router.delete('/:id', adminGate, async (req, res, next) => {
   }
 })
 
-router.post('/', adminGate, async (req, res, next) => {
+router.post('/', areYouAdmin, async (req, res, next) => {
   try {
     const newShoe = await Shoe.create(req.body)
     res.json(newShoe)
