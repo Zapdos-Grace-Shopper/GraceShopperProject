@@ -3,14 +3,14 @@ const request = require('supertest')
 const app = require('../api')
 const agent = request.agent(app)
 const db = require('../db')
-const Shoe = db.model('shoes')
+const Shoe = db.model('shoe')
 
 describe('Shoes routes:', () => {
   before(() => {
     return db.sync({force: true})
   })
 
-  describe('/api/shoes/', () => {
+  describe('/api/shoes', () => {
     beforeEach(() => {
       return Shoe.create({
         name: 'bestShoes',
