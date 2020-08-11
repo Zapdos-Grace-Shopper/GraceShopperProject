@@ -42,7 +42,8 @@ class SingleShoe extends React.Component {
       viewUpdate: !view
     })
   }
-  handleAddCart(shoeId) {
+  handleAddCart(event) {
+    const shoeId = event.target.value
     this.props.addToCart(shoeId, this.props.userId)
     toast.success('Added to your cart!', {autoClose: 3000})
   }
@@ -91,6 +92,7 @@ class SingleShoe extends React.Component {
               variant="outline-primary"
               type="submit"
               className="btn"
+              value={shoe.id}
               onClick={this.handleAddCart}
             >
               Add to Cart

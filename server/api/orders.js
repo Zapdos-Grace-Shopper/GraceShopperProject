@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, Shoe, User} = require('../db/models')
+const {Order, Shoe, User, Purchased} = require('../db/models')
 
 module.exports = router
 
@@ -41,26 +41,36 @@ router.get('/:orderId', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
   try {
     const {userId, status, shoeId} = req.body
-    const shoe = await Shoe.findByPk(shoeId)
+    let shoe = await Shoe.findByPk(shoeId)
 
-    const [order, wasCreated] = await Order.findOrCreate({
-      where: {
-        userId,
-        status
-      }
-    })
-    const addedShoe = await order.addShoe(shoe)
-    let [updatedOrder, updateWasCreated] = await Order.findOrCreate({
+    const updateQuant = Number(shoe.quantity) + 1
+    shoe = await shoe.update({quantity: updateQuant})
+
+    const [order, created] = await Order.findOrCreate({
       where: {
         userId,
         status
       },
       include: {
         model: Shoe,
-        attributes: ['name', 'price']
+        attributes: ['name', 'price', 'id', 'quantity']
       }
     })
-    res.json(updatedOrder)
+
+    if (!order.shoes.some(el => el.id === shoeId)) {
+      await order.addShoe(shoe)
+    }
+
+    await order.save()
+
+    const myPurchase = await Purchased.findOne({
+      where: {orderId: order.id, shoeId: shoe.id}
+    })
+    // console.log(myPurchase.orderQuantity, 'order quantity pre update')
+    let updateOrderQuantity = myPurchase.orderQuantity + 1
+    await myPurchase.update({orderQuantity: updateOrderQuantity})
+
+    res.json(order)
   } catch (err) {
     next(err)
   }

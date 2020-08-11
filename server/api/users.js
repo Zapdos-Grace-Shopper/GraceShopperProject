@@ -156,11 +156,9 @@ router.delete('/:id/cart', async (req, res, next) => {
 router.put('/:id/cart', async (req, res, next) => {
   try {
     const userId = req.params.id
-    console.log('req.body', req.body)
-    req.body.quantArr.map(async update => {
-      let shoe = await Shoe.findByPk(update.shoeId)
-      await shoe.update({quantity: update.quantity})
-    })
+
+    let shoe = await Shoe.findByPk(update.shoeId)
+    await shoe.update({quantity: update.quantity})
 
     const updatedOrder = await Order.findOne({
       where: {userId: userId, status: 'cart'},
