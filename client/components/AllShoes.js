@@ -6,6 +6,7 @@ import {postUserCart} from '../store/orders'
 import {Button} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 class AllShoes extends React.Component {
   constructor() {

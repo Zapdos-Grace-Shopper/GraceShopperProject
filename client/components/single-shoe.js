@@ -8,6 +8,7 @@ import UpdateShoe from './update-shoe'
 import {postUserCart} from '../store/orders'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 class SingleShoe extends React.Component {
   constructor(props) {
