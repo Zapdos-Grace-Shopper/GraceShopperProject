@@ -6,7 +6,7 @@ import {Footer} from './components/footer'
 
 const App = () => {
   return (
-    <div>
+    <div className="content">
       <ZapdosNavbar />
       <Routes />
       <Footer />
