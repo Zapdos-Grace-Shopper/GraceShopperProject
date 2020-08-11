@@ -2,7 +2,18 @@ const router = require('express').Router()
 const {User, Order, Shoe} = require('../db/models')
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+const areYouAdmin = (req, res, next) => {
+  const currentUser = req.user
+  if (currentUser && currentUser.access === 'admin') {
+    next()
+  } else {
+    const error = new Error("You're not an admin so what's the tea?")
+    error.status = 666
+    next(error)
+  }
+}
+
+router.get('/', areYouAdmin, async (req, res, next) => {
   try {
     const users = await User.findAll({
       attributes: [
@@ -15,17 +26,13 @@ router.get('/', async (req, res, next) => {
         'access'
       ]
     })
-    if (req.user && req.user.access === 'admin') {
-      res.json(users)
-    } else {
-      res.sendStatus(401)
-    }
+    res.json(users)
   } catch (err) {
     next(err)
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', areYouAdmin, async (req, res, next) => {
   try {
     const user = await User.findOne({
       where: {
@@ -40,40 +47,25 @@ router.get('/:id', async (req, res, next) => {
         'imageURL'
       ]
     })
-    if (req.user && req.user.access === 'admin') {
-      res.json(user)
-    } else {
-      res.sendStatus(401)
-    }
+    res.json(user)
   } catch (e) {
     next(e)
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', areYouAdmin, async (req, res, next) => {
   try {
-    if (req.user && req.user.access === 'admin') {
-      const {
-        email,
-        firstname,
-        lastname,
-        password,
-        shoeSize,
-        imageURL
-      } = req.body
-      const user = await User.create({
-        email,
-        firstname,
-        lastname,
-        password,
-        access: 'user',
-        shoeSize,
-        imageURL
-      })
-      res.json(user)
-    } else {
-      res.sendStatus(401)
-    }
+    const {email, firstname, lastname, password, shoeSize, imageURL} = req.body
+    const user = await User.create({
+      email,
+      firstname,
+      lastname,
+      password,
+      access: 'user',
+      shoeSize,
+      imageURL
+    })
+    res.json(user)
   } catch (e) {
     next(e)
   }
@@ -81,22 +73,24 @@ router.post('/', async (req, res, next) => {
 
 router.put('/:id', async (req, res, next) => {
   try {
-    const {firstname, lastname, email, shoeSize} = req.body
-    const [num, affected] = await User.update(
-      {
-        firstname,
-        lastname,
-        email,
-        shoeSize
-      },
-      {
-        where: {
-          id: req.params.id
+    if (req.user && Number(req.user.id) === Number(req.params.id)) {
+      const {firstname, lastname, email, shoeSize} = req.body
+      const [num, affected] = await User.update(
+        {
+          firstname,
+          lastname,
+          email,
+          shoeSize
         },
-        returning: true
-      }
-    )
-    res.json(affected[0])
+        {
+          where: {
+            id: req.params.id
+          },
+          returning: true
+        }
+      )
+      res.json(affected[0])
+    }
   } catch (e) {
     next(e)
   }
@@ -104,14 +98,12 @@ router.put('/:id', async (req, res, next) => {
 
 router.delete('/:id', async (req, res, next) => {
   try {
-    if (req.user && req.user.access === 'admin') {
-      await User.destroy({
-        where: {
-          id: req.params.id
-        }
-      })
-      res.sendStatus(201)
-    }
+    await User.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.sendStatus(201)
   } catch (e) {
     next(e)
   }

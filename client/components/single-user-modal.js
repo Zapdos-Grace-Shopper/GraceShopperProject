@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleUser} from '../store/user'
 
-class SingleUser extends React.Component {
+class SingleUserModal extends React.Component {
   componentDidMount() {
     const id = this.props.match.params.id
     this.props.getSingleUser(id)
@@ -29,4 +29,4 @@ const mapDispatch = dispatch => ({
   getSingleUser: id => dispatch(fetchSingleUser(id))
 })
 
-export default connect(mapState, mapDispatch)(SingleUser)
+export default connect(mapState, mapDispatch)(SingleUserModal)

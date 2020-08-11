@@ -37,7 +37,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 //updates individual shoe
-router.put('/:id', areYouAdmin, async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const targetShoe = await Shoe.findByPk(req.params.id)
     await targetShoe.update(req.body)
@@ -47,21 +47,44 @@ router.put('/:id', areYouAdmin, async (req, res, next) => {
   }
 })
 
-router.delete('/:id', areYouAdmin, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
-    await Shoe.destroy({where: {id: req.params.id}})
-    const shoes = await Shoe.findAll({
-      include: {model: Brand}
+    await Shoe.destroy({
+      where: {
+        id: req.params.id
+      }
     })
-    res.json(shoes)
+    res.sendStatus(201)
   } catch (err) {
     next(err)
   }
 })
 
-router.post('/', areYouAdmin, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const newShoe = await Shoe.create(req.body)
+    const {
+      name,
+      brand,
+      price,
+      imageURL,
+      size,
+      inventory,
+      description
+    } = req.body
+    const findBrand = await Brand.findOne({
+      where: {
+        name: brand
+      }
+    })
+    const newShoe = await Shoe.create({
+      name,
+      price,
+      imageURL,
+      size,
+      inventory,
+      description,
+      brandId: findBrand.id
+    })
     res.json(newShoe)
   } catch (err) {
     next(err)

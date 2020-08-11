@@ -47,16 +47,6 @@ class AllShoes extends React.Component {
                   >
                     Add to Cart
                   </Button>
-                  {this.props.isAdmin && (
-                    <Button
-                      variant="outline-primary"
-                      type="submit"
-                      className="btn"
-                      onClick={() => this.props.deleteShoe(shoe.id)}
-                    >
-                      Delete Shoe
-                    </Button>
-                  )}
                 </div>
               </div>
             ))}
@@ -69,16 +59,14 @@ class AllShoes extends React.Component {
 const mapStateToProps = state => {
   return {
     shoes: state.shoes,
-    userId: state.auth.id,
-    isAdmin: state.auth.access === 'admin'
+    userId: state.auth.id
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getAllShoes: () => dispatch(fetchShoes()),
-    addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId)),
-    deleteShoe: shoeId => dispatch(fetchDeleteShoe(shoeId))
+    addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
   }
 }
 
