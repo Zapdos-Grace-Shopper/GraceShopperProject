@@ -16,9 +16,7 @@ const areYouAdmin = (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const shoes = await Shoe.findAll({
-      include: {model: Brand}
-    })
+    const shoes = await Shoe.findAll()
     res.json(shoes)
   } catch (err) {
     next(err)
@@ -50,10 +48,7 @@ router.put('/:id', areYouAdmin, async (req, res, next) => {
 router.delete('/:id', areYouAdmin, async (req, res, next) => {
   try {
     await Shoe.destroy({where: {id: req.params.id}})
-    const shoes = await Shoe.findAll({
-      include: {model: Brand}
-    })
-    res.json(shoes)
+    res.json(req.param.id)
   } catch (err) {
     next(err)
   }

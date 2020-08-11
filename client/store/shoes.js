@@ -33,7 +33,6 @@ export const fetchShoes = () => {
 }
 
 export const fetchAddShoe = newShoe => {
-  console.log('I hit the thunk')
   return async dispatch => {
     try {
       const addNewShoe = await axios.post(`/api/shoes`, newShoe)
@@ -47,8 +46,8 @@ export const fetchAddShoe = newShoe => {
 export const fetchDeleteShoe = id => {
   return async dispatch => {
     try {
-      await axios.delete(`/api/shoes/${id}`)
-      dispatch(deleteShoe(id))
+      const deletedShoe = await axios.delete(`/api/shoes/${id}`)
+      dispatch(deleteShoe(deletedShoe.data))
     } catch (err) {
       console.error(err)
     }

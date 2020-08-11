@@ -10,9 +10,7 @@ export const QuantityButton = props => {
       <Button
         variant="outline-info"
         value="add"
-        onClick={() => {
-          props.inventory > quantity && setQuantity(quantity + 1)
-        }}
+        onClick={() => props.inventory > quantity && setQuantity(quantity + 1)}
       >
         Add
       </Button>

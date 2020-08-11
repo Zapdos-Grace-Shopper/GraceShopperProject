@@ -3,7 +3,6 @@ import axios from 'axios'
 //ACTION TYPES
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const GET_SINGLE_USER = 'GET_SINGLE_USER'
-const DELETE_USER = 'DELETE_USER'
 
 //ACTION CREATORS
 const getAllUsers = users => ({
@@ -14,11 +13,6 @@ const getAllUsers = users => ({
 const getSingleUser = user => ({
   type: GET_SINGLE_USER,
   user
-})
-
-const deleteUser = userId => ({
-  type: DELETE_USER,
-  userId
 })
 
 //INITIAL STATE
@@ -70,13 +64,6 @@ export default function(state = initialState, action) {
       return {...state, users: action.users}
     case GET_SINGLE_USER:
       return {...state, selectedUser: action.user}
-    case DELETE_USER:
-      return {
-        ...state,
-        users: state.users.filter(
-          user => Number(user.id) !== Number(action.userId)
-        )
-      }
     default:
       return state
   }

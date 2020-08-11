@@ -1,11 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchSingleShoe} from '../store/singleShoe'
-import {fetchDeleteShoe} from '../store/shoes'
 import {Button} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
 import UpdateShoe from './update-shoe'
 import {postUserCart} from '../store/orders'
+import {Link} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 class SingleShoe extends React.Component {
   constructor(props) {
@@ -17,7 +19,7 @@ class SingleShoe extends React.Component {
       imageURL: props.shoe.imageURL,
       price: props.shoe.price,
       description: props.shoe.description,
-      inventory: props.shoe.inventory,
+      quantity: props.shoe.quantity,
       size: props.shoe.size,
       viewUpdate: false
     }
@@ -25,7 +27,6 @@ class SingleShoe extends React.Component {
     this.handleAddCart = this.handleAddCart.bind(this)
     this.handleChange = this.handleChange.bind(this)
     this.handleUpdateSubmit = this.handleUpdateSubmit.bind(this)
-    this.handleDeleteShoe = this.handleDeleteShoe.bind(this)
   }
 
   componentDidMount() {
@@ -42,9 +43,7 @@ class SingleShoe extends React.Component {
   handleAddCart() {
     const shoeId = this.props.match.params.id
     this.props.addToCart(shoeId, this.props.userId)
-    setTimeout(() => {
-      this.props.history.push('/cart')
-    }, 500)
+    toast.success('Added to your cart!', {autoClose: 3000})
   }
 
   handleChange(event) {
@@ -56,11 +55,6 @@ class SingleShoe extends React.Component {
   handleUpdateSubmit(event) {
     event.preventDefault()
     this.props.updateShoe(this.state)
-  }
-
-  handleDeleteShoe(shoeId) {
-    this.props.deleteShoe(shoeId)
-    this.props.history.push('/shoes')
   }
 
   render() {
@@ -141,8 +135,7 @@ const mapState = state => ({
 
 const mapDispatch = dispatch => ({
   getSingleShoe: id => dispatch(fetchSingleShoe(id)),
-  addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId)),
-  deleteShoe: shoeId => dispatch(fetchDeleteShoe(shoeId))
+  addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
 })
 
 export default connect(mapState, mapDispatch)(SingleShoe)

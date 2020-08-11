@@ -1,9 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchShoes, fetchDeleteShoe} from '../store/shoes'
+import {fetchShoes} from '../store/shoes'
 import {postUserCart} from '../store/orders'
 import {Button} from 'react-bootstrap'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 class AllShoes extends React.Component {
   constructor() {
@@ -15,9 +18,7 @@ class AllShoes extends React.Component {
   }
   handleAddCart(shoeId) {
     this.props.addToCart(shoeId, this.props.userId)
-    setTimeout(() => {
-      this.props.history.push('/cart')
-    }, 500)
+    toast.success('Added to your cart!', {autoClose: 3000})
   }
 
   render() {
@@ -28,11 +29,8 @@ class AllShoes extends React.Component {
           {this.props.shoes &&
             this.props.shoes.map(shoe => (
               <div key={shoe.id} className="shoe-box">
+                <img src={`${shoe.imageURL}`} className="allShoesImage" />
                 <Link to={`/shoes/${shoe.id}`}>
-                  <img src={`${shoe.imageURL}`} className="allShoesImage" />
-                </Link>
-                <h5 fontWeight="900">{shoe.brand.name}</h5>
-                <Link to={`/shoes/${shoe.id}`} className="links">
                   <p>{shoe.name}</p>
                 </Link>
                 <p>${(shoe.price / 100).toFixed(2)}</p>
@@ -45,16 +43,6 @@ class AllShoes extends React.Component {
                   >
                     Add to Cart
                   </Button>
-                  {this.props.isAdmin && (
-                    <Button
-                      variant="outline-primary"
-                      type="submit"
-                      className="btn"
-                      onClick={() => this.props.deleteShoe(shoe.id)}
-                    >
-                      Delete Shoe
-                    </Button>
-                  )}
                 </div>
               </div>
             ))}
@@ -67,16 +55,14 @@ class AllShoes extends React.Component {
 const mapStateToProps = state => {
   return {
     shoes: state.shoes,
-    userId: state.auth.id,
-    isAdmin: state.auth.access === 'admin'
+    userId: state.auth.id
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
     getAllShoes: () => dispatch(fetchShoes()),
-    addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId)),
-    deleteShoe: shoeId => dispatch(fetchDeleteShoe(shoeId))
+    addToCart: (shoeId, userId) => dispatch(postUserCart(shoeId, userId))
   }
 }
 

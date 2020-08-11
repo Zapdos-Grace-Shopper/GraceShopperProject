@@ -3,20 +3,7 @@
 }
 
 body {
-  font-family: houschka-pro, sans-serif;
-  font-weight: 300;
-  font-style: normal;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: span-condensed, serif;
-  font-weight: 600;
-  font-style: normal;
+  font-family: sans-serif;
 }
 
 .page-title {
@@ -34,16 +21,12 @@ label {
 .nav {
   display: flex;
   justify-content: space-between;
-  padding: 1em;
-  margin-bottom: 0.5em;
+  margin: 1em;
 }
 
 .zapdos-nav {
   color: black;
-  font-family: rosella-deco, sans-serif;
-  font-weight: 400;
-  font-size: 3em;
-  font-style: normal;
+  font-weight: bolder;
 }
 
 .nav-link {
@@ -108,7 +91,6 @@ form div {
   display: flex;
   flex-flow: column nowrap;
 }
-
 .profile-container-header {
   align-self: flex-start;
 }
@@ -116,10 +98,6 @@ form div {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-}
-
-.all-shoes-container img:hover {
-  opacity: 0.7;
 }
 
 .all-shoes-container div {

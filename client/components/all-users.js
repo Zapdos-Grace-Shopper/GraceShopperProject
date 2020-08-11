@@ -1,33 +1,24 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchAllUsers, deleteUserThunk} from '../store/user'
-import Card from './card'
+import {fetchAllUsers} from '../store/user'
+import {Link} from 'react-router-dom'
 
 class AllUsers extends Component {
-  constructor() {
-    super()
-    this.handleDelete = this.handleDelete.bind(this)
-  }
   componentDidMount() {
     this.props.getUsers()
   }
-  handleDelete(evt) {
-    this.props.deleteUser(evt.target.value)
-  }
   render() {
-    console.log(this.props.users)
     return (
-      <div className="view-all-page">
+      <div>
         {this.props.users.map(user => (
-          <Card
-            key={user.id}
-            id={user.id}
-            imageURL={user.imageURL}
-            head={`${user.firstname} ${user.lastname}`}
-            link={`/users/${user.id}`}
-            sub={user.access}
-            delete={this.handleDelete}
-          />
+          <div key={user.id}>
+            <img src={user.imageURL} />
+            <Link to={`/users/${user.id}`}>
+              <p>
+                {user.firstname} {user.lastname}
+              </p>
+            </Link>
+          </div>
         ))}
       </div>
     )
@@ -39,8 +30,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  getUsers: () => dispatch(fetchAllUsers()),
-  deleteUser: userId => dispatch(deleteUserThunk(userId))
+  getUsers: () => dispatch(fetchAllUsers())
 })
 
 export default connect(mapState, mapDispatch)(AllUsers)
