@@ -29,7 +29,6 @@ export const getBrandsThunk = () => {
 }
 
 export const addBrandThunk = brand => {
-  console.log('I hit brands thunk', brand)
   return async dispatch => {
     try {
       const {data} = await axios.post('/api/brands', brand)

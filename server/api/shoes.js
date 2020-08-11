@@ -60,9 +60,31 @@ router.delete('/:id', async (req, res, next) => {
   }
 })
 
-router.post('/', areYouAdmin, async (req, res, next) => {
+router.post('/', async (req, res, next) => {
   try {
-    const newShoe = await Shoe.create(req.body)
+    const {
+      name,
+      brand,
+      price,
+      imageURL,
+      size,
+      inventory,
+      description
+    } = req.body
+    const findBrand = await Brand.findOne({
+      where: {
+        name: brand
+      }
+    })
+    const newShoe = await Shoe.create({
+      name,
+      price,
+      imageURL,
+      size,
+      inventory,
+      description,
+      brandId: findBrand.id
+    })
     res.json(newShoe)
   } catch (err) {
     next(err)

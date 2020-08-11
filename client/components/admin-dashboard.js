@@ -4,31 +4,47 @@ import {Button} from 'react-bootstrap'
 import {fetchAllUsers, deleteUserThunk} from '../store/user'
 import {fetchShoes, fetchDeleteShoe} from '../store/shoes'
 import {getOrdersThunk} from '../store/orders'
+import {getBrandsThunk} from '../store/brands'
 import AddBrand from './add-brand'
 import AddShoe from './add-shoe'
-import AllUsers from './all-users'
 import Card from './card'
 
-// import { fetchAllUsers } from '../store/user'
-// import {getOrdersThunk} from '../store/orders'
-
 class AdminDashboard extends Component {
-  // const [showShoeForm, setShowShoeForm] = useState(false)
-  // const [showBrandForm, setShowBrandForm] = useState(false)
-  // const [showAllUsers, setShowAllUsers] = useState(false)
-
-  // const dispatch = useDispatch()
-  // useEffect(() => {dispatch(fetchAllUsers())})
-  // useEffect(() => {dispatch(getOrdersThunk())})
-
   constructor(props) {
     super(props)
+    this.state = {
+      brandView: false,
+      shoeView: false,
+      updateShoeView: false
+    }
     this.handleDelete = this.handleDelete.bind(this)
+    this.toggleView = this.toggleView.bind(this)
   }
+
   componentDidMount() {
     this.props.getUsers()
     this.props.getOrders()
     this.props.getShoes()
+    this.props.getBrands()
+  }
+
+  toggleView(evt) {
+    let form = evt.target.value
+    let view
+    if (form === 'shoe') {
+      view = this.state.shoeView
+      this.setState({
+        brandView: false,
+        shoeView: !view
+      })
+    }
+    if (form === 'brand') {
+      view = this.state.brandView
+      this.setState({
+        brandView: !view,
+        shoeView: false
+      })
+    }
   }
 
   handleDelete(evt) {
@@ -44,16 +60,32 @@ class AdminDashboard extends Component {
   }
 
   render() {
-    const {authUser, users, orders, shoes} = this.props
+    const {authUser, users, brands, orders, shoes} = this.props
     console.log('props', this.props)
     return (
       <div className="admin-dashboard">
         <h2>
           Admin Dashboard: {authUser.firstname} {authUser.lastname}
         </h2>
+        <div className="admin-dashboard-buttons">
+          <Button
+            variant="outline-primary"
+            value="brand"
+            onClick={this.toggleView}
+          >
+            Add Brand
+          </Button>
+          <Button
+            variant="outline-primary"
+            value="shoe"
+            onClick={this.toggleView}
+          >
+            Add Shoe
+          </Button>
+        </div>
         <div id="admin-forms">
-          <AddBrand />
-          <AddShoe />
+          {this.state.brandView && <AddBrand />}
+          {this.state.shoeView && <AddShoe brands={brands} />}
         </div>
         <div className="admin-content">
           <div className="admin-columns">
@@ -74,6 +106,8 @@ class AdminDashboard extends Component {
             <h5>Shoes</h5>
             {shoes.map(shoe => (
               <Card
+                shoe={shoe}
+                brands={brands}
                 key={shoe.id}
                 id={shoe.id}
                 name="shoe"
@@ -84,39 +118,31 @@ class AdminDashboard extends Component {
               />
             ))}
           </div>
+          <div className="admin-columns">
+            <h5>Brands</h5>
+            {brands.map(brand => (
+              <Card
+                key={brand.id}
+                id={brand.id}
+                name="brand"
+                imageURL={brand.imageURL}
+                head={brand.name}
+                delete={this.handleDelete}
+              />
+            ))}
+          </div>
+          <div className="admin-columns">
+            <h5>Orders</h5>
+            {orders.map(order => (
+              <Card
+                key={order.id}
+                id={order.id}
+                name="order"
+                head={order.status}
+              />
+            ))}
+          </div>
         </div>
-        {/* <div className="admin-dashboard-buttons">
-          <Button
-            variant="outline-primary"
-            onClick={() => {
-              setShowAllUsers(true)
-              setShowBrandForm(false)
-              setShowShoeForm(false)
-            }}
-          >
-            ManageUsers
-          </Button>
-          <Button
-            variant="outline-primary"
-            onClick={() => {
-              setShowBrandForm(true)
-              setShowAllUsers(false)
-              setShowShoeForm(false)
-            }}
-          >
-            Add Brand
-          </Button>
-          <Button
-            variant="outline-primary"
-            onClick={() => {
-              setShowShoeForm(true)
-              setShowAllUsers(false)
-              setShowBrandForm(false)
-            }}
-          >
-            Add Shoe
-          </Button>
-        </div> */}
       </div>
     )
   }
@@ -126,13 +152,15 @@ const mapState = state => ({
   authUser: state.auth,
   users: state.user.users,
   orders: state.orders.orders,
-  shoes: state.shoes
+  shoes: state.shoes,
+  brands: state.brands
 })
 
 const mapDispatch = dispatch => ({
   getUsers: () => dispatch(fetchAllUsers()),
   getOrders: () => dispatch(getOrdersThunk()),
   getShoes: () => dispatch(fetchShoes()),
+  getBrands: () => dispatch(getBrandsThunk()),
   deleteUser: userId => dispatch(deleteUserThunk(userId)),
   deleteShoe: shoeId => dispatch(fetchDeleteShoe(shoeId))
 })

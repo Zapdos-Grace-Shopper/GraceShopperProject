@@ -47,6 +47,7 @@ class AddShoe extends Component {
         shoe={this.state}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        brands={this.props.brands}
       />
     )
   }

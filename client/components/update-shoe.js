@@ -3,7 +3,7 @@ import ShoeForm from './shoe-form'
 import {fetchUpdateShoe} from '../store/singleShoe'
 import {connect} from 'react-redux'
 
-class UpdateShoe extends Component {
+export default class UpdateShoe extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -35,6 +35,7 @@ class UpdateShoe extends Component {
     return (
       <ShoeForm
         shoe={this.state}
+        brands={this.props.brands}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
       />
@@ -42,8 +43,8 @@ class UpdateShoe extends Component {
   }
 }
 
-const mapDispatch = dispatch => ({
-  updateShoe: shoe => dispatch(fetchUpdateShoe(shoe))
-})
+// const mapDispatch = dispatch => ({
+//   updateShoe: shoe => dispatch(fetchUpdateShoe(shoe))
+// })
 
-export default connect(null, mapDispatch)(UpdateShoe)
+// export default connect(null, mapDispatch)(UpdateShoe)

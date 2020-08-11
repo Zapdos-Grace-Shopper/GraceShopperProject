@@ -64,6 +64,7 @@ form div {
 .card img {
   width: 300px;
 }
+
 .mainPic {
   width: 100%;
 }
@@ -118,7 +119,7 @@ form div {
 }
 
 .box div {
-  border: 1px;
+  border: 1em;
   padding: 20px;
 }
 
@@ -145,6 +146,7 @@ form div {
   color: rgb(143, 10, 27);
   border: 1px solid rgb(143, 10, 27);
   max-width: 10vw;
+  background-color: white;
 }
 
 .btn:hover {
@@ -152,17 +154,31 @@ form div {
   border: 1px solid silver;
 }
 
+.card-btn {
+  position: absolute;
+  z-index: 5;
+  height: 20%;
+}
+
 .form {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   min-width: 30vw;
   max-width: 50vw;
-  align-items: center;
+  align-items: flex-start;
+}
+
+.form .btn {
+  align-self: center;
 }
 
 .view-all-page {
   display: flex;
   flex-flow: row wrap;
+}
+
+.admin-dashboard {
+  padding: 1em;
 }
 
 .admin-content {
@@ -171,29 +187,33 @@ form div {
 }
 
 .admin-columns {
-  min-width: 30%;
+  max-width: 23%;
+  margin: 2em;
 }
 
 .card {
-  height: 15em;
-  width: 20em;
+  /* height: 20vh;
+  width: 20vw; */
   display: flex;
   flex-flow: row nowrap;
   margin: 1em;
   border-radius: 5%;
   border: none;
+  margin: 1em;
+  border: 1px solid lightslategray;
 }
 
 .card-image-div {
   height: 100%;
-  width: 50%;
+  width: 30%;
 }
 
 .card-content-div {
+  padding-left: 1em;
   display: inline-block;
 }
 
-.image-div img {
+.card-image-div img {
   object-fit: cover;
   overflow: hidden;
   width: 100%;
@@ -234,4 +254,12 @@ form div {
   display: flex;
   justify-content: center;
   align-self: center;
+}
+
+.footer {
+  bottom: 0;
+  background-color: lightgray;
+  height: 6em;
+  left: 0;
+  width: 100%;
 }
