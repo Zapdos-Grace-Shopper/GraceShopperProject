@@ -47,6 +47,8 @@ export const fetchAddShoe = newShoe => {
 export const fetchDeleteShoe = id => {
   return async dispatch => {
     try {
+      console.log('I hit shoe delete thunk')
+      console.log(id)
       await axios.delete(`/api/shoes/${id}`)
       dispatch(deleteShoe(id))
     } catch (err) {
@@ -64,7 +66,7 @@ export default (state = initialState, action) => {
       return [...state, action.newShoe]
     }
     case DELETE_SHOE: {
-      return state.filter(shoe => shoe.id !== action.id)
+      return state.filter(shoe => Number(shoe.id) !== Number(action.id))
     }
     default:
       return state

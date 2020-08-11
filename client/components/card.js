@@ -5,18 +5,23 @@ const Card = props => {
   console.log(props)
   return (
     <div className="card">
-      <div className="image-div">
+      <div className="card-image-div">
         <img src={props.imageURL} value={props.id} onClick={props.openModal} />
       </div>
-      <h5>{props.head}</h5>
-      <Button
-        variant="outline-primary"
-        className="btn"
-        value={props.id}
-        onClick={props.delete}
-      >
-        X
-      </Button>
+      <div className="card-content-div">
+        <div>
+          <Button
+            variant="outline-primary"
+            className="btn"
+            name={props.name}
+            value={props.id}
+            onClick={props.delete}
+          >
+            X
+          </Button>
+        </div>
+        <h5>{props.head}</h5>
+      </div>
     </div>
   )
 }

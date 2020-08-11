@@ -44,36 +44,46 @@ class AllUsers extends Component {
     const users = this.props.users
     return (
       <Fragment>
-        <div className="view-all-page">
-          {users.map(user => (
-            <Card
-              key={user.id}
-              id={user.id}
-              imageURL={user.imageURL}
-              head={`${user.firstname} ${user.lastname}`}
-              link={`/users/${user.id}`}
-              sub={user.access}
-              delete={this.handleDelete}
-              // openModal={this.openModal}
-            />
-          ))}
-        </div>
-        {/* <Modal
-          size="lg"
-          show={this.state.showModal}
-          onHide={this.closeModal}
-          aria-labelledby="example-modal-sizes-title-lg"
-        >
-          <Modal.Header closeButton>
-            <Modal.Title id="example-modal-sizes-title-lg">
-              Update User Information
-            </Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            {this.state.modalUser && this.state.modalUser.firstname}
-          </Modal.Body>
-        </Modal> */}
+        {users.map(user => (
+          <div>
+            <h6>
+              {user.firstname} {user.lastname}
+            </h6>
+          </div>
+        ))}
       </Fragment>
+
+      // <Fragment>
+      //   <div className="view-all-page">
+      //     {users.map(user => (
+      //       <Card
+      //         key={user.id}
+      //         id={user.id}
+      //         imageURL={user.imageURL}
+      //         head={`${user.firstname} ${user.lastname}`}
+      //         link={`/users/${user.id}`}
+      //         sub={user.access}
+      //         delete={this.handleDelete}
+      //         // openModal={this.openModal}
+      //       />
+      //     ))}
+      //   </div>
+      //   {/* <Modal
+      //     size="lg"
+      //     show={this.state.showModal}
+      //     onHide={this.closeModal}
+      //     aria-labelledby="example-modal-sizes-title-lg"
+      //   >
+      //     <Modal.Header closeButton>
+      //       <Modal.Title id="example-modal-sizes-title-lg">
+      //         Update User Information
+      //       </Modal.Title>
+      //     </Modal.Header>
+      //     <Modal.Body>
+      //       {this.state.modalUser && this.state.modalUser.firstname}
+      //     </Modal.Body>
+      //   </Modal> */}
+      // </Fragment>
     )
   }
 }

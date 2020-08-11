@@ -3,7 +3,7 @@ import {Form, Button} from 'react-bootstrap'
 
 const ShoeForm = props => {
   return (
-    <Form className="form" onSubmit={props.handleSubmit}>
+    <Form onSubmit={props.handleSubmit}>
       <Form.Group>
         <Form.Label>Shoe Name: </Form.Label>
         <Form.Control

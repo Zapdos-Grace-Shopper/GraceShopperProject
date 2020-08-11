@@ -47,13 +47,14 @@ router.put('/:id', areYouAdmin, async (req, res, next) => {
   }
 })
 
-router.delete('/:id', areYouAdmin, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
-    await Shoe.destroy({where: {id: req.params.id}})
-    const shoes = await Shoe.findAll({
-      include: {model: Brand}
+    await Shoe.destroy({
+      where: {
+        id: req.params.id
+      }
     })
-    res.json(shoes)
+    res.sendStatus(201)
   } catch (err) {
     next(err)
   }

@@ -165,19 +165,32 @@ form div {
   flex-flow: row wrap;
 }
 
-.card {
-  height: 25em;
-  width: 15em;
+.admin-content {
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
+}
+
+.admin-columns {
+  min-width: 30%;
+}
+
+.card {
+  height: 15em;
+  width: 20em;
+  display: flex;
+  flex-flow: row nowrap;
   margin: 1em;
   border-radius: 5%;
   border: none;
 }
 
-.image-div {
-  height: 70%;
-  width: 100%;
+.card-image-div {
+  height: 100%;
+  width: 50%;
+}
+
+.card-content-div {
+  display: inline-block;
 }
 
 .image-div img {

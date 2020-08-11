@@ -3,7 +3,7 @@ import {Form, Button} from 'react-bootstrap'
 
 export default function BrandForm(props) {
   return (
-    <Form className="form" onSubmit={props.handleSubmit}>
+    <Form onSubmit={props.handleSubmit}>
       <Form.Group>
         <Form.Label>Brand Name: </Form.Label>
         <Form.Control

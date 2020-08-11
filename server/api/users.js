@@ -96,7 +96,7 @@ router.put('/:id', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', areYouAdmin, async (req, res, next) => {
+router.delete('/:id', async (req, res, next) => {
   try {
     await User.destroy({
       where: {
