@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 const initialState = []
+const UPDATE_SHOE = 'UPDATE_SHOE'
 
 const GET_ALL_SHOES = 'GET_ALL_SHOES'
 const ADD_SHOE = 'ADD_SHOE'
@@ -15,6 +16,13 @@ const addShoe = newShoe => ({
   type: ADD_SHOE,
   newShoe
 })
+
+export const updateShoe = shoe => {
+  return {
+    type: UPDATE_SHOE,
+    shoe
+  }
+}
 
 const deleteShoe = id => ({
   type: DELETE_SHOE,
@@ -44,6 +52,17 @@ export const fetchAddShoe = newShoe => {
   }
 }
 
+export const fetchUpdateShoe = shoe => {
+  return async dispatch => {
+    try {
+      const singleUpdateShoe = await axios.put(`/api/shoes/${shoe.id}`, shoe)
+      dispatch(updateShoe(singleUpdateShoe.data))
+    } catch (err) {
+      console.error(err)
+    }
+  }
+}
+
 export const fetchDeleteShoe = id => {
   return async dispatch => {
     try {
@@ -64,6 +83,12 @@ export default (state = initialState, action) => {
     }
     case ADD_SHOE: {
       return [...state, action.newShoe]
+    }
+    case UPDATE_SHOE: {
+      let filteredState = state.filter(
+        el => Number(el.id) !== Number(action.shoe.id)
+      )
+      return [...filteredState, action.shoe]
     }
     case DELETE_SHOE: {
       return state.filter(shoe => Number(shoe.id) !== Number(action.id))

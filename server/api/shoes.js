@@ -37,7 +37,7 @@ router.get('/:id', async (req, res, next) => {
 })
 
 //updates individual shoe
-router.put('/:id', areYouAdmin, async (req, res, next) => {
+router.put('/:id', async (req, res, next) => {
   try {
     const targetShoe = await Shoe.findByPk(req.params.id)
     await targetShoe.update(req.body)
