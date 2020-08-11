@@ -3,10 +3,8 @@ import React from 'react'
 export const Footer = () => {
   return (
     <div className="footer">
-      <div className="footerLeft">Address: 1234 Luxury street</div>
-      <div className="footerRight">
-        Email: hello@zaptos.com Phone: 555-555-5555
-      </div>
+      <h6 className="footerLeft">1234 Luxury Street</h6>
+      <h6 className="footerRight">Hello@Zapdos.com | 555-555-5555</h6>
     </div>
   )
 }

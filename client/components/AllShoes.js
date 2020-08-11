@@ -23,7 +23,7 @@ class AllShoes extends React.Component {
   render() {
     return (
       <div>
-        <h1>Shoes</h1>
+        <h1 className="page-title">Shoes</h1>
         <div className="all-shoes-container">
           {this.props.shoes &&
             this.props.shoes.map(shoe => (

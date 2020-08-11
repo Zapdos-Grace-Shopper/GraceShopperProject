@@ -12,9 +12,9 @@ export class Homepage extends React.Component {
   }
   render() {
     const {shoes} = this.props
-    const firstThree = shoes.slice(0, 4)
+    const firstThree = shoes.slice(0, 3)
     return (
-      <div>
+      <div className="homePageContainer">
         <h4 className="promo">FREE SHIPPING WITH PROMO CODE "GRACESHOPPER"</h4>
         <div>
           <img

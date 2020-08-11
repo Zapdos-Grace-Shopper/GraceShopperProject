@@ -67,27 +67,38 @@ class SingleShoe extends React.Component {
     const {shoe} = this.props
     const brand = shoe.brand
     return (
-      <div>
+      <div className="single-brand-top-box">
         <div>
           <img src={shoe.imageURL} className="singleShoeImg" />
-          <div>Name: {shoe.name}</div>
-          <div>Price: ${(shoe.price / 100).toFixed(2)}</div>
-          <div>Inventory: {shoe.inventory}</div>
+        </div>
+        <div className="single-shoe-info">
+          <h2>{shoe.name}</h2>
+          <h3>
+            {brand && (
+              <Link className="links" to={`/brands/${brand.id}`}>
+                {brand.name}
+              </Link>
+            )}
+          </h3>
+          <p> </p>
+          <div>${(shoe.price / 100).toFixed(2)}</div>
+          <p> </p>
           <div>Size: {shoe.size}</div>
-          <div>Description: {shoe.description}</div>
-          Brand: {brand && <Link to={`/brands/${brand.id}`}>{brand.name}</Link>}
+          <p> </p>
+          <p>{shoe.description}</p>
+          <div>
+            <Button
+              variant="outline-primary"
+              type="submit"
+              className="btn"
+              onClick={this.handleAddCart}
+            >
+              Add to Cart
+            </Button>
+          </div>
         </div>
-        <div>
-          <Button
-            variant="outline-primary"
-            type="submit"
-            className="btn"
-            onClick={this.handleAddCart}
-          >
-            Add to Cart
-          </Button>
-        </div>
-        <div>
+
+        {/* <div>
           {this.props.isAdmin && (
             <Button
               variant="outline-primary"
@@ -108,16 +119,15 @@ class SingleShoe extends React.Component {
               Update Shoe
             </Button>
           )}
-          {this.props.isAdmin &&
-            this.state.viewUpdate && (
-              <UpdateShoe
-                shoe={shoe}
-                brand={brand.name}
-                handleChange={this.handleChange}
-                handleSubmit={this.handleUpdateSubmit}
-              />
-            )}
-        </div>
+          {this.props.isAdmin && this.state.viewUpdate && (
+            <UpdateShoe
+              shoe={shoe}
+              brand={brand.name}
+              handleChange={this.handleChange}
+              handleSubmit={this.handleUpdateSubmit}
+            />
+          )}
+        </div> */}
       </div>
     )
   }
