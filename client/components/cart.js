@@ -25,7 +25,8 @@ class Cart extends React.Component {
       shoesArr.map(obj => {
         return {shoeId: obj.id, quantity: 1}
       })
-    console.log(quantArr)
+    console.log('this is the quantity array', quantArr)
+    console.log('this is the shoes array', shoesArr)
 
     let totalPrice = 0
     return (
@@ -56,7 +57,21 @@ class Cart extends React.Component {
                     </div>
                     <div key={shoe.inventory}>
                       Quantity in stock: {shoe.inventory}
-                      <QuantityButton inventory={shoe.inventory} />
+                      Quantity in cart: {shoe.quantity}
+                      <Button
+                        variant="outline-info"
+                        onClick={() => handleAddClick}
+                        // shoe.inventory > shoe.quantity && shoe.quantity + 1}
+                      />
+                      <Button
+                        variant="outline-info"
+                        value="decrease"
+                        onClick={() => handleSubtractClick}
+                      >
+                        {' '}
+                        Subtract
+                      </Button>
+                      <QuantityButton shoe={shoe} />
                     </div>
                     <Button
                       variant="outline-primary"
