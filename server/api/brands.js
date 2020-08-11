@@ -50,3 +50,16 @@ router.post('/', areYouAdmin, async (req, res, next) => {
     next(e)
   }
 })
+
+router.delete('/:id', async (req, res, next) => {
+  try {
+    await Brand.destroy({
+      where: {
+        id: req.params.id
+      }
+    })
+    res.sendStatus(201)
+  } catch (err) {
+    next(err)
+  }
+})

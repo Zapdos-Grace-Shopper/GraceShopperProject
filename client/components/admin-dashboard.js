@@ -93,7 +93,7 @@ class AdminDashboard extends Component {
                 name="user"
                 imageURL={user.imageURL}
                 head={`${user.firstname} ${user.lastname}`}
-                link={`/users/${user.id}`}
+                sub={user.access}
                 delete={this.handleDelete}
               />
             ))}
@@ -109,7 +109,7 @@ class AdminDashboard extends Component {
                 name="shoe"
                 imageURL={shoe.imageURL}
                 head={shoe.name}
-                link={`/shoes/${shoe.id}`}
+                sub={`${shoe.description.slice(0, 25)}...`}
                 delete={this.handleDelete}
               />
             ))}
@@ -120,9 +120,11 @@ class AdminDashboard extends Component {
               <Card
                 key={brand.id}
                 id={brand.id}
+                brand={brand}
                 name="brand"
                 imageURL={brand.imageURL}
                 head={brand.name}
+                sub={`${brand.description.slice(0, 25)}...`}
                 delete={this.handleDelete}
               />
             ))}
@@ -135,6 +137,7 @@ class AdminDashboard extends Component {
                 id={order.id}
                 name="order"
                 head={order.status}
+                sub={order.userId}
               />
             ))}
           </div>

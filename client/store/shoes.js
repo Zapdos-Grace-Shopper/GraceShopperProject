@@ -1,11 +1,11 @@
 import axios from 'axios'
 
-const initialState = []
-const UPDATE_SHOE = 'UPDATE_SHOE'
-
 const GET_ALL_SHOES = 'GET_ALL_SHOES'
 const ADD_SHOE = 'ADD_SHOE'
+const UPDATE_SHOE = 'UPDATE_SHOE'
 const DELETE_SHOE = 'DELETE_SHOE'
+
+const initialState = []
 
 const getAllShoes = shoes => ({
   type: GET_ALL_SHOES,
@@ -66,8 +66,6 @@ export const fetchUpdateShoe = shoe => {
 export const fetchDeleteShoe = id => {
   return async dispatch => {
     try {
-      console.log('I hit shoe delete thunk')
-      console.log(id)
       await axios.delete(`/api/shoes/${id}`)
       dispatch(deleteShoe(id))
     } catch (err) {

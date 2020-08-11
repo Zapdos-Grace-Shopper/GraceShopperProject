@@ -10,6 +10,7 @@ export default function BrandForm(props) {
           name="name"
           type="text"
           placeholder="Enter Brand Name"
+          value={props.brand.name}
           onChange={props.handleChange}
         />
       </Form.Group>
@@ -19,6 +20,7 @@ export default function BrandForm(props) {
           type="text"
           name="imageURL"
           placeholder="Add Brand ImageURL"
+          value={props.brand.imageURL}
           onChange={props.handleChange}
         />
       </Form.Group>
@@ -28,6 +30,7 @@ export default function BrandForm(props) {
           as="textarea"
           name="description"
           placeholder="Enter Brand Description"
+          value={props.brand.description}
           onChange={props.handleChange}
         />
       </Form.Group>
