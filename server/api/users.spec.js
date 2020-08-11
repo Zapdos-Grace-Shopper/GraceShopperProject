@@ -32,7 +32,7 @@ xdescribe('User routes', () => {
       authenticatedUser.post('/login').send(userCredentials)
     })
 
-    xit('GET /api/users', async () => {
+    it('GET /api/users/', async () => {
       const res = await request(app)
         .get('/api/users/')
         .expect(200)

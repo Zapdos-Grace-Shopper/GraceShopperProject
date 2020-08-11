@@ -11,10 +11,9 @@ enzyme.configure({adapter})
 
 describe('UserHome', () => {
   let userHome
-
   beforeEach(() => {
     userHome = shallow(
-      <UserHome email="cody@email.com" firstname="Cody" lastname="Pug" />
+      <UserHome authUser={{firstname: 'Cody', lastname: 'Pug'}} />
     )
   })
 

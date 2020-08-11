@@ -50,7 +50,7 @@ xdescribe('Shoes routes:', () => {
     beforeEach(() => {
       return Shoe.create({
         name: 'bestShoes',
-        size: 0,
+        size: 6,
         inventory: 10
       })
     })

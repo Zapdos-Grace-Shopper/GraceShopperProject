@@ -76,6 +76,7 @@ export const logout = () => async dispatch => {
 }
 
 export const updateUserThunk = user => {
+  console.log('I hit the update thunk')
   return async dispatch => {
     try {
       const {firstname, lastname, email, shoeSize} = user

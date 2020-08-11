@@ -57,12 +57,14 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => {
   )
 }
 
+
 /**
  * CONTAINER
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    isAdmin: state.auth.access === 'admin'
     // brands: state.brands,
   }
 }
