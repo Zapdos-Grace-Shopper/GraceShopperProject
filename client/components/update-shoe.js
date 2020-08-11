@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ShoeForm from './shoe-form'
-import {fetchUpdateShoe} from '../store/singleShoe'
+import {fetchUpdateShoe} from '../store/shoes'
 import {connect} from 'react-redux'
 
 class UpdateShoe extends Component {
@@ -29,12 +29,22 @@ class UpdateShoe extends Component {
   handleSubmit(event) {
     event.preventDefault()
     this.props.updateShoe(this.state)
+    this.setState({
+      name: '',
+      brand: '',
+      imageURL: '',
+      price: '',
+      description: '',
+      quantity: '',
+      size: ''
+    })
   }
 
   render() {
     return (
       <ShoeForm
         shoe={this.state}
+        brands={this.props.brands}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
       />

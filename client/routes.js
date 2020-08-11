@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import {connect} from 'react-redux'
 import {withRouter, Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
@@ -10,13 +10,13 @@ import Homepage from './components/homepage'
 import UserHome from './components/user-home'
 import {Login, Signup} from './components/auth-form'
 import SingleShoe from './components/single-shoe'
-import AllUsers from './components/all-users'
-import SingleUser from './components/single-user'
 import Cart from './components/cart'
 import Brands from './components/brands'
 import singleBrand from './components/single-brand'
 import Checkout from './components/checkout'
 import CheckoutComplete from './components/checkout-complete'
+import AdminDashboard from './components/admin-dashboard'
+// import BrandForm from './components/brand-form'
 /**
  * COMPONENT
  */
@@ -50,8 +50,9 @@ class Routes extends Component {
               path="/checkout/complete"
               component={CheckoutComplete}
             />
-            {isAdmin && <Route exact path="/users" component={AllUsers} />}
-            {isAdmin && <Route path="/users/:id" component={SingleUser} />}
+            {isAdmin && (
+              <Route exact path="/admin" component={AdminDashboard} />
+            )}
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

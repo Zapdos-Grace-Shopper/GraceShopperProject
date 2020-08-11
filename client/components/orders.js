@@ -15,44 +15,45 @@ class Orders extends React.Component {
     return (
       <div key={orders.user}>
         <h2 style={{textDecoration: 'double underline black'}}>Past Orders</h2>
-        {orders &&
-          orders.map(order => {
-            let date = new Date(order.updatedAt)
-            if (order.status === 'complete') {
-              let totalPrice = 0
-              return (
-                <div key={order.id} className="order-div">
-                  <h5>Order date: {date.toLocaleDateString()}</h5>
-                  <p>
-                    Ordered by:{' '}
-                    {order.user
-                      ? `${order.user.firstname} ${order.user.lastname}`
-                      : 'Unknown'}{' '}
-                    || Status: {order.status}
-                  </p>
-                  <div>
-                    <h6>Shoes Ordered:</h6>
-                    {order.shoes.map(shoe => {
-                      totalPrice += shoe.price
-                      return (
-                        <div key={shoe.id}>
-                          <p key={shoe.name}>
-                            {shoe.name}{' '}
-                            <strong>${(shoe.price / 100).toFixed(2)}</strong>
-                          </p>
-                        </div>
-                      )
-                    })}
+        {orders.length
+          ? orders.map(order => {
+              let date = new Date(order.updatedAt)
+              if (order.status === 'complete') {
+                let totalPrice = 0
+                return (
+                  <div key={order.id} className="order-div">
+                    <h5>Order date: {date.toLocaleDateString()}</h5>
+                    <p>
+                      Ordered by:{' '}
+                      {order.user
+                        ? `${order.user.firstname} ${order.user.lastname}`
+                        : 'Unknown'}{' '}
+                      || Status: {order.status}
+                    </p>
+                    <div>
+                      <h6>Shoes Ordered:</h6>
+                      {order.shoes.map(shoe => {
+                        totalPrice += shoe.price
+                        return (
+                          <div key={shoe.id}>
+                            <p key={shoe.name}>
+                              {shoe.name}{' '}
+                              <strong>${(shoe.price / 100).toFixed(2)}</strong>
+                            </p>
+                          </div>
+                        )
+                      })}
+                    </div>
+                    <div>
+                      <strong>
+                        Total Order Price: ${(totalPrice / 100).toFixed(2)}
+                      </strong>
+                    </div>
                   </div>
-                  <div>
-                    <strong>
-                      Total Order Price: ${(totalPrice / 100).toFixed(2)}
-                    </strong>
-                  </div>
-                </div>
-              )
-            }
-          })}
+                )
+              }
+            })
+          : 'No Orders'}
       </div>
     )
   }

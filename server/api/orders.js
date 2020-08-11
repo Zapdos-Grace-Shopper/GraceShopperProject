@@ -5,29 +5,21 @@ module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    let orders
-    if (req.user.access === 'admin') {
-      orders = await Order.findAll({
-        include: [
-          {model: Shoe, attributes: ['name', 'price']},
-          {model: User, attributes: ['firstname', 'lastname', 'email']}
-        ]
-      })
-    } else {
-      orders = await Order.findAll({
-        include: [
-          {model: Shoe, attributes: ['name', 'price']},
-          {
-            model: User,
-            where: {
-              id: req.user.id
-            },
-            attributes: ['firstname', 'lastname', 'email']
-          }
-        ]
-      })
+    const orders = await Order.findAll({
+      include: [
+        {model: Shoe, attributes: ['name', 'price']},
+        {
+          model: User,
+          where: {
+            id: req.user.id
+          },
+          attributes: ['firstname', 'lastname', 'email']
+        }
+      ]
+    })
+    if (req.user.id === orders[0].userId) {
+      res.json(orders)
     }
-    res.json(orders)
   } catch (err) {
     next(err)
   }

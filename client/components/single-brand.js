@@ -31,7 +31,9 @@ class singleBrand extends React.Component {
             shoes.map(shoe => {
               return (
                 <div className="shoe-box" key={shoe.id}>
-                  <img src={shoe.imageURL} className="allShoesImage" />
+                  <Link className="links" to={`/shoes/${shoe.id}`}>
+                    <img src={shoe.imageURL} className="allShoesImage" />
+                  </Link>
                   <div>
                     <Link className="links" to={`/shoes/${shoe.id}`}>
                       {shoe.name}

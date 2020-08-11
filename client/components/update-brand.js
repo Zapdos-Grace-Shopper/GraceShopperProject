@@ -1,26 +1,20 @@
 import React, {Component} from 'react'
+import BrandForm from './brand-form'
+import {fetchUpdateBrand} from '../store/brands'
 import {connect} from 'react-redux'
 
-// import AddBrandForm from './add-brand-form'
-import ShoeForm from './shoe-form'
-import {fetchAddShoe} from '../store/shoes'
-
-class AddShoe extends Component {
+class UpdateBrand extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      brand: '',
-      imageURL: '',
-      price: '',
-      description: '',
-      quantity: '',
-      size: ''
+      id: props.brand.id,
+      name: props.brand.name,
+      imageURL: props.brand.imageURL,
+      description: props.brand.description
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
-
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -29,8 +23,7 @@ class AddShoe extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log('handle submit', event.target.name)
-    this.props.fetchAddShoe(this.state)
+    this.props.updateBrand(this.state)
     this.setState({
       name: '',
       brand: '',
@@ -41,21 +34,19 @@ class AddShoe extends Component {
       size: ''
     })
   }
-
   render() {
     return (
-      <ShoeForm
-        shoe={this.state}
+      <BrandForm
+        brand={this.state}
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
-        brands={this.props.brands}
       />
     )
   }
 }
 
 const mapDispatch = dispatch => ({
-  fetchAddShoe: shoe => dispatch(fetchAddShoe(shoe))
+  updateBrand: brand => dispatch(fetchUpdateBrand(brand))
 })
 
-export default connect(null, mapDispatch)(AddShoe)
+export default connect(null, mapDispatch)(UpdateBrand)
