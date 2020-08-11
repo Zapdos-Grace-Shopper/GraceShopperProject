@@ -2,6 +2,7 @@ import React from 'react'
 import {Form, Button} from 'react-bootstrap'
 
 export default function UserForm(props) {
+  console.log(props)
   return (
     <Form onSubmit={props.handleSubmit}>
       <Form.Group>
@@ -26,6 +27,7 @@ export default function UserForm(props) {
           onChange={props.handleChange}
         />
       </Form.Group>
+      <br />
       <Form.Group>
         <Form.Label htmlFor="shoeSize">Shoe Size</Form.Label>
         <Form.Control
@@ -48,15 +50,6 @@ export default function UserForm(props) {
           onChange={props.handleChange}
         />
       </Form.Group>
-      {/* <Form.Group>
-        <Form.Label htmlFor="password">Password</Form.Label>
-        <Form.Control
-          size="sm"
-          name="password"
-          type="password"
-          placeholder="Enter Password"
-        />
-      </Form.Group> */}
       <Button variant="outline-primary" type="submit">
         Submit
       </Button>

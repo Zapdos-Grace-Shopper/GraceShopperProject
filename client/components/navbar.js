@@ -5,7 +5,7 @@ import {Navbar, Nav} from 'react-bootstrap'
 // import {Link} from 'react-router-dom'
 import {logout} from '../store'
 
-const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
+const ZapdosNavbar = ({handleClick, isLoggedIn, isAdmin}) => (
   <Navbar bg="light" className="nav">
     <Navbar.Brand href="/" className="zapdos-nav">
       ZAPDOS
@@ -23,6 +23,7 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
           Profile
         </Nav.Link>
         <Nav.Link href="/cart">My Cart</Nav.Link>
+        {isAdmin && <Nav.Link href="/admin">Admin View</Nav.Link>}
         <Nav.Link href="/" onClick={handleClick}>
           Logout
         </Nav.Link>
@@ -52,7 +53,8 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => (
  */
 const mapState = state => {
   return {
-    isLoggedIn: !!state.auth.id
+    isLoggedIn: !!state.auth.id,
+    isAdmin: state.auth.access === 'admin'
   }
 }
 

@@ -1,19 +1,14 @@
 import React from 'react'
-import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
 
 const Card = props => {
+  console.log(props)
   return (
     <div className="card">
       <div className="image-div">
-        <Link to={props.link} className="links">
-          <img src={props.imageURL} />
-        </Link>
+        <img src={props.imageURL} value={props.id} onClick={props.openModal} />
       </div>
-      <Link to={props.link} className="links">
-        <h5>{props.head}</h5>
-      </Link>
-      <p>{props.sub}</p>
+      <h5>{props.head}</h5>
       <Button
         variant="outline-primary"
         className="btn"

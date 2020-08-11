@@ -1,47 +1,60 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect, useReducer} from 'react'
+import {useDispatch} from 'react-redux'
 import {Button} from 'react-bootstrap'
-import {Link} from 'react-router-dom'
 import AddBrand from './add-brand'
 import AddShoe from './add-shoe'
+import AllUsers from './all-users'
+// import { fetchAllUsers } from '../store/user'
+// import {getOrdersThunk} from '../store/orders'
 
 export default function AdminDashboard() {
   const [showShoeForm, setShowShoeForm] = useState(false)
   const [showBrandForm, setShowBrandForm] = useState(false)
+  const [showAllUsers, setShowAllUsers] = useState(false)
+
+  // const dispatch = useDispatch()
+  // useEffect(() => {dispatch(fetchAllUsers())})
+  // useEffect(() => {dispatch(getOrdersThunk())})
 
   return (
-    <div id="admin-dashboard">
-      <div id="admin-dashboard-buttons">
-        <Link to="/users" className="links">
-          <Button variant="outline-primary" className="btn">
-            Manage Users
-          </Button>
-        </Link>
+    <div className="admin-dashboard">
+      <div className="admin-analytics" />
+      <div className="admin-dashboard-buttons">
         <Button
-          type="submit"
-          value="brand"
+          variant="outline-primary"
+          onClick={() => {
+            setShowAllUsers(true)
+            setShowBrandForm(false)
+            setShowShoeForm(false)
+          }}
+        >
+          ManageUsers
+        </Button>
+        <Button
           variant="outline-primary"
           onClick={() => {
             setShowBrandForm(true)
+            setShowAllUsers(false)
             setShowShoeForm(false)
           }}
         >
           Add Brand
         </Button>
         <Button
-          type="submit"
-          value="shoe"
           variant="outline-primary"
           onClick={() => {
             setShowShoeForm(true)
+            setShowAllUsers(false)
             setShowBrandForm(false)
           }}
         >
           Add Shoe
         </Button>
       </div>
-      <div id="forms">
+      <div id="admin-pages">
         {showBrandForm && <AddBrand />}
         {showShoeForm && <AddShoe />}
+        {showAllUsers && <AllUsers />}
       </div>
     </div>
   )

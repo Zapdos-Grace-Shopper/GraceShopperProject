@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React, {Component, Fragment} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Link} from 'react-router-dom'
 import Orders from './orders'
-import AdminDashboard from './admin-dashboard'
 import UserForm from './user-form'
 import {Button} from 'react-bootstrap'
 import {updateUserThunk} from '../store/auth'
@@ -47,22 +47,28 @@ class UserHome extends Component {
       email: this.state.email,
       shoeSize: this.state.shoeSize
     })
+    this.setState({
+      viewForm: false
+    })
   }
 
   render() {
     const user = this.props.authUser
     return (
       <div className="profile-container">
-        <div className="profile-container-top">
-          <div className="profile-left">
-            <h1>
-              {user.firstname} {user.lastname}
-            </h1>
-            <p>{user.email}</p>
-            <p>{user.access === 'user' ? 'Shoe Lover' : 'Administrator'}</p>
-            <img src={user.imageURL} />
-          </div>
-          <div className="profile-right">
+        <div className="profile-left">
+          <h1>
+            {user.firstname} {user.lastname}
+          </h1>
+          <p>
+            <strong>Email: </strong>
+            {user.email}
+          </p>
+          <p>
+            <strong>Shoe Size: </strong>
+            {user.shoeSize}
+          </p>
+          <div>
             <Button
               variant="outline-primary"
               className="btn"
@@ -71,9 +77,6 @@ class UserHome extends Component {
             >
               Update Profile Info
             </Button>
-            <Orders id={user.id} access={user.access} />
-          </div>
-          <div className="form-container">
             {this.state.viewForm && (
               <UserForm
                 user={user}
@@ -82,9 +85,11 @@ class UserHome extends Component {
               />
             )}
           </div>
+          <br />
+          <img src={user.imageURL} />
         </div>
-        <div className="profile-container-bottom">
-          {user.access === 'admin' && <AdminDashboard />}
+        <div className="profile-right">
+          <Orders id={user.id} access={user.access} />
         </div>
       </div>
     )
