@@ -192,8 +192,8 @@ form div {
 }
 
 .card {
-  /* height: 20vh;
-  width: 20vw; */
+  height: 20vh;
+  width: 20vw;
   display: flex;
   flex-flow: row nowrap;
   margin: 1em;
@@ -254,12 +254,4 @@ form div {
   display: flex;
   justify-content: center;
   align-self: center;
-}
-
-.footer {
-  bottom: 0;
-  background-color: lightgray;
-  height: 6em;
-  left: 0;
-  width: 100%;
 }

@@ -3,7 +3,7 @@ import {Form, Button} from 'react-bootstrap'
 
 const ShoeForm = props => {
   return (
-    <Form onSubmit={props.handleSubmit}>
+    <Form name="shoe" onSubmit={props.handleSubmit}>
       <Form.Group>
         <Form.Label>Shoe Name: </Form.Label>
         <Form.Control
@@ -23,7 +23,7 @@ const ShoeForm = props => {
           onChange={props.handleChange}
           value={props.shoe.brand}
         >
-          <option></option>
+          <option />
           {props.brands.map(brand => (
             <option key={brand.id}>{brand.name}</option>
           ))}

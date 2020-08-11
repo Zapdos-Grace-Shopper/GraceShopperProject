@@ -14,8 +14,7 @@ class AdminDashboard extends Component {
     super(props)
     this.state = {
       brandView: false,
-      shoeView: false,
-      updateShoeView: false
+      shoeView: false
     }
     this.handleDelete = this.handleDelete.bind(this)
     this.toggleView = this.toggleView.bind(this)
@@ -48,9 +47,6 @@ class AdminDashboard extends Component {
   }
 
   handleDelete(evt) {
-    console.log('I hit handle delete')
-    console.log('evt name', evt.target.name)
-    console.log('evt value', evt.target.value)
     if (evt.target.name === 'user') {
       this.props.deleteUser(evt.target.value)
     }
