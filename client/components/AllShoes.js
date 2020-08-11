@@ -18,7 +18,7 @@ class AllShoes extends React.Component {
   }
   handleAddCart(shoeId) {
     this.props.addToCart(shoeId, this.props.userId)
-    toast.success('Added to cart!', {autoClose: 3000})
+    toast.success('Added to your cart!', {autoClose: 3000})
   }
 
   render() {
