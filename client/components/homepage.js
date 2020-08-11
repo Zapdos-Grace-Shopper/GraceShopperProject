@@ -27,12 +27,12 @@ export class Homepage extends React.Component {
             firstThree.map(shoe => {
               return (
                 <div className="card" key={shoe.id}>
-                  <div className="card-img">
-                    <img src={shoe.imageURL} />
-                  </div>
                   <div>
                     <h5>{shoe.brand.name}</h5>
                     <Link className="links" to={`/shoes/${shoe.id}`}>
+                      <div className="card-img">
+                        <img src={shoe.imageURL} />
+                      </div>
                       {shoe.name}
                     </Link>
                   </div>
