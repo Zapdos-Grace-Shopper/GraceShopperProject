@@ -255,6 +255,10 @@ form div {
   padding: 0.5em;
 }
 
+footer {
+  padding-top: 60px;
+}
+
 .checkout-form-container {
   display: inline-flex;
   flex-grow: 1;
