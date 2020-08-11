@@ -5,6 +5,9 @@ import {Button} from 'react-bootstrap'
 import UpdateShoe from './update-shoe'
 import {postUserCart} from '../store/orders'
 import {Link} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 class SingleShoe extends React.Component {
   constructor(props) {
@@ -40,9 +43,7 @@ class SingleShoe extends React.Component {
   handleAddCart() {
     const shoeId = this.props.match.params.id
     this.props.addToCart(shoeId, this.props.userId)
-    setTimeout(() => {
-      this.props.history.push('/cart')
-    }, 500)
+    toast.success('Added to cart!', {autoClose: 3000})
   }
 
   handleChange(event) {
