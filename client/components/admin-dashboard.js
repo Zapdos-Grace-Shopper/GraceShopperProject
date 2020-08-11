@@ -91,6 +91,7 @@ class AdminDashboard extends Component {
                 key={user.id}
                 id={user.id}
                 name="user"
+                user={user}
                 imageURL={user.imageURL}
                 head={`${user.firstname} ${user.lastname}`}
                 sub={user.access}

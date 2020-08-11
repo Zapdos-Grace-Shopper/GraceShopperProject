@@ -5,7 +5,7 @@ const {Shoe} = require('../db/models')
 module.exports = router
 
 const areYouAdmin = (req, res, next) => {
-  const currentUser = req.session.user
+  const currentUser = req.user
   if (currentUser && currentUser.access === 'admin') {
     next()
   } else {

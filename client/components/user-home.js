@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 import Orders from './orders'
 import UserForm from './user-form'
 import {Button} from 'react-bootstrap'
-import {updateUserThunk} from '../store/auth'
+import {updateUserThunk} from '../store/user'
 /**
  * COMPONENT
  */
