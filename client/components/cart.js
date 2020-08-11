@@ -58,19 +58,6 @@ class Cart extends React.Component {
                     <div key={shoe.inventory}>
                       Quantity in stock: {shoe.inventory}
                       Quantity in cart: {shoe.quantity}
-                      <Button
-                        variant="outline-info"
-                        onClick={() => handleAddClick}
-                        // shoe.inventory > shoe.quantity && shoe.quantity + 1}
-                      />
-                      <Button
-                        variant="outline-info"
-                        value="decrease"
-                        onClick={() => handleSubtractClick}
-                      >
-                        {' '}
-                        Subtract
-                      </Button>
                       <QuantityButton shoe={shoe} />
                     </div>
                     <Button
