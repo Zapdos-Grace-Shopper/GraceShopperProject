@@ -11,18 +11,16 @@ export class Brands extends React.Component {
     const {brands} = this.props
     return (
       <div>
-        <h1>All Brands</h1>
-        <div className="box">
+        <h1 className="page-title">Shop by Brand:</h1>
+        <div className="single-brand-box">
           {brands &&
             brands.map(brand => {
               return (
-                <div key={brand.id} className="brand">
-                  <img src={brand.imageURL} className="brandImg" />
-                  <div>
-                    <Link to={`/brands/${brand.id}`} className="links">
-                      <h5>{brand.name}</h5>
-                    </Link>
-                  </div>
+                <div key={brand.id} className="all-brands-name">
+                  <Link to={`/brands/${brand.id}`} className="links">
+                    {/* <img src={brand.imageURL} className="brandImg" /> */}
+                    <h2>{brand.name}</h2>
+                  </Link>
                 </div>
               )
             })}
