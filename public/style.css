@@ -6,6 +6,12 @@ body {
   font-family: houschka-pro, sans-serif;
   font-weight: 300;
   font-style: normal;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 5rem;
 }
 
 h1,
@@ -91,6 +97,8 @@ form div {
 
 .allShoesImage {
   width: 250px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .profile-container {
@@ -185,10 +193,6 @@ form div {
   margin-bottom: 1em;
   /* margin-left: 3em; */
   padding: 1em;
-}
-
-footer {
-  padding-top: 60px;
 }
 
 .brandImg {
@@ -308,6 +312,10 @@ footer {
   justify-content: center;
 }
 
+.spacer {
+  flex: 1;
+}
+
 /* OK change */
 .footer {
   display: flex;
@@ -315,6 +323,11 @@ footer {
   justify-content: space-around;
   background-color: rgb(236, 232, 232);
   padding: 0.5em;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 50px;
+  width: 100%;
 }
 
 .checkout-form-container {
