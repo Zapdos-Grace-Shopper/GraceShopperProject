@@ -1,8 +1,13 @@
 import React, {useState} from 'react'
+//import { useFormik } from 'formik'
+import {Redirect, withRouter, Link} from 'react-router-dom'
+import {completeCheckoutThunk} from '../store/orders'
+import {Button} from 'react-bootstrap'
 
 const BillingForm = props => {
   //is the person checking out a user or no?
   //(this is in parent component) when user checks out, clear the cart. Redirect them to a different page
+  //change the name after you're done creating the form
 
   const initialState = {
     billingName: '',
@@ -124,3 +129,27 @@ const BillingForm = props => {
 // const mapDispatchToProps = ()
 
 export default BillingForm
+
+// return (
+//   <Form>
+//     <h2>Billing</h2>
+//     <Form.Group>
+//       <Form.Label>Name</Form.Label>
+//       <Form.Control type="text" placeholder="Name on Your Credit Card" required />
+//     </Form.Group>
+//     <Form.Group>
+//       <Form.Label>Card Number</Form.Label>
+//       <Form.Control type="text" placeholder="ex: 9999-9999-9999-9999" required />
+//     </Form.Group>
+//     <Form.Row>
+//       <Form.Col>
+//         <Form.Label>Valid Thru:</Form.Label>
+//         <Form.Control type="number" placeholder="ex: 04/22" required />
+//     </Form.Col>
+//       <Form.Col>
+//         <Form.Label>CVV:</Form.Label>
+//         <Form.Control type="number" placeholder="000" required />
+//       </Form.Col>
+//     </Form.Row>
+//   </Form>
+// )

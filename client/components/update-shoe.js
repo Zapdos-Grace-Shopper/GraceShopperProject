@@ -9,11 +9,11 @@ class UpdateShoe extends Component {
     this.state = {
       id: props.shoe.id,
       name: props.shoe.name,
-      brand: props.brand,
+      brand: props.shoe.brand,
       imageURL: props.shoe.imageURL,
       price: props.shoe.price,
       description: props.shoe.description,
-      inventory: props.shoe.inventory,
+      quantity: props.shoe.quantity,
       size: props.shoe.size
     }
     this.handleChange = this.handleChange.bind(this)

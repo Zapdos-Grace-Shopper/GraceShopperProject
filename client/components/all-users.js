@@ -93,8 +93,7 @@ const mapState = state => ({
 })
 
 const mapDispatch = dispatch => ({
-  getUsers: () => dispatch(fetchAllUsers()),
-  deleteUser: userId => dispatch(deleteUserThunk(userId))
+  getUsers: () => dispatch(fetchAllUsers())
 })
 
 export default connect(mapState, mapDispatch)(AllUsers)

@@ -55,43 +55,48 @@ class UserHome extends Component {
   render() {
     const user = this.props.authUser
     return (
-      <div className="profile-container">
-        <div className="profile-left">
-          <h1>
-            {user.firstname} {user.lastname}
-          </h1>
-          <p>
-            <strong>Email: </strong>
-            {user.email}
-          </p>
-          <p>
-            <strong>Shoe Size: </strong>
-            {user.shoeSize}
-          </p>
-          <div>
-            <Button
-              variant="outline-primary"
-              className="btn"
-              type="submit"
-              onClick={this.toggle}
-            >
-              Update Profile Info
-            </Button>
-            {this.state.viewForm && (
-              <UserForm
-                user={user}
-                handleChange={this.handleChange}
-                handleSubmit={this.handleSubmit}
-              />
-            )}
+      <Fragment>
+        <div className="profile-container">
+          <div className="profile-left">
+            <h1>
+              {user.firstname} {user.lastname}
+            </h1>
+            <p>
+              <strong>Email: </strong>
+              {user.email}
+            </p>
+            <p>
+              <strong>Shoe Size: </strong>
+              {user.shoeSize}
+            </p>
+            <div>
+              <Button
+                variant="outline-primary"
+                className="btn"
+                type="submit"
+                onClick={this.toggle}
+              >
+                Update Profile Info
+              </Button>
+              {this.state.viewForm && (
+                <UserForm
+                  user={user}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                />
+              )}
+            </div>
+            <br />
+            <img src={user.imageURL} />
           </div>
-          <br />
-          <img src={user.imageURL} />
+          <div className="profile-right">
+            <Orders id={user.id} access={user.access} />
+          </div>
         </div>
-        <div className="profile-right">
-          <Orders id={user.id} access={user.access} />
+        <div className="profile-container-bottom">
+          {props.authUser.access === 'admin' && <AdminDashboard />}
         </div>
-      </div>
+      </Fragment>
     )
   }
 }
@@ -105,11 +110,7 @@ const mapState = state => {
   }
 }
 
-const mapDispatch = dispatch => ({
-  updateUser: user => dispatch(updateUserThunk(user))
-})
-
-export default connect(mapState, mapDispatch)(UserHome)
+export default connect(mapState)(UserHome)
 
 /**
  * PROP TYPES

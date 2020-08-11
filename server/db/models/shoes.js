@@ -10,6 +10,11 @@ const Shoe = db.define('shoe', {
       notEmpty: true
     }
   },
+  // brand: {
+  //   type: Sequelize.STRING,
+  //   defaultValue: 'Zapdos Vintage',
+  //   allowNull: false
+  // },
   imageURL: {
     type: Sequelize.STRING,
     defaultValue:

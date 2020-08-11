@@ -8,8 +8,6 @@ const GET_CART = 'GET_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const DELETE_SHOE_CART = 'DELETE_SHOE_CART'
 const COMPLETE_CHECKOUT = 'COMPLETE_CHECKOUT'
-const CLEAR_CART = 'CLEAR_CART'
-const UPDATE_QUANTITY = 'UPDATE_QUANTITY'
 
 //action creators
 export const getOrders = orders => {
@@ -18,18 +16,21 @@ export const getOrders = orders => {
     orders
   }
 }
+
 export const addToCart = cart => {
   return {
-    type: ADD_TO_CART,
+    type: ADD_TO_CART || COMPLETE_CHECKOUT,
     cart
   }
 }
+
 export const getCart = cart => {
   return {
     type: GET_CART,
     cart
   }
 }
+
 export const removeFromCart = cart => {
   return {
     type: REMOVE_FROM_CART,
@@ -42,20 +43,10 @@ export const deleteShoeCart = cart => {
     cart
   }
 }
+
 export const completeCheckout = cart => {
   return {
     type: COMPLETE_CHECKOUT,
-    cart
-  }
-}
-export const clearCart = () => {
-  return {
-    type: CLEAR_CART
-  }
-}
-export const updateQuantity = cart => {
-  return {
-    type: UPDATE_QUANTITY,
     cart
   }
 }
@@ -67,7 +58,7 @@ export const getOrdersThunk = () => {
       const {data} = await axios.get('api/orders')
       dispatch(getOrders(data))
     } catch (error) {
-      console.error(error)
+      console.log(error)
     }
   }
 }
@@ -82,7 +73,7 @@ export const postUserCart = (shoeId, userId) => {
       })
       dispatch(addToCart(cart.data))
     } catch (error) {
-      console.error(error)
+      console.log(error)
     }
   }
 }
@@ -122,24 +113,9 @@ export const completeCheckoutThunk = userId => {
       const cart = await axios.put(
         `/api/users/${userId}/cart/checkout/complete`
       )
-      await dispatch(completeCheckout(cart.data))
-      dispatch(clearCart())
+      dispatch(completeCheckout(cart.data))
     } catch (error) {
-      console.error(error)
-    }
-  }
-}
-
-export const fetchUpdateQuantity = (userId, update) => {
-  return async dispatch => {
-    try {
-      console.log('in thunk', update)
-      const cart = await axios.put(`/api/users/${userId}/cart`, {
-        quantArr: update
-      })
-      dispatch(updateQuantity(cart.data))
-    } catch (err) {
-      console.error(err)
+      console.log(error)
     }
   }
 }
@@ -155,10 +131,6 @@ export default function(state = initialState, action) {
     case DELETE_SHOE_CART:
       return {...state, cart: action.cart}
     case COMPLETE_CHECKOUT:
-      return {...state, cart: action.cart}
-    case CLEAR_CART:
-      return initialState
-    case UPDATE_QUANTITY:
       return {...state, cart: action.cart}
     default:
       return state

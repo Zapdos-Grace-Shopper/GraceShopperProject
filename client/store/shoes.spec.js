@@ -25,7 +25,7 @@ describe('shoes reducer thunks', () => {
   })
 
   describe('fetchShoes thunk', () => {
-    xit('dispatches the GET_ALL_SHOES action', async () => {
+    it('dispatches the GET_ALL_SHOES action', async () => {
       const fakeShoes = [
         {
           id: 1,

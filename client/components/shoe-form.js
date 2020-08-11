@@ -70,13 +70,13 @@ const ShoeForm = props => {
         />
       </Form.Group>
       <Form.Group>
-        <Form.Label>Shoe Inventory: </Form.Label>
+        <Form.Label>Shoe Quantity: </Form.Label>
         <Form.Control
           type="text"
           name="quantity"
           placeholder="Enter Shoe Quantity"
           onChange={props.handleChange}
-          value={props.shoe.inventory}
+          value={props.shoe.quantity}
         />
       </Form.Group>
       <Button variant="outline-primary" type="submit" className="btn">

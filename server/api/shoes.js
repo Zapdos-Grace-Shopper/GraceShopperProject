@@ -16,9 +16,7 @@ const areYouAdmin = (req, res, next) => {
 
 router.get('/', async (req, res, next) => {
   try {
-    const shoes = await Shoe.findAll({
-      include: {model: Brand}
-    })
+    const shoes = await Shoe.findAll()
     res.json(shoes)
   } catch (err) {
     next(err)

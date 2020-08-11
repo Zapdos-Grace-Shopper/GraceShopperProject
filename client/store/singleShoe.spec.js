@@ -25,7 +25,7 @@ describe('shoe reducer thunks', () => {
   })
 
   describe('fetchSingleShoe thunk', () => {
-    xit('dispatches the GET_SINGLE_SHOE action', async () => {
+    it('dispatches the GET_SINGLE_SHOE action', async () => {
       const fakeShoe = {
         id: 1,
         name: 'loafer',
@@ -42,8 +42,8 @@ describe('shoe reducer thunks', () => {
     })
   })
 
-  xdescribe('fetchUpdateShoe thunk', () => {
-    it('dispatches the UPDATE_SHOE action', async () => {
+  describe('fetchUpdateShoe thunk', () => {
+    xit('dispatches the UPDATE_SHOE action', async () => {
       const fakeShoe = {
         id: 1,
         name: 'loafer',
