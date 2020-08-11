@@ -19,6 +19,10 @@ h6 {
   font-style: normal;
 }
 
+.page-title {
+  margin-left: 0.25em;
+}
+
 a {
   text-decoration: none;
 }
@@ -62,7 +66,10 @@ form div {
 }
 
 .card img {
-  width: 300px;
+  width: 100%;
+}
+.card-img img:hover {
+  opacity: 0.7;
 }
 
 .mainPic {
@@ -74,7 +81,12 @@ form div {
 }
 
 .singleShoeImg {
-  width: 40%;
+  width: 100%;
+}
+
+.single-shoe-info {
+  margin-left: 5em;
+  margin-right: 1em;
 }
 
 .allShoesImage {
@@ -114,8 +126,9 @@ form div {
 
 .box {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 .box div {
@@ -123,14 +136,64 @@ form div {
   padding: 20px;
 }
 
+.single-brand-top-box {
+  display: flex;
+  border: 1px;
+  padding: 20px;
+  margin-bottom: 4em;
+}
+
+.single-brand-outer-container {
+  margin-bottom: 2em;
+}
+
+.brand-description {
+  width: 50%;
+  border: 1px;
+  padding: 20px;
+}
+
+#single-brand-image {
+  width: 50%;
+}
+
+.single-brandImg {
+  width: 400px;
+  height: 400px;
+  object-fit: cover;
+}
+
+.single-brandImg img:hover {
+  opacity: 0.7;
+}
+
 .brand {
   flex: 1;
+  margin-bottom: 0.25em;
+}
+
+.single-brand-box {
+  margin: 0.5em;
+  margin-left: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.all-brands-name {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  /* margin-left: 3em; */
+  padding: 1em;
 }
 
 .brandImg {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   object-fit: cover;
+}
+.brandImg img:hover {
+  opacity: 0.7;
 }
 
 .links {
@@ -198,6 +261,13 @@ form div {
   border: 1px solid rgb(250, 248, 248);
   box-shadow: 1.5px 1.5px lightgray;
 }
+/* OK change margin, padding */
+.card {
+  height: 30em;
+  width: 23em;
+  display: flex;
+  flex-flow: column nowrap;
+}
 
 .admin-card-image-div {
   height: 100%;
@@ -234,10 +304,23 @@ form div {
   justify-content: center;
 }
 
+/* OK change */
+.footer {
+  display: flex;
+  align-content: center;
+  justify-content: space-around;
+  background-color: rgb(236, 232, 232);
+  padding: 0.5em;
+}
+
 .checkout-form-container {
   display: inline-flex;
   flex-grow: 1;
   justify-content: center;
+}
+
+.checkout-container {
+  margin-bottom: 2.25em;
 }
 
 .checkout-50 {

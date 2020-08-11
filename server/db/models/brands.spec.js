@@ -13,6 +13,7 @@ describe('Sequelize Brand Model', () => {
       description:
         'this is my all time favorite brand and I buy all of their shoes'
     })
+
     expect(brand.name).to.equal('Fave Brand')
     expect(brand.imageURL).to.equal(
       'https://static2.bigstockphoto.com/5/3/3/large2/335667787.jpg'
@@ -23,7 +24,7 @@ describe('Sequelize Brand Model', () => {
   })
 
   it('name cannot be null', async () => {
-    const brand1 = Brand.build()
+    const brand1 = await Brand.build()
     try {
       await brand1.validate()
       throw Error('validation should have failed without name')
@@ -33,11 +34,11 @@ describe('Sequelize Brand Model', () => {
   })
 
   it('name cannot be empty', async () => {
-    const brand1 = Brand.build({
+    const brand2 = await Brand.build({
       name: ''
     })
     try {
-      await brand1.validate()
+      await brand2.validate()
       throw Error('validation should have failed without name')
     } catch (err) {
       expect(err.message).to.contain('notEmpty')
