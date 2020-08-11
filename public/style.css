@@ -194,6 +194,10 @@ form div {
   padding: 1em;
 }
 
+footer {
+  padding-top: 60px;
+}
+
 .brandImg {
   width: 300px;
   height: 300px;

@@ -4,6 +4,9 @@ import {Link} from 'react-router-dom'
 import {fetchShoes, fetchDeleteShoe} from '../store/shoes'
 import {postUserCart} from '../store/orders'
 import {Button} from 'react-bootstrap'
+import {toast} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+toast.configure()
 
 class AllShoes extends React.Component {
   constructor() {
@@ -13,11 +16,10 @@ class AllShoes extends React.Component {
   componentDidMount() {
     this.props.getAllShoes()
   }
+
   handleAddCart(shoeId) {
     this.props.addToCart(shoeId, this.props.userId)
-    setTimeout(() => {
-      this.props.history.push('/cart')
-    }, 500)
+    toast.success('Added to your cart!', {autoClose: 3000})
   }
 
   render() {
