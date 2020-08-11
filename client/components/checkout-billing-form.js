@@ -35,7 +35,11 @@ const BillingForm = props => {
 
   return (
     <div className="checkout-form-container">
-      <form id="checkout-form" onSubmit={handleSubmit}>
+      <form
+        id="checkout-form"
+        className="checkout-form-box"
+        onSubmit={handleSubmit}
+      >
         <div className="checkout-50">
           <fieldset id="billing-form">
             <h2>Billing</h2>

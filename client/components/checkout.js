@@ -8,19 +8,23 @@ import {Link} from 'react-router-dom'
 class Checkout extends React.Component {
   render() {
     return (
-      <Fragment>
+      <div className="checkout-container">
         <div className="checkout-row">
           <BillingForm />
         </div>
         <div id="checkout-button">
           <Button
+            type="submit"
+            className="btn"
             variant="outline-primary"
             onClick={() => this.props.submitCheckout(this.props.userId)}
           >
-            <Link to="/checkout/complete">Submit</Link>
+            <Link className="links" to="/checkout/complete">
+              Submit
+            </Link>
           </Button>
         </div>
-      </Fragment>
+      </div>
     )
   }
 }

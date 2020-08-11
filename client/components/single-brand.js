@@ -12,20 +12,30 @@ class singleBrand extends React.Component {
     const {brand} = this.props
     const shoes = this.props.brand.shoes
     return (
-      <div>
-        <h1>{brand.name}</h1>
-        <img className="brandImg" src={brand.imageURL} />
-        <h3>Brand description: </h3>
-        <h5>{brand.description}</h5>
-        <h1>Shoes by {brand.name}</h1>
-        <div className="box">
+      <div className="single-brand-outer-container">
+        <div className="single-brand-top-box">
+          <div id="single-brand-image">
+            <h1>{brand.name}</h1>
+            <img className="single-brandImg" src={brand.imageURL} />
+          </div>
+          <div className="brand-description">
+            <h3>Brand description: </h3>
+            <h5>{brand.description}</h5>
+          </div>
+        </div>
+
+        <h2>Shoes by {brand.name}</h2>
+        <div className="all-shoes-container">
+          {/* <div className="box"> */}
           {shoes &&
             shoes.map(shoe => {
               return (
-                <div className="brand" key={shoe.id}>
-                  <img src={shoe.imageURL} className="brandImg" />
+                <div className="shoe-box" key={shoe.id}>
+                  <img src={shoe.imageURL} className="allShoesImage" />
                   <div>
-                    <Link to={`/shoes/${shoe.id}`}>{shoe.name}</Link>
+                    <Link className="links" to={`/shoes/${shoe.id}`}>
+                      {shoe.name}
+                    </Link>
                   </div>
                 </div>
               )
