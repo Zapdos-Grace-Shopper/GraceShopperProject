@@ -43,8 +43,8 @@ router.post('/', async (req, res, next) => {
     const {userId, status, shoeId} = req.body
     let shoe = await Shoe.findByPk(shoeId)
 
-    const updateQuant = Number(shoe.quantity) + 1
-    shoe = await shoe.update({quantity: updateQuant})
+    // const updateQuant = Number(shoe.quantity) + 1
+    // shoe = await shoe.update({quantity: updateQuant})
 
     const [order, created] = await Order.findOrCreate({
       where: {
@@ -53,24 +53,36 @@ router.post('/', async (req, res, next) => {
       },
       include: {
         model: Shoe,
-        attributes: ['name', 'price', 'id', 'quantity']
+        Purchased
       }
     })
 
-    if (!order.shoes.some(el => el.id === shoeId)) {
-      await order.addShoe(shoe)
+    if (order.shoes) {
+      if (!order.shoes.some(el => el.id === shoeId)) {
+        await order.addShoe(shoe)
+      }
     }
-
-    await order.save()
 
     const myPurchase = await Purchased.findOne({
       where: {orderId: order.id, shoeId: shoe.id}
     })
-    // console.log(myPurchase.orderQuantity, 'order quantity pre update')
-    let updateOrderQuantity = myPurchase.orderQuantity + 1
-    await myPurchase.update({orderQuantity: updateOrderQuantity})
+    if (myPurchase) {
+      let updateOrderQuantity = myPurchase.orderQuantity + 1
+      await myPurchase.update({orderQuantity: updateOrderQuantity})
+    }
 
-    res.json(order)
+    let [orderUpdate] = await Order.findOrCreate({
+      where: {
+        userId,
+        status
+      },
+      include: {
+        model: Shoe,
+        Purchased
+      }
+    })
+
+    res.json(orderUpdate)
   } catch (err) {
     next(err)
   }
