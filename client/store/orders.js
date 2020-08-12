@@ -142,12 +142,12 @@ export const completeCheckoutThunk = userId => {
   }
 }
 
-export const fetchUpdateQuantity = (userId, update) => {
+export const fetchUpdateQuantity = (userId, shoeId, quantityUpdate) => {
   return async dispatch => {
     try {
-      console.log('in thunk', update)
       const cart = await axios.put(`/api/users/${userId}/cart`, {
-        quantArr: update
+        shoeId: shoeId,
+        quantityUpdate: quantityUpdate
       })
       dispatch(updateQuantity(cart.data))
     } catch (err) {

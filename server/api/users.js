@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {User, Order, Shoe} = require('../db/models')
+const {User, Order, Shoe, Purchased} = require('../db/models')
 module.exports = router
 
 const areYouAdmin = (req, res, next) => {
@@ -114,18 +114,30 @@ router.delete('/:id', areYouAdmin, async (req, res, next) => {
 })
 
 //cart routes
+
+// need to also eager load the purchased table here -- check if exists first
 router.get('/:id/cart', async (req, res, next) => {
   try {
     const userId = req.params.id
-    const order = await Order.findOne({
+    let order = await Order.findOne({
       where: {userId: userId, status: 'cart'},
       include: {model: Shoe}
     })
+
     if (
       req.user &&
       (Number(req.user.id) === Number(userId) || req.user.access === 'admin')
     ) {
       if (order) {
+        // const myPurchase = await Purchased.findOne({
+        //   where: {orderId: order.id},
+        // })
+
+        order = await Order.findOne({
+          where: {userId: userId, status: 'cart'},
+          include: {model: Shoe, Purchased}
+        })
+
         res.json(order)
       } else {
         res.json('the cart is currently empty')
@@ -159,18 +171,28 @@ router.delete('/:id/cart', async (req, res, next) => {
 
 router.put('/:id/cart', async (req, res, next) => {
   try {
+    // req.body.quantityUpdate = (1) or (-1)
     const userId = req.params.id
-    console.log('req.body', req.body)
-    req.body.quantArr.map(async update => {
-      let shoe = await Shoe.findByPk(update.shoeId)
-      await shoe.update({quantity: update.quantity})
-    })
+    const {shoeId, quantityUpdate} = req.body
 
-    const updatedOrder = await Order.findOne({
-      where: {userId: userId, status: 'cart'},
-      include: {model: Shoe}
+    let order = await Order.findOne({
+      where: {userId, status: 'cart'}
     })
-    res.json(updatedOrder)
+    const myPurchase = await Purchased.findOne({
+      where: {orderId: order.id, shoeId: shoeId}
+    })
+    let updateOrderQuantity =
+      Number(myPurchase.orderQuantity) + Number(quantityUpdate)
+    await myPurchase.update({orderQuantity: updateOrderQuantity})
+
+    let orderUpdate = await Order.findOne({
+      where: {userId, status: 'cart'},
+      include: {
+        model: Shoe,
+        Purchased
+      }
+    })
+    res.json(orderUpdate)
   } catch (error) {
     next(error)
   }
@@ -181,16 +203,20 @@ router.put('/:id/cart/checkout/complete', async (req, res, next) => {
     const userId = req.params.id
     let order = await Order.findOne({
       where: {userId: userId, status: 'cart'},
-      include: {model: Shoe}
+      include: {model: Shoe, Purchased}
     })
     await order.update({status: 'complete'})
 
     const shoeIDs = order.shoes.map(shoe => shoe.id)
+
     shoeIDs.map(async shoeID => {
       let findShoe = await Shoe.findByPk(shoeID)
+      const myPurchase = await Purchased.findOne({
+        where: {orderId: order.id, shoeId: shoeID}
+      })
       const updateInventory =
-        Number(findShoe.inventory) - Number(findShoe.quantity)
-      await findShoe.update({inventory: updateInventory, quantity: 0})
+        Number(findShoe.inventory) - Number(myPurchase.orderQuantity)
+      await findShoe.update({inventory: updateInventory})
     })
     res.json('updated shoe quantity and cart status')
   } catch (err) {

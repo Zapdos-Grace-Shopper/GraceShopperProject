@@ -42,39 +42,10 @@ class SingleShoe extends React.Component {
       viewUpdate: !view
     })
   }
-  handleAddCart(shoeId) {
-    // localStorage.clear()
-    if (this.props.userId) {
-      this.props.addToCart(shoeId, this.props.userId)
-      toast.success('Added to your cart!', {autoClose: 3000})
-    }
-    // } else {
-    //   // console.log('local storage', localStorage)
-    //   if (!localStorage.cart) {
-    //     localStorage.setItem("cart", JSON.stringify([this.props.shoe]))
-    //     console.log('no cart')
-    //   } else {
-    //     let localCart = JSON.parse(localStorage.getItem("cart"))
-    //     if (localCart.some(shoe => { shoe.id === this.props.shoe.id})){
-    //       console.log('hit the filter')
-    //       localCart.filter(shoe => {
-    //         if (shoe.id === this.props.shoe.id) {
-    //           shoe.quantity ++
-    //         }
-    //       })
-    //       console.log(localCart)
-    //       localStorage.setItem("cart", JSON.stringify(localCart))
-    //       console.log(localStorage, 'after')
-    //     } else {
-    //       console.log('adding a new shoe', this.props.shoe)
-    //       let newCart = [...localCart, this.props.shoe]
-    //       console.log(localStorage, 'before')
-    //       console.log('new cart', newCart)
-    //       localStorage.setItem("cart", JSON.stringify(newCart))
-    //       console.log(localStorage, 'after')
-    //     }
-    //   }
-    // }
+  handleAddCart(event) {
+    const shoeId = event.target.value
+    this.props.addToCart(shoeId, this.props.userId)
+    toast.success('Added to your cart!', {autoClose: 3000})
   }
 
   handleChange(event) {
@@ -121,6 +92,7 @@ class SingleShoe extends React.Component {
               variant="outline-primary"
               type="submit"
               className="btn"
+              value={shoe.id}
               onClick={this.handleAddCart}
             >
               Add to Cart
