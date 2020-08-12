@@ -90,7 +90,13 @@ const createApp = () => {
   app.use((err, req, res, next) => {
     console.error(err)
     console.error(err.stack)
-    res.status(err.status || 500).send(err.message || 'Internal server error.')
+    if (err.status === 404) {
+      res.sendFile(path.join(__dirname, 'error.html'))
+    } else {
+      res
+        .status(err.status || 500)
+        .send(err.message || 'Internal server error.')
+    }
   })
 }
 
