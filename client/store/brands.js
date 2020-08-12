@@ -2,8 +2,8 @@ import axios from 'axios'
 
 const GET_BRANDS = 'GET_BRANDS'
 const ADD_BRAND = 'ADD_BRAND'
-const UPDATE_BRAND = 'UPDATE_BRAND'
-const DELETE_BRAND = 'DELETE_BRAND'
+// const UPDATE_BRAND = 'UPDATE_BRAND'
+// const DELETE_BRAND = 'DELETE_BRAND'
 
 const initialState = []
 
@@ -19,15 +19,15 @@ const addBrand = brand => ({
   brand
 })
 
-const updateBrand = brand => ({
-  type: UPDATE_BRAND,
-  brand
-})
+// const updateBrand = brand => ({
+//   type: UPDATE_BRAND,
+//   brand
+// })
 
-const deleteBrand = id => ({
-  type: DELETE_BRAND,
-  id
-})
+// const deleteBrand = id => ({
+//   type: DELETE_BRAND,
+//   id
+// })
 
 export const getBrandsThunk = () => {
   return async dispatch => {
@@ -43,6 +43,7 @@ export const getBrandsThunk = () => {
 export const addBrandThunk = brand => {
   return async dispatch => {
     try {
+      console.log('hit add brand thunk')
       const {data} = await axios.post('/api/brands', brand)
       dispatch(addBrand(data))
     } catch (e) {
@@ -51,22 +52,11 @@ export const addBrandThunk = brand => {
   }
 }
 
-export const fetchUpdateBrand = brand => {
-  return async dispatch => {
-    try {
-      const res = await axios.put(`/api/shoes/${brand.id}`, brand)
-      dispatch(updateBrand(res.data))
-    } catch (err) {
-      console.error(err)
-    }
-  }
-}
-
-// export const fetchDeleteBrand = id => {
+// export const fetchUpdateBrand = brand => {
 //   return async dispatch => {
 //     try {
-//       await axios.delete(`/api/brands/${id}`)
-//       dispatch(deleteBrand(id))
+//       const res = await axios.put(`/api/shoes/${brand.id}`, brand)
+//       dispatch(updateBrand(res.data))
 //     } catch (err) {
 //       console.error(err)
 //     }
@@ -79,15 +69,15 @@ export default function(state = initialState, action) {
       return action.brands
     case ADD_BRAND:
       return [...state, action.brand]
-    case UPDATE_BRAND: {
-      let filteredState = state.filter(
-        el => Number(el.id) !== Number(action.brand.id)
-      )
-      return [...filteredState, action.brand]
-    }
-    case DELETE_BRAND: {
-      return state.filter(brand => Number(brand.id) !== Number(action.id))
-    }
+    // case UPDATE_BRAND: {
+    //   let filteredState = state.filter(
+    //     el => Number(el.id) !== Number(action.brand.id)
+    //   )
+    //   return [...filteredState, action.brand]
+    // }
+    // case DELETE_BRAND: {
+    //   return state.filter(brand => Number(brand.id) !== Number(action.id))
+    // }
     default:
       return state
   }

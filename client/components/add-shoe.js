@@ -29,7 +29,6 @@ class AddShoe extends Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    console.log('handle submit', event.target.name)
     this.props.fetchAddShoe(this.state)
     this.setState({
       name: '',

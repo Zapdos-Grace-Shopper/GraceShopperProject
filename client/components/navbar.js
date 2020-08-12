@@ -6,7 +6,7 @@ import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
 import {logout} from '../store'
 // import {getBrandsThunk} from '../store/brands'
 
-const ZapdosNavbar = ({handleClick, isLoggedIn}) => {
+const ZapdosNavbar = ({handleClick, isLoggedIn, isAdmin}) => {
   return (
     <Navbar bg="light" className="nav">
       <Navbar.Brand href="/" className="zapdos-nav">
@@ -32,6 +32,11 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => {
             Profile
           </Nav.Link>
           <Nav.Link href="/cart">My Cart</Nav.Link>
+          {isAdmin && (
+            <Nav.Link href="/admin" className="nav-link">
+              Admin View
+            </Nav.Link>
+          )}
           <Nav.Link href="/" onClick={handleClick}>
             Logout
           </Nav.Link>
@@ -56,7 +61,6 @@ const ZapdosNavbar = ({handleClick, isLoggedIn}) => {
     </Navbar>
   )
 }
-
 
 /**
  * CONTAINER
