@@ -81,16 +81,23 @@ form div {
 .mainPic {
   width: 100%;
 }
+/*
+.box > h4 {
+  text-align: center;
+  margin: auto;
+} */
 
 .cartImage {
   width: 100px;
 }
 
 .singleShoeImg {
+  flex-wrap: wrap;
   width: 100%;
 }
 
 .single-shoe-info {
+  flex-wrap: wrap;
   margin-left: 5em;
   margin-right: 1em;
 }
@@ -310,6 +317,7 @@ form div {
   align-content: space-between;
   flex-flow: row wrap;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .spacer {
@@ -349,4 +357,25 @@ form div {
   display: flex;
   justify-content: center;
   align-self: center;
+}
+
+.cart {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 1 auto;
+}
+
+#keep-shopping {
+  margin-left: 20px;
+  flex-shrink: 1;
+}
+
+#cart-details {
+  align-content: stretch;
+  flex: 1 1 auto;
+  padding: 15px;
+  border-style: dotted;
+  border-color: rgb(245, 185, 166);
 }

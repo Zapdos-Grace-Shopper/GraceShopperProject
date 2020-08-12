@@ -53,9 +53,10 @@ class Cart extends React.Component {
 
     let totalPrice = 0
     return (
-      <div>
+      <div className="cart">
         <h1>Cart</h1>
         <Button
+          id="keep-shopping"
           variant="outline-primary"
           type="submit"
           className="btn"
@@ -64,7 +65,7 @@ class Cart extends React.Component {
           <Link to="/shoes">Keep shopping!</Link>
         </Button>
         {cart && (
-          <div>
+          <div id="cart-details">
             {shoesArr &&
               shoesArr.map(shoe => {
                 totalPrice += Number(shoe.price * shoe.purchased.orderQuantity)

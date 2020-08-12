@@ -23,6 +23,7 @@ export class Homepage extends React.Component {
           />
         </div>
         <div className="box">
+          <h4 id="featured">Featured Shoes</h4>
           {firstThree &&
             firstThree.map(shoe => {
               return (
