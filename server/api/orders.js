@@ -3,7 +3,18 @@ const {Order, Shoe, User, Purchased} = require('../db/models')
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+const areYouAdmin = (req, res, next) => {
+  const currentUser = req.session.user
+  if (currentUser && currentUser.access === 'admin') {
+    next()
+  } else {
+    const error = new Error("You're not an admin so what's the tea?")
+    error.status = 666
+    next(error)
+  }
+}
+
+router.get('/', areYouAdmin, async (req, res, next) => {
   try {
     const orders = await Order.findAll({
       include: [
@@ -25,7 +36,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:orderId', async (req, res, next) => {
+router.get('/:orderId', areYouAdmin, async (req, res, next) => {
   try {
     const orderId = req.params.orderId
     const orderById = await Order.findByPk(orderId, {

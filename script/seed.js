@@ -110,6 +110,8 @@ const seed = async () => {
     const shoe7 = await Shoe.create({
       name: 'Myriotrema Lichen',
       price: 629,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1584520203/624409_DKT00_7100_001_086_0000_Light-Womens-espadrille-sandal-with-Double-G.jpg',
       size: 10,
       description:
         'eget rutrum at lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo',
@@ -123,7 +125,9 @@ const seed = async () => {
       description:
         'ante nulla justo aliquam quis turpis eget elit sodales scelerisque mauris sit amet eros suspendisse accumsan tortor quis turpis sed ante vivamus tortor duis mattis egestas metus aenean fermentum donec ut mauris eget massa tempor convallis nulla neque libero convallis eget eleifend luctus ultricies eu nibh quisque id',
       inventory: 4,
-      brandId: 2
+      brandId: 2,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1583864104/626723_C9D00_9050_001_100_0000_Light-Womens-pump-with-Horsebit.jpg'
     })
     const shoe9 = await Shoe.create({
       name: 'Scentless Bayberry',
@@ -132,7 +136,9 @@ const seed = async () => {
       description:
         'vestibulum eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna',
       inventory: 5,
-      brandId: 2
+      brandId: 2,
+      imageURL:
+        'https://media.gucci.com/style/White_South_0_160_470x470/1584519303/626723_C9D00_1000_002_100_0000_Light.jpg'
     })
     const shoe10 = await Shoe.create({
       name: 'Gundlachia',
@@ -141,7 +147,9 @@ const seed = async () => {
       description:
         'cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium nisl ut',
       inventory: 3,
-      brandId: 2
+      brandId: 2,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1572975905/573028_BKO00_1000_001_097_0000_Light-Leather-espadrille-sandal.jpg'
     })
     const shoe11 = await Shoe.create({
       name: 'Fivespot',
@@ -150,7 +158,9 @@ const seed = async () => {
       description:
         'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis',
       inventory: 5,
-      brandId: 2
+      brandId: 2,
+      imageURL:
+        'https://media.gucci.com/style/White_South_0_160_470x470/1574874905/621240_HVK60_9764_002_090_0000_Light.jpg'
     })
     const shoe12 = await Shoe.create({
       name: 'Mouse-ear Chickweed',
@@ -159,7 +169,9 @@ const seed = async () => {
       description:
         'eget vulputate ut ultrices vel augue vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae donec pharetra magna vestibulum aliquet ultrices erat tortor sollicitudin mi sit amet lobortis sapien sapien non mi integer ac neque duis bibendum morbi non quam nec dui luctus',
       inventory: 4,
-      brandId: 2
+      brandId: 2,
+      imageURL:
+        'https://media.gucci.com/style/White_South_0_160_470x470/1584558004/624318_BTMO0_1000_002_097_0000_Light.jpg'
     })
     const shoe13 = await Shoe.create({
       name: 'Astrothelium Lichen',
@@ -168,7 +180,9 @@ const seed = async () => {
       description:
         'amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices phasellus id sapien in sapien iaculis congue vivamus metus arcu adipiscing molestie hendrerit at vulputate vitae nisl aenean lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat',
       inventory: 1,
-      brandId: 3
+      brandId: 3,
+      imageURL:
+        'https://www.manoloblahnik.com/media/catalog/product/cache/bf4c5135671d858c1cede7368fe00ac9/9/0/904bc7e497b54908fe2f2bf34eeb7e9e456feec5_2019_10_309xx_0053_0002_caucedobridal90satinwhite_53.jpg'
     })
     const shoe14 = await Shoe.create({
       name: 'Appalachian Rim Lichen',
@@ -177,7 +191,9 @@ const seed = async () => {
       description:
         'lectus pellentesque eget nunc donec quis orci eget orci vehicula condimentum curabitur in libero ut massa volutpat convallis morbi odio odio elementum eu interdum eu tincidunt in leo maecenas pulvinar lobortis est phasellus sit amet erat nulla tempus vivamus in felis eu sapien cursus vestibulum proin eu mi',
       inventory: 4,
-      brandId: 3
+      brandId: 3,
+      imageURL:
+        'https://www.manoloblahnik.com/media/catalog/product/cache/bf4c5135671d858c1cede7368fe00ac9/a/8/a889832720810cff2e9102efc3a5fddf8a53bf75_2019_06_24319_0995_0011_hangisi70velvetbblu_53.jpg'
     })
     const shoe15 = await Shoe.create({
       name: 'Broadsepal Saxifrage',
@@ -186,7 +202,9 @@ const seed = async () => {
       description:
         'sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis diam erat fermentum justo nec condimentum neque sapien placerat ante nulla justo aliquam quis turpis',
       inventory: 4,
-      brandId: 3
+      brandId: 3,
+      imageURL:
+        'https://www.manoloblahnik.com/media/catalog/product/cache/bf4c5135671d858c1cede7368fe00ac9/8/0/807f76eb19c31c718aaca1f09adc03066b3d29b0_2018_09_279xx_0367_0031_nadira090satinnude024_53.jpg'
     })
     const shoe16 = await Shoe.create({
       name: 'Slender Woodland Sedge',
@@ -195,7 +213,9 @@ const seed = async () => {
       description:
         'lectus aliquam sit amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet',
       inventory: 4,
-      brandId: 3
+      brandId: 3,
+      imageURL:
+        'https://www.manoloblahnik.com/media/catalog/product/cache/bf4c5135671d858c1cede7368fe00ac9/c/8/c84833c7d83b500aa9a4f47cf7666481b2468174_2019_10_30118_0115_0001_maysalebridal50crepewhite_53.jpg'
     })
     const shoe17 = await Shoe.create({
       name: 'Puerto Rico Palo De Gallina',
@@ -204,7 +224,9 @@ const seed = async () => {
       description:
         'volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia',
       inventory: 1,
-      brandId: 3
+      brandId: 3,
+      imageURL:
+        'https://www.manoloblahnik.com/media/catalog/product/cache/bf4c5135671d858c1cede7368fe00ac9/1/1/112aa862b375be9ce7269fdb3798ff97c9fa5a33_2019_11_18419_0479_0005_gable70suededred_53.jpg'
     })
     const shoe18 = await Shoe.create({
       name: 'Grimmia Dry Rock Moss',
@@ -213,7 +235,9 @@ const seed = async () => {
       description:
         'lacinia sapien quis libero nullam sit amet turpis elementum ligula vehicula consequat morbi a ipsum integer a nibh in quis justo maecenas rhoncus aliquam lacus morbi quis tortor id nulla ultrices aliquet maecenas leo odio',
       inventory: 1,
-      brandId: 3
+      brandId: 3,
+      imageURL:
+        'https://www.manoloblahnik.com/media/catalog/product/cache/bf4c5135671d858c1cede7368fe00ac9/b/b/bbbef86cb049b65892d8ceb05d6dd9a58f268cb3_2019_10_08218_0069_0008_turgimod50snakenavy_53.jpg'
     })
     const shoe19 = await Shoe.create({
       name: 'Woolly Paperflower',
@@ -222,7 +246,9 @@ const seed = async () => {
       description:
         'justo pellentesque viverra pede ac diam cras pellentesque volutpat dui maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti',
       inventory: 4,
-      brandId: 3
+      brandId: 3,
+      imageURL:
+        'https://www.manoloblahnik.com/media/catalog/product/cache/bf4c5135671d858c1cede7368fe00ac9/c/a/cabc3ad22a7de289039fdbc4de0119166c7a88b7_2019_06_27319_1099_0001_callasli90nappablck_53.jpg'
     })
     const shoe20 = await Shoe.create({
       name: 'Slender Spikerush',
@@ -231,7 +257,9 @@ const seed = async () => {
       description:
         'id nisl venenatis lacinia aenean sit amet justo morbi ut odio cras mi pede malesuada in imperdiet et commodo vulputate justo in blandit ultrices enim lorem ipsum dolor sit amet consectetuer adipiscing elit proin interdum mauris non ligula pellentesque ultrices',
       inventory: 5,
-      brandId: 4
+      brandId: 4,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1574874906/623146_2AW20_1091_001_090_0000_Light-Womens-Heritage-GG-lam-platform-espadrille.jpg'
     })
     const shoe21 = await Shoe.create({
       name: 'Hairy Butterwort',
@@ -240,7 +268,9 @@ const seed = async () => {
       description:
         'sit amet eleifend pede libero quis orci nullam molestie nibh in lectus pellentesque at nulla suspendisse potenti cras in purus',
       inventory: 2,
-      brandId: 4
+      brandId: 4,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1567009802/596860_C9D00_1000_001_093_0000_Light-Gucci-Zumi-mid-heel-leather-pump.jpg'
     })
     const shoe22 = await Shoe.create({
       name: 'Heavy Sedge',
@@ -249,7 +279,9 @@ const seed = async () => {
       description:
         'lorem integer tincidunt ante vel ipsum praesent blandit lacinia erat vestibulum sed magna at nunc commodo placerat praesent blandit nam nulla integer pede justo lacinia eget tincidunt eget tempus vel pede morbi porttitor lorem id ligula suspendisse ornare consequat lectus',
       inventory: 4,
-      brandId: 4
+      brandId: 4,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1569339006/602415_C9D00_1000_001_092_0000_Light-Gucci-Zumi-leather-slide-sandal.jpg'
     })
     const shoe23 = await Shoe.create({
       name: "Springfield's Beardgrass",
@@ -258,7 +290,9 @@ const seed = async () => {
       description:
         'donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit amet cursus id turpis integer aliquet massa id lobortis convallis tortor risus',
       inventory: 4,
-      brandId: 4
+      brandId: 4,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1569954604/602412_C9D00_9050_001_084_0000_Light-Gucci-Zumi-leather-mid-heel-slide-sandal.jpg'
     })
     const shoe24 = await Shoe.create({
       name: 'Alyssumleaf Phlox',
@@ -267,7 +301,9 @@ const seed = async () => {
       description:
         'amet sapien dignissim vestibulum vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae nulla dapibus dolor vel est donec odio justo sollicitudin ut suscipit a feugiat et eros vestibulum ac est lacinia nisi venenatis tristique fusce congue diam id ornare imperdiet sapien urna pretium',
       inventory: 5,
-      brandId: 4
+      brandId: 4,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1580829303/616621_1T410_3154_001_095_0000_Light-Womens-mid-heel-pump-with-Horsebit-chain.jpg'
     })
     const shoe25 = await Shoe.create({
       name: 'American Tarwort',
@@ -276,7 +312,9 @@ const seed = async () => {
       description:
         'ut massa quis augue luctus tincidunt nulla mollis molestie lorem quisque ut erat curabitur gravida nisi at nibh in hac habitasse platea dictumst aliquam augue quam sollicitudin vitae consectetuer eget rutrum at lorem integer',
       inventory: 2,
-      brandId: 4
+      brandId: 4,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1567613710/602419_B8B20_8162_001_092_0000_Light-Metallic-leather-platform-sandal.jpg'
     })
     const shoe26 = await Shoe.create({
       name: 'Soapberry',
@@ -285,7 +323,9 @@ const seed = async () => {
       description:
         'maecenas tristique est et tempus semper est quam pharetra magna ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse',
       inventory: 5,
-      brandId: 5
+      brandId: 5,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1583431204/626718_BKO00_1000_001_093_0000_Light-Womens-heeled-sandal.jpg'
     })
     const shoe27 = await Shoe.create({
       name: 'Asian White Birch',
@@ -294,7 +334,9 @@ const seed = async () => {
       description:
         'nisl duis bibendum felis sed interdum venenatis turpis enim blandit mi in porttitor pede justo eu massa donec dapibus duis at velit eu est congue elementum in hac habitasse platea dictumst morbi vestibulum velit id pretium iaculis',
       inventory: 1,
-      brandId: 5
+      brandId: 5,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1580829305/617959_CLG00_1000_001_090_0000_Light-Womens-leather-sandal-with-Horsebit-chain.jpg'
     })
     const shoe28 = await Shoe.create({
       name: 'Manilkara',
@@ -303,7 +345,9 @@ const seed = async () => {
       description:
         'convallis duis consequat dui nec nisi volutpat eleifend donec ut dolor morbi vel lectus in quam fringilla rhoncus mauris enim leo rhoncus sed vestibulum sit',
       inventory: 5,
-      brandId: 5
+      brandId: 5,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1591176604/626599_DH780_1000_001_100_0000_Light-Womens-thong-sandal-with-chain.jpg'
     })
     const shoe29 = await Shoe.create({
       name: 'Polytrichum Moss',
@@ -312,7 +356,9 @@ const seed = async () => {
       description:
         'potenti cras in purus eu magna vulputate luctus cum sociis natoque penatibus et magnis dis parturient montes nascetur ridiculus mus vivamus vestibulum sagittis sapien cum sociis natoque penatibus et magnis dis',
       inventory: 3,
-      brandId: 5
+      brandId: 5,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1589145304/624731_J8700_5909_001_094_0000_Light-Womens-rubber-slide-sandal.jpg'
     })
     const shoe30 = await Shoe.create({
       name: 'Eggplant',
@@ -321,7 +367,9 @@ const seed = async () => {
       description:
         'ac consequat metus sapien ut nunc vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae mauris viverra diam vitae quam suspendisse potenti nullam porttitor lacus',
       inventory: 2,
-      brandId: 5
+      brandId: 5,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1583953203/624730_J8700_7412_001_092_0000_Light-Womens-rubber-slide-sandal.jpg'
     })
     const shoe31 = await Shoe.create({
       name: 'Navelwort',
@@ -330,7 +378,9 @@ const seed = async () => {
       description:
         'amet diam in magna bibendum imperdiet nullam orci pede venenatis non sodales sed tincidunt eu felis fusce posuere felis sed lacus morbi sem mauris laoreet ut rhoncus aliquet pulvinar sed nisl nunc rhoncus dui vel sem sed sagittis nam congue risus semper porta volutpat',
       inventory: 4,
-      brandId: 5
+      brandId: 5,
+      imageURL:
+        'https://media.gucci.com/style/DarkGray_South_0_160_470x470/1575047705/621161_1RH00_1000_001_100_0000_Light-Womens-leather-ballet-flat-with-Horsebit.jpg'
     })
 
     const user1 = await User.create({
