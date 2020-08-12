@@ -6,7 +6,7 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
-
+const UPDATE_USER = 'UPDATE_USER'
 /**
  * INITIAL STATE
  */
@@ -16,6 +16,7 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+const updateUser = user => ({type: UPDATE_USER, user})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -74,12 +75,32 @@ export const logout = () => async dispatch => {
   }
 }
 
+export const updateAuthUserThunk = user => {
+  return async dispatch => {
+    try {
+      const {firstname, lastname, email, shoeSize} = user
+      const res = await axios.put(`/api/users/${user.id}`, {
+        firstname,
+        lastname,
+        email,
+        shoeSize
+      })
+      dispatch(updateUser(res.data))
+      console.log(history)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+}
+
 /**
  * REDUCER
  */
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
+      return action.user
+    case UPDATE_USER:
       return action.user
     case REMOVE_USER:
       return defaultUser
