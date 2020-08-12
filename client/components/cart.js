@@ -7,8 +7,6 @@ import {
 } from '../store/orders'
 import {Link} from 'react-router-dom'
 import {Button} from 'react-bootstrap'
-import {QuantityButton} from './cart-quantity-button'
-import Checkout from './checkout'
 
 class Cart extends React.Component {
   constructor(props) {
@@ -69,7 +67,7 @@ class Cart extends React.Component {
           <div>
             {shoesArr &&
               shoesArr.map(shoe => {
-                totalPrice += shoe.price
+                totalPrice += Number(shoe.price * shoe.purchased.orderQuantity)
                 return (
                   <div key={shoe.id}>
                     <img className="cartImage" src={`${shoe.imageURL}`} />
