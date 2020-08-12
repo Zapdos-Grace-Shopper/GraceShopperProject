@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState, Fragment} from 'react'
 import {Button, Modal} from 'react-bootstrap'
 import UpdateShoe from './update-shoe'
-import UpdateBrand from './update-brand'
+// import UpdateBrand from './update-brand'
+import UpdateUser from './update-user'
 
 const Card = props => {
   const [showModal, setShowModal] = useState(false)
@@ -18,8 +19,8 @@ const Card = props => {
       <div className="admin-card-content-div">
         <h5>{props.head}</h5>
         <p>{props.sub}</p>
-        {props.name !== 'order' &&
-          props.name !== 'brand' && (
+        {(props.name === 'shoe' || props.name === 'user') && (
+          <Fragment>
             <Button
               variant="outline-primary"
               className="btn"
@@ -29,17 +30,16 @@ const Card = props => {
             >
               Delete
             </Button>
-          )}
-        {props.name !== 'order' && (
-          <Button
-            variant="outline-primary"
-            className="btn"
-            name={props.name}
-            value={props.id}
-            onClick={() => setShowModal(true)}
-          >
-            Update
-          </Button>
+            <Button
+              variant="outline-primary"
+              className="btn"
+              name={props.name}
+              value={props.id}
+              onClick={() => setShowModal(true)}
+            >
+              Update
+            </Button>
+          </Fragment>
         )}
       </div>
       <Modal
@@ -55,7 +55,7 @@ const Card = props => {
         </Modal.Header>
         <Modal.Body>
           {props.shoe && <UpdateShoe shoe={props.shoe} brands={props.brands} />}
-          {props.brand && <UpdateBrand brand={props.brand} />}
+          {props.user && <UpdateUser user={props.user} />}
         </Modal.Body>
       </Modal>
     </div>

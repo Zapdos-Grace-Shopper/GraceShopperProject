@@ -7,7 +7,6 @@ import history from '../history'
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
 const UPDATE_USER = 'UPDATE_USER'
-
 /**
  * INITIAL STATE
  */
@@ -17,8 +16,9 @@ const defaultUser = {}
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
-const removeUser = () => ({type: REMOVE_USER})
 const updateUser = user => ({type: UPDATE_USER, user})
+const removeUser = () => ({type: REMOVE_USER})
+
 /**
  * THUNK CREATORS
  */
@@ -75,8 +75,7 @@ export const logout = () => async dispatch => {
   }
 }
 
-export const updateUserThunk = user => {
-  console.log('I hit the update thunk')
+export const updateAuthUserThunk = user => {
   return async dispatch => {
     try {
       const {firstname, lastname, email, shoeSize} = user
@@ -87,6 +86,7 @@ export const updateUserThunk = user => {
         shoeSize
       })
       dispatch(updateUser(res.data))
+      console.log(history)
     } catch (e) {
       console.log(e)
     }
@@ -99,12 +99,10 @@ export const updateUserThunk = user => {
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
-      console.log(state)
       return action.user
     case UPDATE_USER:
       return action.user
     case REMOVE_USER:
-      console.log(state)
       return defaultUser
     default:
       return state

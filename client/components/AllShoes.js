@@ -1,25 +1,15 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-import {fetchShoes, fetchDeleteShoe} from '../store/shoes'
+import {fetchShoes} from '../store/shoes'
 import {postUserCart} from '../store/orders'
-import {Button} from 'react-bootstrap'
 import {toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 toast.configure()
 
 class AllShoes extends React.Component {
-  constructor() {
-    super()
-    this.handleAddCart = this.handleAddCart.bind(this)
-  }
   componentDidMount() {
     this.props.getAllShoes()
-  }
-
-  handleAddCart(shoeId) {
-    this.props.addToCart(shoeId, this.props.userId)
-    toast.success('Added to your cart!', {autoClose: 3000})
   }
 
   render() {
@@ -38,16 +28,6 @@ class AllShoes extends React.Component {
                   <p>{shoe.name}</p>
                 </Link>
                 <p>${(shoe.price / 100).toFixed(2)}</p>
-                <div>
-                  <Button
-                    variant="outline-primary"
-                    type="submit"
-                    className="btn"
-                    onClick={() => this.handleAddCart(shoe.id)}
-                  >
-                    Add to Cart
-                  </Button>
-                </div>
               </div>
             ))}
         </div>

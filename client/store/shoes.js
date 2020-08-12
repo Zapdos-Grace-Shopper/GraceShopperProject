@@ -44,7 +44,24 @@ export const fetchAddShoe = newShoe => {
   console.log('I hit the thunk')
   return async dispatch => {
     try {
-      const addNewShoe = await axios.post(`/api/shoes`, newShoe)
+      const {
+        name,
+        brand,
+        imageURL,
+        price,
+        description,
+        quantity,
+        size
+      } = newShoe
+      const addNewShoe = await axios.post(`/api/shoes`, {
+        name,
+        brand,
+        imageURL: imageURL === '' ? undefined : imageURL,
+        price,
+        description,
+        quantity,
+        size
+      })
       dispatch(addShoe(addNewShoe.data))
     } catch (err) {
       console.error(err)
@@ -86,7 +103,7 @@ export default (state = initialState, action) => {
       let filteredState = state.filter(
         el => Number(el.id) !== Number(action.shoe.id)
       )
-      return [...filteredState, action.shoe]
+      return [action.shoe, ...filteredState]
     }
     case DELETE_SHOE: {
       return state.filter(shoe => Number(shoe.id) !== Number(action.id))

@@ -1,11 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {getOrdersThunk} from '../store/orders'
+import {getUserOrdersThunk} from '../store/orders'
 
 class Orders extends React.Component {
   componentDidMount() {
     try {
-      this.props.fetchOrders()
+      this.props.getUserOrders(this.props.id)
     } catch (error) {
       console.log(error)
     }
@@ -13,7 +13,7 @@ class Orders extends React.Component {
   render() {
     const {orders} = this.props
     return (
-      <div key={orders.user}>
+      <div>
         <h2 style={{textDecoration: 'double underline black'}}>Past Orders</h2>
         {orders.length
           ? orders.map(order => {
@@ -64,9 +64,10 @@ const mapState = state => {
     orders: state.orders.orders
   }
 }
+
 const mapDispatch = dispatch => {
   return {
-    fetchOrders: () => dispatch(getOrdersThunk())
+    getUserOrders: userId => dispatch(getUserOrdersThunk(userId))
   }
 }
 

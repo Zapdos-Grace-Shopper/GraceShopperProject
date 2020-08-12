@@ -1,8 +1,9 @@
 import axios from 'axios'
-
+import history from '../history'
 //ACTION TYPES
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const GET_SINGLE_USER = 'GET_SINGLE_USER'
+const UPDATE_USER = 'UPDATE_USER'
 const DELETE_USER = 'DELETE_USER'
 
 //ACTION CREATORS
@@ -15,6 +16,8 @@ const getSingleUser = user => ({
   type: GET_SINGLE_USER,
   user
 })
+
+const updateUser = user => ({type: UPDATE_USER, user})
 
 const deleteUser = userId => ({
   type: DELETE_USER,
@@ -52,6 +55,24 @@ export const fetchSingleUser = id => {
   }
 }
 
+export const updateUserThunk = user => {
+  return async dispatch => {
+    try {
+      const {firstname, lastname, email, shoeSize} = user
+      const res = await axios.put(`/api/users/${user.id}`, {
+        firstname,
+        lastname,
+        email,
+        shoeSize
+      })
+      dispatch(updateUser(res.data))
+      console.log(history)
+    } catch (e) {
+      console.log(e)
+    }
+  }
+}
+
 export const deleteUserThunk = userId => {
   return async dispatch => {
     try {
@@ -70,6 +91,12 @@ export default function(state = initialState, action) {
       return {...state, users: action.users}
     case GET_SINGLE_USER:
       return {...state, selectedUser: action.user}
+    case UPDATE_USER: {
+      const filteredUsers = state.users.filter(
+        el => Number(el.id) !== Number(action.user.id)
+      )
+      return {...state, users: [action.user, ...filteredUsers]}
+    }
     case DELETE_USER:
       return {
         ...state,
