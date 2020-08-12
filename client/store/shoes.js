@@ -44,7 +44,24 @@ export const fetchAddShoe = newShoe => {
   console.log('I hit the thunk')
   return async dispatch => {
     try {
-      const addNewShoe = await axios.post(`/api/shoes`, newShoe)
+      const {
+        name,
+        brand,
+        imageURL,
+        price,
+        description,
+        quantity,
+        size
+      } = newShoe
+      const addNewShoe = await axios.post(`/api/shoes`, {
+        name,
+        brand,
+        imageURL: imageURL === '' ? undefined : imageURL,
+        price,
+        description,
+        quantity,
+        size
+      })
       dispatch(addShoe(addNewShoe.data))
     } catch (err) {
       console.error(err)

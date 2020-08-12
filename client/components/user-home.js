@@ -1,11 +1,11 @@
-import React, {Component, Fragment} from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {Link} from 'react-router-dom'
 import Orders from './orders'
 import UserForm from './user-form'
 import {Button} from 'react-bootstrap'
 import {updateUserThunk} from '../store/user'
+import {getUserOrdersThunk} from '../store/orders'
 /**
  * COMPONENT
  */
@@ -89,7 +89,7 @@ class UserHome extends Component {
           <img src={user.imageURL} />
         </div>
         <div className="profile-right">
-          <Orders id={user.id} access={user.access} />
+          <Orders id={user.id} />
         </div>
       </div>
     )
@@ -101,7 +101,8 @@ class UserHome extends Component {
  */
 const mapState = state => {
   return {
-    authUser: state.auth
+    authUser: state.auth,
+    orders: state.orders.orders
   }
 }
 

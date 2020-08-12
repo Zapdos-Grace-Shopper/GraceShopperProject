@@ -1,19 +1,9 @@
 const router = require('express').Router()
 const {Brand} = require('../db/models')
 const {Shoe} = require('../db/models')
+const areYouAdmin = require('./utils')
 
 module.exports = router
-
-const areYouAdmin = (req, res, next) => {
-  const currentUser = req.user
-  if (currentUser && currentUser.access === 'admin') {
-    next()
-  } else {
-    const error = new Error("You're not an admin so what's the tea?")
-    error.status = 666
-    next(error)
-  }
-}
 
 router.get('/', async (req, res, next) => {
   try {
@@ -51,7 +41,7 @@ router.post('/', areYouAdmin, async (req, res, next) => {
   }
 })
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:id', areYouAdmin, async (req, res, next) => {
   try {
     await Brand.destroy({
       where: {

@@ -14,7 +14,7 @@ const Shoe = db.define('shoe', {
     type: Sequelize.STRING,
     defaultValue:
       'https://static2.bigstockphoto.com/5/3/3/large2/335667787.jpg',
-    allowNull: true
+    allowNull: false
   },
   price: {
     type: Sequelize.INTEGER,

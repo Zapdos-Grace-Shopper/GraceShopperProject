@@ -1,18 +1,8 @@
 const router = require('express').Router()
 const {Order, Shoe, User} = require('../db/models')
+const areYouAdmin = require('./utils')
 
 module.exports = router
-
-const areYouAdmin = (req, res, next) => {
-  const currentUser = req.session.user
-  if (currentUser && currentUser.access === 'admin') {
-    next()
-  } else {
-    const error = new Error("You're not an admin so what's the tea?")
-    error.status = 666
-    next(error)
-  }
-}
 
 router.get('/', areYouAdmin, async (req, res, next) => {
   try {
@@ -21,16 +11,11 @@ router.get('/', areYouAdmin, async (req, res, next) => {
         {model: Shoe, attributes: ['name', 'price']},
         {
           model: User,
-          where: {
-            id: req.user.id
-          },
           attributes: ['firstname', 'lastname', 'email']
         }
       ]
     })
-    if (req.user.id === orders[0].userId) {
-      res.json(orders)
-    }
+    res.json(orders)
   } catch (err) {
     next(err)
   }
@@ -43,6 +28,22 @@ router.get('/:orderId', areYouAdmin, async (req, res, next) => {
       include: [{model: Shoe, attributes: ['name', 'price']}]
     })
     res.json(orderById)
+  } catch (err) {
+    next(err)
+  }
+})
+
+router.get('/user/:id', async (req, res, next) => {
+  try {
+    if (req.user && Number(req.user.id) === Number(req.params.id)) {
+      const orders = await Order.findAll({
+        where: {
+          userId: req.params.id
+        },
+        include: [{model: Shoe, attributes: ['name', 'price']}, {model: User}]
+      })
+      res.json(orders)
+    }
   } catch (err) {
     next(err)
   }

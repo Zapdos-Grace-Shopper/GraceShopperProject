@@ -18,6 +18,7 @@ export const getOrders = orders => {
     orders
   }
 }
+
 export const addToCart = cart => {
   return {
     type: ADD_TO_CART,
@@ -68,6 +69,17 @@ export const getOrdersThunk = () => {
       dispatch(getOrders(data))
     } catch (error) {
       console.error(error)
+    }
+  }
+}
+
+export const getUserOrdersThunk = userId => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/orders/user/${userId}`)
+      dispatch(getOrders(data))
+    } catch (e) {
+      console.log(e)
     }
   }
 }

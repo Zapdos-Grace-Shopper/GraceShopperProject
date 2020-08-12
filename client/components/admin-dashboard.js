@@ -138,7 +138,7 @@ class AdminDashboard extends Component {
                 id={order.id}
                 name="order"
                 head={order.status}
-                sub={order.userId}
+                sub={new Date(order.updatedAt).toLocaleDateString()}
               />
             ))}
           </div>
