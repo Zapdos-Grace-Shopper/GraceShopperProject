@@ -88,12 +88,34 @@ form div {
 } */
 
 .cartImage {
-  width: 100px;
+  width: 250px;
+}
+.cart {
+  margin: 50px;
+}
+.cart-container {
+  width: 230px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.cart-container div {
+  border: 1px;
+  padding: 5px;
+}
+
+.cart-box {
+  display: flex;
+  justify-content: space-between;
+}
+.cart-box div {
+  flex: 1;
 }
 
 .singleShoeImg {
-  flex-wrap: wrap;
-  width: 100%;
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
 }
 
 .single-shoe-info {
@@ -224,6 +246,7 @@ form div {
   color: rgb(143, 10, 27);
   border: 1px solid rgb(143, 10, 27);
   max-width: 10vw;
+  /* height: 5em; */
   background-color: white;
   margin: 1px;
 }
