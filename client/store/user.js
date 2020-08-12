@@ -1,5 +1,5 @@
 import axios from 'axios'
-
+import history from '../history'
 //ACTION TYPES
 const GET_ALL_USERS = 'GET_ALL_USERS'
 const GET_SINGLE_USER = 'GET_SINGLE_USER'
@@ -56,11 +56,9 @@ export const fetchSingleUser = id => {
 }
 
 export const updateUserThunk = user => {
-  console.log('I hit the update thunk')
   return async dispatch => {
     try {
       const {firstname, lastname, email, shoeSize} = user
-      console.log('user', user)
       const res = await axios.put(`/api/users/${user.id}`, {
         firstname,
         lastname,
@@ -68,6 +66,7 @@ export const updateUserThunk = user => {
         shoeSize
       })
       dispatch(updateUser(res.data))
+      console.log(history)
     } catch (e) {
       console.log(e)
     }

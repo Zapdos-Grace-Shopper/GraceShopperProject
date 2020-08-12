@@ -4,8 +4,7 @@ import {connect} from 'react-redux'
 import Orders from './orders'
 import UserForm from './user-form'
 import {Button} from 'react-bootstrap'
-import {updateUserThunk} from '../store/user'
-import {getUserOrdersThunk} from '../store/orders'
+import {updateAuthUserThunk} from '../store/auth'
 /**
  * COMPONENT
  */
@@ -107,7 +106,7 @@ const mapState = state => {
 }
 
 const mapDispatch = dispatch => ({
-  updateUser: user => dispatch(updateUserThunk(user))
+  updateUser: user => dispatch(updateAuthUserThunk(user))
 })
 
 export default connect(mapState, mapDispatch)(UserHome)
