@@ -53,89 +53,95 @@ class Cart extends React.Component {
 
     let totalPrice = 0
     return (
-      <div>
+      <div className="cart">
         <h1>Cart</h1>
-        <Button
-          variant="outline-primary"
-          type="submit"
-          className="btn"
-          onClick={this.handleAddCart}
-        >
-          <Link to="/shoes">Keep shopping!</Link>
-        </Button>
-        {cart && (
-          <div>
-            {shoesArr &&
-              shoesArr.map(shoe => {
-                totalPrice += Number(shoe.price * shoe.purchased.orderQuantity)
-                return (
-                  <div key={shoe.id}>
-                    <img className="cartImage" src={`${shoe.imageURL}`} />
-                    <Link to={`/shoes/${shoe.id}`}>
-                      <p>{shoe.name}</p>
-                    </Link>
-                    <div key={shoe.size}>size: {shoe.size}</div>
-                    <div key={shoe.price}>
-                      price: ${(shoe.price / 100).toFixed(2)}
-                    </div>
-                    <div>
-                      OrderQuantity in Purchased Table:{' '}
-                      {shoe.purchased.orderQuantity}
-                    </div>
-                    {/* <div>
+        <div>
+          <Button
+            variant="outline-primary"
+            type="submit"
+            className="btn"
+            onClick={this.handleAddCart}
+          >
+            <Link to="/shoes">Keep shopping!</Link>
+          </Button>
+        </div>
+        <div className="cart-container">
+          {cart && (
+            <div>
+              {shoesArr &&
+                shoesArr.map(shoe => {
+                  totalPrice += Number(
+                    shoe.price * shoe.purchased.orderQuantity
+                  )
+                  return (
+                    <div key={shoe.id} className="cart-box">
+                      <img className="cartImage" src={`${shoe.imageURL}`} />
+                      <Link to={`/shoes/${shoe.id}`}>
+                        <p>{shoe.name}</p>
+                      </Link>
+                      <div key={shoe.size}>size: {shoe.size}</div>
+                      <div key={shoe.price}>
+                        price: ${(shoe.price / 100).toFixed(2)}
+                      </div>
+                      <div>
+                        OrderQuantity in Purchased Table:{' '}
+                        {shoe.purchased.orderQuantity}
+                      </div>
+                      {/* <div>
                       <QuantityButton inventory={shoe.inventory} />
                     </div> */}
-                    <Button
-                      variant="outline-primary"
-                      type="submit"
-                      className="btn"
-                      onClick={() =>
-                        this.props.deleteShoeCart(this.props.userId, shoe.id)
-                      }
-                    >
-                      Remove from Cart
-                    </Button>
-                    <Button
-                      variant="outline-primary"
-                      type="submit"
-                      className="btn"
-                      name={shoe.id}
-                      value={
-                        Number(shoe.inventory) -
-                        Number(shoe.purchased.orderQuantity)
-                      }
-                      onClick={this.handleAddClick}
-                    >
-                      Add
-                    </Button>
-                    <Button
-                      variant="outline-primary"
-                      type="submit"
-                      className="btn"
-                      name={shoe.id}
-                      value={Number(shoe.purchased.orderQuantity)}
-                      onClick={this.handleSubtractClick}
-                    >
-                      Subtract
-                    </Button>
-                  </div>
-                )
-              })}
-            <h5>Cart total: ${(totalPrice / 100).toFixed(2)}</h5>
-            {cart.id && (
-              <Button
-                variant="outline-primary"
-                type="submit"
-                className="btn"
-                // onClick={() =>
-                //   this.props.updateQuantity(this.props.userId, quantArr)
-                // }
-              >
-                <Link to="/checkout">Checkout</Link>
-              </Button>
-            )}
-          </div>
-        )}
+                      <Button
+                        variant="outline-primary"
+                        type="submit"
+                        className="btn"
+                        onClick={() =>
+                          this.props.deleteShoeCart(this.props.userId, shoe.id)
+                        }
+                      >
+                        Remove from Cart
+                      </Button>
+                      <Button
+                        variant="outline-primary"
+                        type="submit"
+                        className="btn"
+                        name={shoe.id}
+                        value={
+                          Number(shoe.inventory) -
+                          Number(shoe.purchased.orderQuantity)
+                        }
+                        onClick={this.handleAddClick}
+                      >
+                        Add
+                      </Button>
+                      <Button
+                        variant="outline-primary"
+                        type="submit"
+                        className="btn"
+                        name={shoe.id}
+                        value={Number(shoe.purchased.orderQuantity)}
+                        onClick={this.handleSubtractClick}
+                      >
+                        Subtract
+                      </Button>
+                    </div>
+                  )
+                })}
+              <h5>Cart total: ${(totalPrice / 100).toFixed(2)}</h5>
+              {cart.id && (
+                <Button
+                  variant="outline-primary"
+                  type="submit"
+                  className="btn"
+                  // onClick={() =>
+                  //   this.props.updateQuantity(this.props.userId, quantArr)
+                  // }
+                >
+                  <Link to="/checkout">Checkout</Link>
+                </Button>
+              )}
+            </div>
+          )}
+        </div>
         {!cart.id && <div>your cart is currently empty</div>}
       </div>
     )
