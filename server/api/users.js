@@ -223,3 +223,39 @@ router.put('/:id/cart/checkout/complete', async (req, res, next) => {
     next(err)
   }
 })
+
+//update quantity of a single shoe instead of mapping through an array to find the single shoe?
+router.put('/:id/cart/checkout/complete', async (req, res, next) => {
+  try {
+    const userId = req.params.id
+    const [, [updatedShoe]] = await Shoe.update(req.body, {
+      returning: true,
+      where: {id: id}
+    })
+  } catch (err) {
+    next(err)
+  }
+})
+
+/*
+router.put('/articles/:id', async (req, res, next) => {
+  try{
+    const id = req.params.id;
+    //const {title} = req.body;
+    const [,[updated]] = await Article.update(req.body, {returning: true, where: {id: id}})
+
+    if(!updated){
+      res.status(500).send("What is this!")
+    }
+    else{
+      res.json({
+        message: 'Updated successfully',
+        article: updated
+      })
+    }
+  }
+  catch(error){
+    next(error)
+  }
+}
+*/

@@ -55,6 +55,35 @@ class Cart extends React.Component {
     return (
       <div className="cart">
         <h1>Cart</h1>
+        <Button
+          id="keep-shopping"
+          variant="outline-primary"
+          type="submit"
+          className="btn"
+          onClick={this.handleAddCart}
+        >
+          <Link to="/shoes">Keep shopping!</Link>
+        </Button>
+        {cart && (
+          <div id="cart-details">
+            {shoesArr &&
+              shoesArr.map(shoe => {
+                totalPrice += Number(shoe.price * shoe.purchased.orderQuantity)
+                return (
+                  <div key={shoe.id}>
+                    <img className="cartImage" src={`${shoe.imageURL}`} />
+                    <Link to={`/shoes/${shoe.id}`}>
+                      <p>{shoe.name}</p>
+                    </Link>
+                    <div key={shoe.size}>size: {shoe.size}</div>
+                    <div key={shoe.price}>
+                      price: ${(shoe.price / 100).toFixed(2)}
+                    </div>
+                    <div>
+                      OrderQuantity in Purchased Table:{' '}
+                      {shoe.purchased.orderQuantity}
+                    </div>
+                    {/*
         <div>
           <Button
             variant="outline-primary"
